@@ -111,9 +111,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PayegahModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="PersonRollType.cs">
-      <DependentUpon>PayegahModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Persons.cs">
       <DependentUpon>PayegahModel.tt</DependentUpon>
     </Compile>

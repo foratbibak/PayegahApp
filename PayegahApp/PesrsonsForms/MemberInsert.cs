@@ -27,28 +27,32 @@ namespace PayegahApp.PesrsonsForms
         {
             if (BaseValidator.IsFormValid(this.components))
             {
-                using(UnitofWork db = new UnitofWork())
+                if (!Int64.TryParse(txtNationalCode.Text, out Int64 code))
                 {
-                    if(!Int64.TryParse(txtNationalCode.Text, out Int64 code))
+                    RtlMessageBox.Show("کد باید فقط شامل عدد باشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNationalCode.Focus();
+                    return;
+                }
+                Int64 NationalCodeCast = Int64.Parse(txtNationalCode.Text);
+                using (UnitofWork db = new UnitofWork())
+                {
+                    Persons personCode = db.PersonsRepository.GetAll(p => p.NationalCode == NationalCodeCast).FirstOrDefault();
+                    if (personCode == null)
                     {
-                        RtlMessageBox.Show("کد باید فقط شامل عدد باشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtNationalCode.Focus();
+                        RtlMessageBox.Show("کاربری با این کدملی یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    Int64 NationalCodeCast = Int64.Parse(txtNationalCode.Text);
-                    Persons personCode = db.PersonsRepository.GetAll().Where(p => p.NationalCode == NationalCodeCast).FirstOrDefault();
-                    if (personCode != null)
-                    {
-                        RtlMessageBox.Show("کد ملی وارد شده یافت نشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    
+
                     Members mem = new Members()
                     {
-                        PersonID=personCode.NationalCode,
-                        IsActive=this.M_IsActive,
-                        RecordDate=DateTime.Now
+                        PersonID = personCode.NationalCode,
+                        //IsActive = this.M_IsActive,
+                        RecordDate = DateTime.Now
                     };
+                    db.MemberRepository.Insert(mem);
+                    db.Save();
+                    RtlMessageBox.Show("عضویت با موفقیت ثبت شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNationalCode.Clear();
                 }
             }
         }
@@ -60,19 +64,19 @@ namespace PayegahApp.PesrsonsForms
                 txtNationalCode.Focus();
                 return;
             }
-            using(UnitofWork db = new UnitofWork())
+            using (UnitofWork db = new UnitofWork())
             {
-                Persons personCode=db.PersonsRepository.GetAll().Where(p=>p.NationalCode == code).FirstOrDefault();
+                Persons personCode = db.PersonsRepository.GetAll().Where(p => p.NationalCode == code).FirstOrDefault();
                 if (personCode != null)
                 {
                     RtlMessageBox.Show("کد ملی وارد شده یافت نشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var person = db.MemberRepository.GetbyID(code);
-                bool isActive=person.IsActive ?? false;
-                if(activet)
+                bool isActive = person.IsActive ?? false;
+                if (activet)
                 {
-                    if(!isActive)
+                    if (!isActive)
                     {
                         person.IsActive = true;
                         db.MemberRepository.Update(person);
@@ -99,6 +103,18 @@ namespace PayegahApp.PesrsonsForms
                     }
                 }
 
+            }
+        }
+
+        private void MemberInsert_Load(object sender, EventArgs e)
+        {
+            BindGrid();
+        }
+        void BindGrid()
+        {
+            using (UnitofWork db = new UnitofWork())
+            {
+                dgvMember.DataSource = db.MemberRepository.GetAll();
             }
         }
     }
