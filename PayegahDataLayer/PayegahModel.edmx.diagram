@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6f079953313f4531b66cf50d9a1c80f9" Name="Diagram1">
+        <EntityTypeShape EntityType="PiagahDbModel.Amad" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.AmadMembers" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.AmadType" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.Dgree" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.DgreeMembers" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.EventMembers" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.Events" Width="1.5" PointX="3" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.EventType" Width="1.5" PointX="0.75" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.OperationMembers" Width="1.5" PointX="8.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.Operations" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.OperationType" Width="1.5" PointX="3.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PiagahDbModel.Users" Width="1.5" PointX="3" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="PiagahDbModel.FK_Amad_AmadType" ManuallyRouted="false" />
+        <AssociationConnector Association="PiagahDbModel.FK_AmadMembers_Amat" ManuallyRouted="false" />
+        <AssociationConnector Association="PiagahDbModel.FK_DgreeMembers_MemberDgree" ManuallyRouted="false" />
+        <AssociationConnector Association="PiagahDbModel.FK_EventMembers_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="PiagahDbModel.FK_Events_EventType" ManuallyRouted="false" />
+        <AssociationConnector Association="PiagahDbModel.FK_OperationMembers_Operations" ManuallyRouted="false" />
+        <AssociationConnector Association="PiagahDbModel.FK_Operations_OperationType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PiagahDbModel.Attendance_absence" Width="1.5" PointX="3" PointY="28.25" />
+        <EntityTypeShape EntityType="PiagahDbModel.Persons" Width="1.5" PointX="0.75" PointY="17.25" />
+        <AssociationConnector Association="PiagahDbModel.FK_Attendance_absence_Persons" />
+        <AssociationConnector Association="PiagahDbModel.FK_Users_Persons" />
+        <EntityTypeShape EntityType="PiagahDbModel.PersonRollType" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="PiagahDbModel.MemberRole" Width="1.5" PointX="8.25" PointY="10.375" />
+        <EntityTypeShape EntityType="PiagahDbModel.Role" Width="1.5" PointX="6" PointY="16.25" />
+        <EntityTypeShape EntityType="PiagahDbModel.RoleType" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="PiagahDbModel.FK_MemberRoll_PersonRank" />
+        <EntityTypeShape EntityType="PiagahDbModel.Members" Width="1.5" PointX="3" PointY="9.875" />
+        <AssociationConnector Association="PiagahDbModel.FK_AmadMembers_Members" />
+        <AssociationConnector Association="PiagahDbModel.FK_DgreeMembers_Members" />
+        <AssociationConnector Association="PiagahDbModel.FK_EventMembers_Members" />
+        <AssociationConnector Association="PiagahDbModel.FK_MemberRoll_Members" />
+        <AssociationConnector Association="PiagahDbModel.FK_Members_Persons" />
+        <AssociationConnector Association="PiagahDbModel.FK_OperationMembers_Members" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
