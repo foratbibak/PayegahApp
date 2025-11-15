@@ -19,7 +19,7 @@ namespace PayegahDataLayer
         public int OperationID { get; set; }
         public System.DateTime DateRegstration { get; set; }
     
-        public virtual Members Members { get; set; }
         public virtual Operations Operations { get; set; }
+        public virtual Members Members { get; set; }
     }
 }

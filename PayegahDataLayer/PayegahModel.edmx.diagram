@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="PayegahDbModel.Events" Width="1.5" PointX="3" PointY="21.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.EventType" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.MemberRole" Width="1.5" PointX="8.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="PayegahDbModel.Members" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.OperationMembers" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.Operations" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.OperationType" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
@@ -26,20 +25,21 @@
         <EntityTypeShape EntityType="PayegahDbModel.Users" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
         <AssociationConnector Association="PayegahDbModel.FK_Amad_AmadType" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Amat" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Attendance_absence_Persons" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_MemberDgree" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Events" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Events_EventType" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_MemberRoll_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_MemberRoll_PersonRank" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_Members_Persons" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Operations" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Operations_OperationType" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Users_Persons" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PayegahDbModel.Members" Width="1.5" PointX="3" PointY="25.375" />
+        <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Members" />
+        <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_Members" />
+        <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Members" />
+        <AssociationConnector Association="PayegahDbModel.FK_MemberRoll_Members" />
+        <AssociationConnector Association="PayegahDbModel.FK_Members_Persons" />
+        <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Members" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

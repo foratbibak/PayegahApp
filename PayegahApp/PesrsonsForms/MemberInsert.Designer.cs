@@ -42,8 +42,8 @@
             this.dgvMember = new System.Windows.Forms.DataGridView();
             this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRecordDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRecordDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
@@ -117,6 +117,7 @@
             this.chkNotActive.TabIndex = 5;
             this.chkNotActive.Text = "غیرفعال سازی ";
             this.chkNotActive.UseVisualStyleBackColor = true;
+            this.chkNotActive.CheckedChanged += new System.EventHandler(this.chkNotActive_CheckedChanged);
             // 
             // chkActive
             // 
@@ -127,6 +128,7 @@
             this.chkActive.TabIndex = 4;
             this.chkActive.Text = "فعال سازی";
             this.chkActive.UseVisualStyleBackColor = true;
+            this.chkActive.CheckedChanged += new System.EventHandler(this.chkActive_CheckedChanged);
             // 
             // label1
             // 
@@ -157,8 +159,8 @@
             this.dgvMember.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colMemID,
             this.colPersonID,
-            this.colRecordDate,
-            this.colIsActive});
+            this.colIsActive,
+            this.colRecordDate});
             this.dgvMember.Location = new System.Drawing.Point(6, 25);
             this.dgvMember.Name = "dgvMember";
             this.dgvMember.ReadOnly = true;
@@ -167,6 +169,7 @@
             // 
             // colMemID
             // 
+            this.colMemID.DataPropertyName = "MemID";
             this.colMemID.HeaderText = "MemID";
             this.colMemID.Name = "colMemID";
             this.colMemID.ReadOnly = true;
@@ -179,13 +182,6 @@
             this.colPersonID.Name = "colPersonID";
             this.colPersonID.ReadOnly = true;
             // 
-            // colRecordDate
-            // 
-            this.colRecordDate.DataPropertyName = "RecordDate";
-            this.colRecordDate.HeaderText = "تاریخ ثبت شده";
-            this.colRecordDate.Name = "colRecordDate";
-            this.colRecordDate.ReadOnly = true;
-            // 
             // colIsActive
             // 
             this.colIsActive.DataPropertyName = "IsActive";
@@ -193,6 +189,13 @@
             this.colIsActive.Name = "colIsActive";
             this.colIsActive.ReadOnly = true;
             this.colIsActive.Visible = false;
+            // 
+            // colRecordDate
+            // 
+            this.colRecordDate.DataPropertyName = "RecordDate";
+            this.colRecordDate.HeaderText = "تاریخ ثبت شده";
+            this.colRecordDate.Name = "colRecordDate";
+            this.colRecordDate.ReadOnly = true;
             // 
             // txtSearch
             // 
@@ -220,6 +223,7 @@
             this.cmbFillter.Name = "cmbFillter";
             this.cmbFillter.Size = new System.Drawing.Size(171, 26);
             this.cmbFillter.TabIndex = 8;
+            this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -278,13 +282,13 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgvMember;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPersonID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRecordDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIsActive;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ComboBox cmbFillter;
         private System.Windows.Forms.Label label2;
         private ValidationComponents.RequiredFieldValidator requiredFieldValidator1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIsActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRecordDate;
     }
 }

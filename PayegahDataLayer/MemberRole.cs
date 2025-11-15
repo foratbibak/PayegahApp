@@ -18,7 +18,7 @@ namespace PayegahDataLayer
         public Nullable<long> MemID { get; set; }
         public Nullable<int> Roll_ID { get; set; }
     
-        public virtual Members Members { get; set; }
         public virtual Role Role { get; set; }
+        public virtual Members Members { get; set; }
     }
 }
