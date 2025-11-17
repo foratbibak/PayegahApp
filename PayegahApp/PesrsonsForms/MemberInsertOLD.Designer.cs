@@ -1,6 +1,6 @@
 ﻿namespace PayegahApp.PesrsonsForms
 {
-    partial class MemberInsert
+    partial class MemberInsertOLD
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberInsert));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MemberInsertOLD));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.بروزرسانی = new System.Windows.Forms.Button();
             this.btnInsertMember = new System.Windows.Forms.Button();

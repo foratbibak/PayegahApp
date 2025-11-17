@@ -105,19 +105,31 @@
     <Compile Include="PesrsonsForms\IsAcitve.Designer.cs">
       <DependentUpon>IsAcitve.cs</DependentUpon>
     </Compile>
-    <Compile Include="PesrsonsForms\MemberInsert.cs">
+    <Compile Include="PesrsonsForms\MemberInsertOLD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PesrsonsForms\MemberInsert.Designer.cs">
-      <DependentUpon>MemberInsert.cs</DependentUpon>
+    <Compile Include="PesrsonsForms\MemberInsertOLD.Designer.cs">
+      <DependentUpon>MemberInsertOLD.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleForm\frmMemberRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoleForm\frmMemberRole.Designer.cs">
+      <DependentUpon>frmMemberRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="RoleForm\frmRole.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RoleForm\frmRole.Designer.cs">
       <DependentUpon>frmRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoleForm\RoleNames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoleForm\RoleNames.Designer.cs">
+      <DependentUpon>RoleNames.cs</DependentUpon>
     </Compile>
     <Compile Include="RoleForm\RoleType.cs">
       <SubType>Form</SubType>
@@ -170,8 +182,8 @@
     <EmbeddedResource Include="PesrsonsForms\IsAcitve.resx">
       <DependentUpon>IsAcitve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PesrsonsForms\MemberInsert.resx">
-      <DependentUpon>MemberInsert.cs</DependentUpon>
+    <EmbeddedResource Include="PesrsonsForms\MemberInsertOLD.resx">
+      <DependentUpon>MemberInsertOLD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -182,8 +194,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RoleForm\frmMemberRole.resx">
+      <DependentUpon>frmMemberRole.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RoleForm\frmRole.resx">
       <DependentUpon>frmRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoleForm\RoleNames.resx">
+      <DependentUpon>RoleNames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RoleForm\RoleType.resx">
       <DependentUpon>RoleType.cs</DependentUpon>

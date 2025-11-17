@@ -14,7 +14,9 @@ using ValidationComponents;
 namespace PayegahApp.RollForm
 {
     public partial class RoleType : Form
+
     {
+        bool R_IsActive = true;
         public RoleType()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace PayegahApp.RollForm
                     {
                         TypeTitle = txtRoll.Text,
                         Code = code,
+                        IsActive=this.R_IsActive,
                         DateRegstretion = DateTime.Now
 
                     };
@@ -114,7 +117,7 @@ namespace PayegahApp.RollForm
                         }
                         Int64 code = Int64.Parse(txtCode.Text);
                         PayegahDataLayer.RoleType pr =db.RoleTypeRepository.GetAll().Where(p=>p.Code==code).FirstOrDefault();
-                        if (pr != null)
+                        if (pr == null)
                         {
                             RtlMessageBox.Show("کد مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -125,11 +128,11 @@ namespace PayegahApp.RollForm
                         {
                             rl.TypeTitle = txtRoll.Text;
                             rl.Code = code;
-                            db.RoleTypeRepository.Update(rl);
-                            db.Save();
-                            RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
-                            BindGrid();
                         }
+                        db.RoleTypeRepository.Update(rl);
+                        db.Save();
+                        RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
+                        BindGrid();
                     }
 
                 }
@@ -181,12 +184,8 @@ namespace PayegahApp.RollForm
             }
             using (UnitofWork db = new UnitofWork())
             {
-                var pr = db.RoleTypeRepository.GetbyID(code);
-                if (pr == null)
-                {
-                    RtlMessageBox.Show("کد وارد شده یافت نشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                int CodeCast = int.Parse(txtCode.Text);
+                var pr = db.RoleTypeRepository.GetAll().FirstOrDefault(p=>p.Code == CodeCast);
                 bool isActive = pr.IsActive ?? false;
                 if (activate)
                 {
@@ -267,6 +266,11 @@ namespace PayegahApp.RollForm
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbFillter_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            BindGrid();
         }
     }
 }

@@ -47,7 +47,7 @@ namespace PayegahApp
 
         private void btnMemberInsert_Click(object sender, EventArgs e)
         {
-            MemberInsert frm=new MemberInsert();
+            MemberInsertOLD frm=new MemberInsertOLD();
             frm.ShowDialog();
         }
     }

@@ -20,11 +20,11 @@ namespace PayegahDataLayer
             this.MemberRole = new HashSet<MemberRole>();
         }
     
-        public int Roll_ID { get; set; }
-        public int RollTypeID { get; set; }
-        public string RollTitle { get; set; }
-        public string Descriptiom { get; set; }
-        public System.DateTime DateGiven { get; set; }
+        public int Role_ID { get; set; }
+        public string RoleTitle { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public string Description { get; set; }
+        public System.DateTime RegstretionDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberRole> MemberRole { get; set; }

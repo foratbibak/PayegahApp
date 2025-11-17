@@ -15,8 +15,8 @@ namespace PayegahApp.PesrsonsForms
 {
     public partial class frmAddorEdit : Form
     {
-        public Int64 NationalCode = 0;
-        bool P_IsActive =true;
+        public Int64 P_NationalCode = 0;
+        bool P_IsActive = true;
         public frmAddorEdit()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace PayegahApp.PesrsonsForms
                         return;
                     }
                     Int64 nationalcast = Int64.Parse(txtNationalCode.Text);
-                    if (NationalCode == 0)
+                    if (P_NationalCode == 0)
                     {
                         Persons person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalcast).FirstOrDefault();
                         if (person != null)
@@ -49,7 +49,7 @@ namespace PayegahApp.PesrsonsForms
                             return;
                         }
                     }
-                
+
 
                     string defaultText = "نامشخص";
                     Persons persons = new Persons()
@@ -66,10 +66,10 @@ namespace PayegahApp.PesrsonsForms
                         FotherPhoneNumber = string.IsNullOrWhiteSpace(txtFotherPhone.Text) ? defaultText : txtFotherPhone.Text,
                         MotherPhoneNumber = string.IsNullOrWhiteSpace(txtMotherPhone.Text) ? defaultText : txtMotherPhone.Text,
                         RegistrationDate = DateTime.Now,
-                        IsActive=this.P_IsActive
+                        IsActive = this.P_IsActive
                     };
-                    
-                    if (NationalCode == 0)
+
+                    if (P_NationalCode == 0)
                     {
                         db.PersonsRepository.Insert(persons);
                         DialogResult = DialogResult.OK;
@@ -81,9 +81,23 @@ namespace PayegahApp.PesrsonsForms
                         DialogResult = DialogResult.OK;
                     }
                     db.Save();
-                    if (NationalCode==0 && persons.PersonID>0)
+                    if (P_NationalCode == 0)
                     {
+                        using (UnitofWork dbb = new UnitofWork())
+                        {
+                            Int64 nationalCast = Int64.Parse(txtNationalCode.Text);
+                            Members mem = new Members()
+                            {
 
+
+                                PersonID = persons.NationalCode,
+                                IsActive = this.P_IsActive,
+                                RecordDate = DateTime.Now
+                            };
+                            dbb.MemberRepository.Insert(mem);
+                            dbb.Save();
+                        }
+                       
                     }
 
                 }
@@ -94,7 +108,7 @@ namespace PayegahApp.PesrsonsForms
         {
 
 
-            if (NationalCode != 0)
+            if (P_NationalCode != 0)
             {
                 if (!string.IsNullOrWhiteSpace(txtNationalCode.Text) && !Int64.TryParse(txtNationalCode.Text, out _))
                 {
@@ -107,7 +121,7 @@ namespace PayegahApp.PesrsonsForms
                 {
                     this.Text = "عملیات ویرایش";
                     btnSabt.Text = "ویرایش";
-                    var Person = db.PersonsRepository.GetbyID(NationalCode);
+                    var Person = db.PersonsRepository.GetbyID(P_NationalCode);
                     txtName.Text = Person.PersonName;
                     txtFamily.Text = Person.PersonFamily;
                     txtNationalCode.Text = Person.NationalCode.ToString();
@@ -119,7 +133,7 @@ namespace PayegahApp.PesrsonsForms
                     txtMotherJob.Text = Person.MotherJob;
                     txtFotherPhone.Text = Person.FotherPhoneNumber;
                     txtMotherPhone.Text = Person.MotherPhoneNumber;
-                    if (Person.IsActive!= null)
+                    if (Person.IsActive != null)
                         P_IsActive = (bool)Person.IsActive;
 
                 }

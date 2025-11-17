@@ -15,10 +15,10 @@ using static Stimulsoft.Report.Export.StiBidirectionalConvert;
 
 namespace PayegahApp.PesrsonsForms
 {
-    public partial class MemberInsert : Form
+    public partial class MemberInsertOLD : Form
     {
         bool M_IsActive = true;
-        public MemberInsert()
+        public MemberInsertOLD()
         {
             InitializeComponent();
         }

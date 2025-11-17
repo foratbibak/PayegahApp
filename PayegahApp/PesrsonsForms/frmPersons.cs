@@ -87,7 +87,7 @@ namespace PayegahApp.Pesrsons
             {
                 int NationalCode = int.Parse(dgvPerson.CurrentRow.Cells[1].Value.ToString());
                 frmAddorEdit frmAddorEdit = new frmAddorEdit();
-                frmAddorEdit.NationalCode = NationalCode;
+                frmAddorEdit.P_NationalCode = NationalCode;
                 if (frmAddorEdit.ShowDialog() == DialogResult.OK)
                 {
                     BindGrid();

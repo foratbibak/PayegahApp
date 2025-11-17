@@ -40,8 +40,6 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtCode = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -132,7 +130,7 @@
             // 
             this.chkNotActive.AutoSize = true;
             this.chkNotActive.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.chkNotActive.Location = new System.Drawing.Point(454, 158);
+            this.chkNotActive.Location = new System.Drawing.Point(454, 203);
             this.chkNotActive.Name = "chkNotActive";
             this.chkNotActive.Size = new System.Drawing.Size(90, 27);
             this.chkNotActive.TabIndex = 17;
@@ -144,7 +142,7 @@
             // 
             this.chkActive.AutoSize = true;
             this.chkActive.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.chkActive.Location = new System.Drawing.Point(562, 158);
+            this.chkActive.Location = new System.Drawing.Point(562, 203);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(64, 27);
             this.chkActive.TabIndex = 16;
@@ -156,14 +154,12 @@
             // 
             this.groupBox4.Controls.Add(this.cmbFillter);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Controls.Add(this.txtSearch);
-            this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(247, 231);
+            this.groupBox4.Location = new System.Drawing.Point(247, 295);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(379, 146);
+            this.groupBox4.Size = new System.Drawing.Size(379, 82);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "عملیات جستوجو";
@@ -171,45 +167,27 @@
             // cmbFillter
             // 
             this.cmbFillter.FormattingEnabled = true;
-            this.cmbFillter.Location = new System.Drawing.Point(7, 112);
+            this.cmbFillter.Location = new System.Drawing.Point(11, 38);
             this.cmbFillter.Name = "cmbFillter";
             this.cmbFillter.Size = new System.Drawing.Size(241, 26);
-            this.cmbFillter.TabIndex = 10;
-            this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
+            this.cmbFillter.TabIndex = 12;
+            this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged_1);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.label3.Location = new System.Drawing.Point(251, 111);
+            this.label3.Location = new System.Drawing.Point(255, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 23);
-            this.label3.TabIndex = 11;
+            this.label3.TabIndex = 13;
             this.label3.Text = "فیلتر جدول:";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(7, 26);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(250, 26);
-            this.txtSearch.TabIndex = 8;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.label2.Location = new System.Drawing.Point(263, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 23);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "جستوجو:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.label4.Location = new System.Drawing.Point(542, 106);
+            this.label4.Location = new System.Drawing.Point(542, 139);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(85, 23);
             this.label4.TabIndex = 13;
@@ -217,7 +195,7 @@
             // 
             // txtCode
             // 
-            this.txtCode.Location = new System.Drawing.Point(286, 103);
+            this.txtCode.Location = new System.Drawing.Point(286, 136);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(250, 26);
             this.txtCode.TabIndex = 12;
@@ -306,7 +284,7 @@
             this.requiredFieldValidator2.ErrorMessage = "لطفا کد مقام را وارد فرمایید.";
             this.requiredFieldValidator2.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator2.Icon")));
             // 
-            // RollType
+            // RoleType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -314,9 +292,10 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 10.25F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "RollType";
+            this.Name = "RoleType";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "افزودن مقام";
             this.Load += new System.EventHandler(this.RollType_Load);
@@ -340,12 +319,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRoll;
         private ValidationComponents.RequiredFieldValidator requiredFieldValidator1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvRollType;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbFillter;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
@@ -355,5 +330,7 @@
         private System.Windows.Forms.CheckBox chkNotActive;
         private System.Windows.Forms.CheckBox chkActive;
         private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
+        private System.Windows.Forms.ComboBox cmbFillter;
+        private System.Windows.Forms.Label label3;
     }
 }

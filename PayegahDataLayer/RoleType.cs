@@ -14,10 +14,19 @@ namespace PayegahDataLayer
     
     public partial class RoleType
     {
-        public int RollType_ID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RoleType()
+        {
+            this.MemberRole = new HashSet<MemberRole>();
+        }
+    
+        public int RoleType_ID { get; set; }
         public long Code { get; set; }
         public string TypeTitle { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime DateRegstretion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MemberRole> MemberRole { get; set; }
     }
 }

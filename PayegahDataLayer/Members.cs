@@ -20,8 +20,8 @@ namespace PayegahDataLayer
             this.AmadMembers = new HashSet<AmadMembers>();
             this.DgreeMembers = new HashSet<DgreeMembers>();
             this.EventMembers = new HashSet<EventMembers>();
-            this.MemberRole = new HashSet<MemberRole>();
             this.OperationMembers = new HashSet<OperationMembers>();
+            this.MemberRole = new HashSet<MemberRole>();
         }
     
         public long MemID { get; set; }
@@ -35,10 +35,10 @@ namespace PayegahDataLayer
         public virtual ICollection<DgreeMembers> DgreeMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventMembers> EventMembers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MemberRole> MemberRole { get; set; }
         public virtual Persons Persons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OperationMembers> OperationMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MemberRole> MemberRole { get; set; }
     }
 }

@@ -16,9 +16,13 @@ namespace PayegahDataLayer
     {
         public int ID { get; set; }
         public Nullable<long> MemID { get; set; }
-        public Nullable<int> Roll_ID { get; set; }
+        public Nullable<int> RoleTypeID { get; set; }
+        public Nullable<int> Role_ID { get; set; }
+        public Nullable<bool> IActive { get; set; }
+        public Nullable<System.DateTime> DateRegestration { get; set; }
     
-        public virtual Role Role { get; set; }
+        public virtual RoleType RoleType { get; set; }
         public virtual Members Members { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
