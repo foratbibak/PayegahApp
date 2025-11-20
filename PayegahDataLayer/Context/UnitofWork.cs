@@ -10,7 +10,46 @@ namespace PayegahDataLayer.Context
 {
     public class UnitofWork : IDisposable
     {
-        PayegahDbEntities db = new PayegahDbEntities();
+        PayegahDbEntites db = new PayegahDbEntites();
+        private PayegahRepository<EventMembers> _MemberEventRepository;
+        public PayegahRepository<EventMembers> MemberEventRepository
+        {
+            get
+            {
+                if (_MemberEventRepository == null)
+                {
+                    _MemberEventRepository = new PayegahRepository<EventMembers>(db);
+                }
+                return _MemberEventRepository;
+            }
+
+        }
+        private PayegahRepository<EventType> _EventTypeRopsitory;
+        public PayegahRepository<EventType> EventTypeRopsitory
+        {
+            get
+            {
+                if (_EventTypeRopsitory == null)
+                {
+                    _EventTypeRopsitory = new PayegahRepository<EventType>(db);
+                }
+                return _EventTypeRopsitory;
+            }
+
+        }
+        private PayegahRepository<Events> _EventsRepository;
+        public PayegahRepository<Events> EventsRepository
+        {
+            get
+            {
+                if (_EventsRepository == null)
+                {
+                   _EventsRepository = new PayegahRepository<Events>(db);
+                }
+                return _EventsRepository;
+            }
+
+        }
         private PayegahRepository<MemberRole> _MemberRoleRepository;
         public PayegahRepository<MemberRole> MemberRoleRepository
         {

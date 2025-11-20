@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PayegahApp.Attendance_absence;
+using PayegahApp.EventForm;
 using PayegahApp.Pesrsons;
 using PayegahApp.PesrsonsForms;
 using PayegahApp.RollForm;
@@ -48,6 +49,12 @@ namespace PayegahApp
         private void btnMemberInsert_Click(object sender, EventArgs e)
         {
             MemberInsertOLD frm=new MemberInsertOLD();
+            frm.ShowDialog();
+        }
+
+        private void btnEvent_Click(object sender, EventArgs e)
+        {
+            frmEvent frm=new frmEvent();
             frm.ShowDialog();
         }
     }

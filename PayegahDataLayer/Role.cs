@@ -23,7 +23,6 @@ namespace PayegahDataLayer
         public int Role_ID { get; set; }
         public string RoleTitle { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public string Description { get; set; }
         public System.DateTime RegstretionDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -18,8 +18,8 @@ namespace PayegahDataLayer
         public Persons()
         {
             this.Attendance_absence = new HashSet<Attendance_absence>();
-            this.Users = new HashSet<Users>();
             this.Members = new HashSet<Members>();
+            this.Users = new HashSet<Users>();
         }
     
         public int PersonID { get; set; }
@@ -40,8 +40,8 @@ namespace PayegahDataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendance_absence> Attendance_absence { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Members> Members { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

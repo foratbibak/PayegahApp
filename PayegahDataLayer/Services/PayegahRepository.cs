@@ -12,9 +12,9 @@ namespace PayegahDataLayer.Services
 {
     public class PayegahRepository<TEntity> where TEntity : class
     {
-        private PayegahDbEntities _db;
+        private PayegahDbEntites _db;
         private DbSet<TEntity> _dbSet;
-        public PayegahRepository(PayegahDbEntities db)
+        public PayegahRepository(PayegahDbEntites db)
         {
             _db = db;
             _dbSet=_db.Set<TEntity>();

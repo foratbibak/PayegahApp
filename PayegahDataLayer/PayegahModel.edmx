@@ -66,7 +66,8 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemID" Type="bigint" Nullable="false" />
           <Property Name="EventID" Type="int" Nullable="false" />
-          <Property Name="DateRegestration" Type="nchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="DateRegestration" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -74,8 +75,9 @@
           </Key>
           <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventTypeID" Type="int" Nullable="false" />
+          <Property Name="EventTitle" Type="nvarchar" MaxLength="150" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="EventTitle" Type="nchar" MaxLength="10" />
+          <Property Name="IsActive" Type="bit" />
           <Property Name="EventDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="EventType">
@@ -84,6 +86,7 @@
           </Key>
           <Property Name="EventTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsActive" Type="bit" />
           <Property Name="DateRegstretion" Type="datetime" />
         </EntityType>
         <EntityType Name="MemberRole">
@@ -159,7 +162,6 @@
           <Property Name="Role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleTitle" Type="nchar" MaxLength="10" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="Description" Type="nvarchar" MaxLength="200" />
           <Property Name="RegstretionDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="RoleType">
@@ -510,7 +512,7 @@
           <Property Name="AmadID" Type="Int64" />
           <Property Name="AmadDateRegestration" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Amad" Relationship="Self.FK_AmadMembers_Amat" FromRole="AmadMembers" ToRole="Amad" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_AmadMembers_Members" FromRole="AmadMembers" ToRole="Members" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_AmadMembers_Members" FromRole="AmadMembers" ToRole="Members" />
         </EntityType>
         <EntityType Name="AmadType">
           <Key>
@@ -550,39 +552,36 @@
           <Property Name="MemId" Type="Int64" Nullable="false" />
           <Property Name="DgreeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dgree" Relationship="Self.FK_DgreeMembers_MemberDgree" FromRole="DgreeMembers" ToRole="Dgree" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_DgreeMembers_Members" FromRole="DgreeMembers" ToRole="Members" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_DgreeMembers_Members" FromRole="DgreeMembers" ToRole="Members" />
         </EntityType>
-        <EntityType Name="EventMembers">
+        <EntityType Name="MemberRole">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemID" Type="Int64" Nullable="false" />
-          <Property Name="EventID" Type="Int32" Nullable="false" />
-          <Property Name="DateRegestration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_EventMembers_Events" FromRole="EventMembers" ToRole="Events" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_EventMembers_Members" FromRole="EventMembers" ToRole="Members" />
+          <Property Name="MemID" Type="Int64" />
+          <Property Name="RoleTypeID" Type="Int32" />
+          <Property Name="Role_ID" Type="Int32" />
+          <Property Name="IActive" Type="Boolean" />
+          <Property Name="DateRegestration" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="RoleType" Relationship="Self.FK_MemberRole_RoleType1" FromRole="MemberRole" ToRole="RoleType" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_MemberRoll_Members" FromRole="MemberRole" ToRole="Members" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_MemberRoll_PersonRank" FromRole="MemberRole" ToRole="Role" />
         </EntityType>
-        <EntityType Name="Events">
+        <EntityType Name="Members">
           <Key>
-            <PropertyRef Name="EventID" />
+            <PropertyRef Name="MemID" />
           </Key>
-          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventTypeID" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EventTitle" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventMembers_Events" FromRole="Events" ToRole="EventMembers" />
-          <NavigationProperty Name="EventType" Relationship="Self.FK_Events_EventType" FromRole="Events" ToRole="EventType" />
-        </EntityType>
-        <EntityType Name="EventType">
-          <Key>
-            <PropertyRef Name="EventTypeId" />
-          </Key>
-          <Property Name="EventTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="DateRegstretion" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_Events_EventType" FromRole="EventType" ToRole="Events" />
+          <Property Name="MemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AmadMembers" Relationship="Self.FK_AmadMembers_Members" FromRole="Members" ToRole="AmadMembers" />
+          <NavigationProperty Name="DgreeMembers" Relationship="Self.FK_DgreeMembers_Members" FromRole="Members" ToRole="DgreeMembers" />
+          <NavigationProperty Name="MemberRole" Relationship="Self.FK_MemberRoll_Members" FromRole="Members" ToRole="MemberRole" />
+          <NavigationProperty Name="Persons" Relationship="Self.FK_Members_Persons" FromRole="Members" ToRole="Persons" />
+          <NavigationProperty Name="OperationMembers" Relationship="Self.FK_OperationMembers_Members" FromRole="Members" ToRole="OperationMembers" />
+          <NavigationProperty Name="EventMembers" Relationship="PayegahDbModel.FK_EventMembers_Members" FromRole="Members" ToRole="EventMembers" />
         </EntityType>
         <EntityType Name="OperationMembers">
           <Key>
@@ -592,8 +591,8 @@
           <Property Name="MemID" Type="Int64" Nullable="false" />
           <Property Name="OperationID" Type="Int32" Nullable="false" />
           <Property Name="DateRegstration" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_OperationMembers_Members" FromRole="OperationMembers" ToRole="Members" />
           <NavigationProperty Name="Operations" Relationship="Self.FK_OperationMembers_Operations" FromRole="OperationMembers" ToRole="Operations" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_OperationMembers_Members" FromRole="OperationMembers" ToRole="Members" />
         </EntityType>
         <EntityType Name="Operations">
           <Key>
@@ -635,8 +634,29 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Attendance_absence" Relationship="Self.FK_Attendance_absence_Persons" FromRole="Persons" ToRole="Attendance_absence" />
+          <NavigationProperty Name="Members" Relationship="Self.FK_Members_Persons" FromRole="Persons" ToRole="Members" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_Members_Persons" FromRole="Persons" ToRole="Members" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Role_ID" />
+          </Key>
+          <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleTitle" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RegstretionDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="MemberRole" Relationship="Self.FK_MemberRoll_PersonRank" FromRole="Role" ToRole="MemberRole" />
+        </EntityType>
+        <EntityType Name="RoleType">
+          <Key>
+            <PropertyRef Name="RoleType_ID" />
+          </Key>
+          <Property Name="RoleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="Int64" Nullable="false" />
+          <Property Name="TypeTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="DateRegstretion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MemberRole" Relationship="Self.FK_MemberRole_RoleType1" FromRole="RoleType" ToRole="MemberRole" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -683,6 +703,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_AmadMembers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="AmadMembers" Type="Self.AmadMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="AmadMembers">
+              <PropertyRef Name="AmadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Attendance_absence_Persons">
           <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
           <End Role="Attendance_absence" Type="Self.Attendance_absence" Multiplicity="*" />
@@ -707,27 +739,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EventMembers_Events">
-          <End Role="Events" Type="Self.Events" Multiplicity="1" />
-          <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
+        <Association Name="FK_DgreeMembers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="DgreeMembers" Type="Self.DgreeMembers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Events">
-              <PropertyRef Name="EventID" />
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
             </Principal>
-            <Dependent Role="EventMembers">
-              <PropertyRef Name="EventID" />
+            <Dependent Role="DgreeMembers">
+              <PropertyRef Name="MemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Events_EventType">
-          <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
-          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+        <Association Name="FK_MemberRole_RoleType1">
+          <End Role="RoleType" Type="Self.RoleType" Multiplicity="0..1" />
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EventType">
-              <PropertyRef Name="EventTypeId" />
+            <Principal Role="RoleType">
+              <PropertyRef Name="RoleType_ID" />
             </Principal>
-            <Dependent Role="Events">
-              <PropertyRef Name="EventTypeID" />
+            <Dependent Role="MemberRole">
+              <PropertyRef Name="RoleTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRoll_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="MemberRole">
+              <PropertyRef Name="MemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRoll_PersonRank">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Role_ID" />
+            </Principal>
+            <Dependent Role="MemberRole">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Persons">
+          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
+          <End Role="Members" Type="Self.Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="NationalCode" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationMembers_Members">
+          <End Role="Members" Type="Self.Members" Multiplicity="1" />
+          <End Role="OperationMembers" Type="Self.OperationMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="OperationMembers">
+              <PropertyRef Name="MemID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -767,20 +847,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PayegahDbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="PayegahDbEntites" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Amad" EntityType="Self.Amad" />
           <EntitySet Name="AmadMembers" EntityType="Self.AmadMembers" />
           <EntitySet Name="AmadType" EntityType="Self.AmadType" />
           <EntitySet Name="Attendance_absence" EntityType="Self.Attendance_absence" />
           <EntitySet Name="Dgree" EntityType="Self.Dgree" />
           <EntitySet Name="DgreeMembers" EntityType="Self.DgreeMembers" />
-          <EntitySet Name="EventMembers" EntityType="Self.EventMembers" />
-          <EntitySet Name="Events" EntityType="Self.Events" />
-          <EntitySet Name="EventType" EntityType="Self.EventType" />
+          <EntitySet Name="MemberRole" EntityType="Self.MemberRole" />
+          <EntitySet Name="Members" EntityType="Self.Members" />
           <EntitySet Name="OperationMembers" EntityType="Self.OperationMembers" />
           <EntitySet Name="Operations" EntityType="Self.Operations" />
           <EntitySet Name="OperationType" EntityType="Self.OperationType" />
           <EntitySet Name="Persons" EntityType="Self.Persons" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="RoleType" EntityType="Self.RoleType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Amad_AmadType" Association="Self.FK_Amad_AmadType">
@@ -791,6 +872,10 @@
             <End Role="Amad" EntitySet="Amad" />
             <End Role="AmadMembers" EntitySet="AmadMembers" />
           </AssociationSet>
+          <AssociationSet Name="FK_AmadMembers_Members" Association="Self.FK_AmadMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AmadMembers" EntitySet="AmadMembers" />
+          </AssociationSet>
           <AssociationSet Name="FK_Attendance_absence_Persons" Association="Self.FK_Attendance_absence_Persons">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="Attendance_absence" EntitySet="Attendance_absence" />
@@ -799,13 +884,29 @@
             <End Role="Dgree" EntitySet="Dgree" />
             <End Role="DgreeMembers" EntitySet="DgreeMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
-            <End Role="Events" EntitySet="Events" />
-            <End Role="EventMembers" EntitySet="EventMembers" />
+          <AssociationSet Name="FK_DgreeMembers_Members" Association="Self.FK_DgreeMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="DgreeMembers" EntitySet="DgreeMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Events_EventType" Association="Self.FK_Events_EventType">
-            <End Role="EventType" EntitySet="EventType" />
-            <End Role="Events" EntitySet="Events" />
+          <AssociationSet Name="FK_MemberRole_RoleType1" Association="Self.FK_MemberRole_RoleType1">
+            <End Role="RoleType" EntitySet="RoleType" />
+            <End Role="MemberRole" EntitySet="MemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRoll_Members" Association="Self.FK_MemberRoll_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="MemberRole" EntitySet="MemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRoll_PersonRank" Association="Self.FK_MemberRoll_PersonRank">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="MemberRole" EntitySet="MemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Persons" Association="Self.FK_Members_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationMembers_Members" Association="Self.FK_OperationMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="OperationMembers" EntitySet="OperationMembers" />
           </AssociationSet>
           <AssociationSet Name="FK_OperationMembers_Operations" Association="Self.FK_OperationMembers_Operations">
             <End Role="Operations" EntitySet="Operations" />
@@ -819,79 +920,66 @@
             <End Role="Persons" EntitySet="Persons" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Members" EntityType="PayegahDbModel.Members" />
-          <AssociationSet Name="FK_AmadMembers_Members" Association="PayegahDbModel.FK_AmadMembers_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="AmadMembers" EntitySet="AmadMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DgreeMembers_Members" Association="PayegahDbModel.FK_DgreeMembers_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="DgreeMembers" EntitySet="DgreeMembers" />
+          <EntitySet Name="EventMembers" EntityType="PayegahDbModel.EventMembers" />
+          <EntitySet Name="Events" EntityType="PayegahDbModel.Events" />
+          <EntitySet Name="EventType" EntityType="PayegahDbModel.EventType" />
+          <AssociationSet Name="FK_EventMembers_Events" Association="PayegahDbModel.FK_EventMembers_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
           </AssociationSet>
           <AssociationSet Name="FK_EventMembers_Members" Association="PayegahDbModel.FK_EventMembers_Members">
             <End Role="Members" EntitySet="Members" />
             <End Role="EventMembers" EntitySet="EventMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Members_Persons" Association="PayegahDbModel.FK_Members_Persons">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="Members" EntitySet="Members" />
+          <AssociationSet Name="FK_Events_EventType" Association="PayegahDbModel.FK_Events_EventType">
+            <End Role="EventType" EntitySet="EventType" />
+            <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK_OperationMembers_Members" Association="PayegahDbModel.FK_OperationMembers_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="OperationMembers" EntitySet="OperationMembers" />
-          </AssociationSet>
-          <EntitySet Name="MemberRole" EntityType="PayegahDbModel.MemberRole" />
-          <EntitySet Name="Role" EntityType="PayegahDbModel.Role" />
-          <EntitySet Name="RoleType" EntityType="PayegahDbModel.RoleType" />
-          <AssociationSet Name="FK_MemberRole_RoleType1" Association="PayegahDbModel.FK_MemberRole_RoleType1">
-            <End Role="RoleType" EntitySet="RoleType" />
-            <End Role="MemberRole" EntitySet="MemberRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberRoll_Members" Association="PayegahDbModel.FK_MemberRoll_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="MemberRole" EntitySet="MemberRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MemberRoll_PersonRank" Association="PayegahDbModel.FK_MemberRoll_PersonRank">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="MemberRole" EntitySet="MemberRole" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="Members">
+        </EntityContainer>
+        <EntityType Name="EventMembers">
           <Key>
-            <PropertyRef Name="MemID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="MemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonID" Type="Int64" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemID" Type="Int64" Nullable="false" />
+          <Property Name="EventID" Type="Int32" Nullable="false" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="RecordDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AmadMembers" Relationship="PayegahDbModel.FK_AmadMembers_Members" FromRole="Members" ToRole="AmadMembers" />
-          <NavigationProperty Name="DgreeMembers" Relationship="PayegahDbModel.FK_DgreeMembers_Members" FromRole="Members" ToRole="DgreeMembers" />
-          <NavigationProperty Name="EventMembers" Relationship="PayegahDbModel.FK_EventMembers_Members" FromRole="Members" ToRole="EventMembers" />
-          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Members_Persons" FromRole="Members" ToRole="Persons" />
-          <NavigationProperty Name="OperationMembers" Relationship="PayegahDbModel.FK_OperationMembers_Members" FromRole="Members" ToRole="OperationMembers" />
-          <NavigationProperty Name="MemberRole" Relationship="PayegahDbModel.FK_MemberRoll_Members" FromRole="Members" ToRole="MemberRole" />
+          <Property Name="DateRegestration" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="PayegahDbModel.FK_EventMembers_Events" FromRole="EventMembers" ToRole="Events" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_EventMembers_Members" FromRole="EventMembers" ToRole="Members" />
         </EntityType>
-        <Association Name="FK_AmadMembers_Members">
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.AmadMembers" Role="AmadMembers" Multiplicity="*" />
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTypeID" Type="Int32" Nullable="false" />
+          <Property Name="EventTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="EventMembers" Relationship="PayegahDbModel.FK_EventMembers_Events" FromRole="Events" ToRole="EventMembers" />
+          <NavigationProperty Name="EventType" Relationship="PayegahDbModel.FK_Events_EventType" FromRole="Events" ToRole="EventType" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="DateRegstretion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Events" Relationship="PayegahDbModel.FK_Events_EventType" FromRole="EventType" ToRole="Events" />
+        </EntityType>
+        <Association Name="FK_EventMembers_Events">
+          <End Type="PayegahDbModel.Events" Role="Events" Multiplicity="1" />
+          <End Type="PayegahDbModel.EventMembers" Role="EventMembers" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
+            <Principal Role="Events">
+              <PropertyRef Name="EventID" />
             </Principal>
-            <Dependent Role="AmadMembers">
-              <PropertyRef Name="AmadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DgreeMembers_Members">
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="1" />
-          <End Type="PayegahDbModel.DgreeMembers" Role="DgreeMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="DgreeMembers">
-              <PropertyRef Name="MemId" />
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="EventID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -907,108 +995,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Members_Persons">
-          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="*" />
+        <Association Name="FK_Events_EventType">
+          <End Type="PayegahDbModel.EventType" Role="EventType" Multiplicity="1" />
+          <End Type="PayegahDbModel.Events" Role="Events" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeId" />
             </Principal>
-            <Dependent Role="Members">
-              <PropertyRef Name="PersonID" />
+            <Dependent Role="Events">
+              <PropertyRef Name="EventTypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OperationMembers_Members">
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="1" />
-          <End Type="PayegahDbModel.OperationMembers" Role="OperationMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="OperationMembers">
-              <PropertyRef Name="MemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="MemberRole">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemID" Type="Int64" />
-          <Property Name="RoleTypeID" Type="Int32" />
-          <Property Name="Role_ID" Type="Int32" />
-          <Property Name="IActive" Type="Boolean" />
-          <Property Name="DateRegestration" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="RoleType" Relationship="PayegahDbModel.FK_MemberRole_RoleType1" FromRole="MemberRole" ToRole="RoleType" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_MemberRoll_Members" FromRole="MemberRole" ToRole="Members" />
-          <NavigationProperty Name="Role" Relationship="PayegahDbModel.FK_MemberRoll_PersonRank" FromRole="MemberRole" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Role_ID" />
-          </Key>
-          <Property Name="Role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleTitle" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="RegstretionDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="MemberRole" Relationship="PayegahDbModel.FK_MemberRoll_PersonRank" FromRole="Role" ToRole="MemberRole" />
-        </EntityType>
-        <EntityType Name="RoleType">
-          <Key>
-            <PropertyRef Name="RoleType_ID" />
-          </Key>
-          <Property Name="RoleType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="Int64" Nullable="false" />
-          <Property Name="TypeTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="DateRegstretion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="MemberRole" Relationship="PayegahDbModel.FK_MemberRole_RoleType1" FromRole="RoleType" ToRole="MemberRole" />
-        </EntityType>
-        <Association Name="FK_MemberRole_RoleType1">
-          <End Type="PayegahDbModel.RoleType" Role="RoleType" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.MemberRole" Role="MemberRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoleType">
-              <PropertyRef Name="RoleType_ID" />
-            </Principal>
-            <Dependent Role="MemberRole">
-              <PropertyRef Name="RoleTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MemberRoll_Members">
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.MemberRole" Role="MemberRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="MemberRole">
-              <PropertyRef Name="MemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MemberRoll_PersonRank">
-          <End Type="PayegahDbModel.Role" Role="Role" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.MemberRole" Role="MemberRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Role">
-              <PropertyRef Name="Role_ID" />
-            </Principal>
-            <Dependent Role="MemberRole">
-              <PropertyRef Name="Role_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PayegahDbModelStoreContainer" CdmEntityContainer="PayegahDbEntities">
+        <EntityContainerMapping StorageEntityContainer="PayegahDbModelStoreContainer" CdmEntityContainer="PayegahDbEntites">
           <EntitySetMapping Name="Amad">
             <EntityTypeMapping TypeName="PayegahDbModel.Amad">
               <MappingFragment StoreEntitySet="Amad">
@@ -1069,33 +1073,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="EventMembers">
-            <EntityTypeMapping TypeName="PayegahDbModel.EventMembers">
-              <MappingFragment StoreEntitySet="EventMembers">
+          <EntitySetMapping Name="MemberRole">
+            <EntityTypeMapping TypeName="PayegahDbModel.MemberRole">
+              <MappingFragment StoreEntitySet="MemberRole">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MemID" ColumnName="MemID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="RoleTypeID" ColumnName="RoleTypeID" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="IActive" ColumnName="IActive" />
                 <ScalarProperty Name="DateRegestration" ColumnName="DateRegestration" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="PayegahDbModel.Events">
-              <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
-                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EventType">
-            <EntityTypeMapping TypeName="PayegahDbModel.EventType">
-              <MappingFragment StoreEntitySet="EventType">
-                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="DateRegstretion" ColumnName="DateRegstretion" />
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="PayegahDbModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="MemID" ColumnName="MemID" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1149,6 +1145,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="PayegahDbModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="RegstretionDate" ColumnName="RegstretionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleType">
+            <EntityTypeMapping TypeName="PayegahDbModel.RoleType">
+              <MappingFragment StoreEntitySet="RoleType">
+                <ScalarProperty Name="RoleType_ID" ColumnName="RoleType_ID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateRegstretion" ColumnName="DateRegstretion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PayegahDbModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -1171,51 +1188,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="PayegahDbModel.Members">
-              <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="MemID" ColumnName="MemID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MemberRole">
-            <EntityTypeMapping TypeName="PayegahDbModel.MemberRole">
-              <MappingFragment StoreEntitySet="MemberRole">
+          <EntitySetMapping Name="EventMembers">
+            <EntityTypeMapping TypeName="PayegahDbModel.EventMembers">
+              <MappingFragment StoreEntitySet="EventMembers">
                 <ScalarProperty Name="DateRegestration" ColumnName="DateRegestration" />
-                <ScalarProperty Name="IActive" ColumnName="IActive" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
-                <ScalarProperty Name="RoleTypeID" ColumnName="RoleTypeID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="MemID" ColumnName="MemID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="PayegahDbModel.Role">
-              <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="RegstretionDate" ColumnName="RegstretionDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="PayegahDbModel.Events">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventDate" ColumnName="EventDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
-                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EventTitle" ColumnName="EventTitle" />
+                <ScalarProperty Name="EventTypeID" ColumnName="EventTypeID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RoleType">
-            <EntityTypeMapping TypeName="PayegahDbModel.RoleType">
-              <MappingFragment StoreEntitySet="RoleType">
+          <EntitySetMapping Name="EventType">
+            <EntityTypeMapping TypeName="PayegahDbModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
                 <ScalarProperty Name="DateRegstretion" ColumnName="DateRegstretion" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="TypeTitle" ColumnName="TypeTitle" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="RoleType_ID" ColumnName="RoleType_ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

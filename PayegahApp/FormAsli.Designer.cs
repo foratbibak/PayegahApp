@@ -31,6 +31,7 @@
             this.btnPerson = new System.Windows.Forms.Button();
             this.btnEntrance_Exit = new System.Windows.Forms.Button();
             this.btnRoll = new System.Windows.Forms.Button();
+            this.btnEvent = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPerson
@@ -66,11 +67,23 @@
             this.btnRoll.UseVisualStyleBackColor = true;
             this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
             // 
+            // btnEvent
+            // 
+            this.btnEvent.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.btnEvent.Location = new System.Drawing.Point(182, 12);
+            this.btnEvent.Name = "btnEvent";
+            this.btnEvent.Size = new System.Drawing.Size(147, 56);
+            this.btnEvent.TabIndex = 3;
+            this.btnEvent.Text = "مراسمات";
+            this.btnEvent.UseVisualStyleBackColor = true;
+            this.btnEvent.Click += new System.EventHandler(this.btnEvent_Click);
+            // 
             // FormAsli
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEvent);
             this.Controls.Add(this.btnRoll);
             this.Controls.Add(this.btnEntrance_Exit);
             this.Controls.Add(this.btnPerson);
@@ -87,6 +100,7 @@
         private System.Windows.Forms.Button btnPerson;
         private System.Windows.Forms.Button btnEntrance_Exit;
         private System.Windows.Forms.Button btnRoll;
+        private System.Windows.Forms.Button btnEvent;
     }
 }
 

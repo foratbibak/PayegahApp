@@ -22,8 +22,9 @@ namespace PayegahDataLayer
     
         public int EventID { get; set; }
         public int EventTypeID { get; set; }
-        public string Description { get; set; }
         public string EventTitle { get; set; }
+        public string Description { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public System.DateTime EventDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

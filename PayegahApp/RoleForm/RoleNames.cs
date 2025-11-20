@@ -8,6 +8,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Accounting.utility.Convertor;
 using PayegahDataLayer;
 using PayegahDataLayer.Context;
 using ValidationComponents;
@@ -34,7 +35,6 @@ namespace PayegahApp.RoleForm
                     Role r = new Role()
                     {
                         RoleTitle = txtInsert.Text,
-                        Description = string.IsNullOrWhiteSpace(txtDescription.Text) ? defaultText : txtDescription.Text,
                         IsActive = this.R_Active,
                         RegstretionDate = DateTime.Now
                     };
@@ -61,6 +61,8 @@ namespace PayegahApp.RoleForm
                     data = data.Where(r => r.IsActive == false).ToList();
                 }
                 dgvRole.DataSource = data;
+                ConvertDatesToShamsi();
+
 
             }
         }
@@ -75,6 +77,21 @@ namespace PayegahApp.RoleForm
             cmbFillter.SelectedIndex = 1;
             BindGrid();
         }
+        private void ConvertDatesToShamsi()
+        {
+            foreach (DataGridViewRow row in dgvRole.Rows)
+            {
+                if (row.Cells["RegstretionDate"].Value != null &&
+                    DateTime.TryParse(row.Cells["RegstretionDate"].Value.ToString(), out DateTime date))
+                {
+                    row.Cells["RegstretionDate"].Value = date.ToShamsi();
+                }
+                else
+                {
+                    row.Cells["RegstretionDate"].Value = "";
+                }
+            }
+        }
         private void ActiveStatus(bool Active)
         {
             if (dgvRole.CurrentRow.Selected)
@@ -82,9 +99,10 @@ namespace PayegahApp.RoleForm
                 int ID = int.Parse(dgvRole.CurrentRow.Cells[0].Value.ToString());
                 using (UnitofWork db = new UnitofWork())
                 {
-                    var Get=db.RoleRepository.GetbyID(ID);
+
+                    var Get = db.RoleRepository.GetbyID(ID);
                     bool IsActive = Get.IsActive ?? false;
-                    if(Active)
+                    if (Active)
                     {
                         if (!IsActive)
                         {
@@ -98,7 +116,7 @@ namespace PayegahApp.RoleForm
                             RtlMessageBox.Show("این شورا از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
-                        
+
                     }
                     else
                     {
@@ -129,7 +147,7 @@ namespace PayegahApp.RoleForm
 
         private void dgvRole_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-   
+
         }
 
         private void btnEdt_Click(object sender, EventArgs e)
@@ -143,7 +161,6 @@ namespace PayegahApp.RoleForm
                     if (RoleGet != null)
                     {
                         RoleGet.RoleTitle = txtInsert.Text;
-                        RoleGet.Description = txtDescription.Text;
                     }
                     db.RoleRepository.Update(RoleGet);
                     db.Save();
@@ -168,7 +185,6 @@ namespace PayegahApp.RoleForm
                     if (roll != null)
                     {
                         txtInsert.Text = roll.RoleTitle;
-                        txtDescription.Text = roll.Description;
                     }
                 }
             }
@@ -176,21 +192,28 @@ namespace PayegahApp.RoleForm
 
         private void chkActive_CheckedChanged(object sender, EventArgs e)
         {
-            if(chkActive.Checked)
+            if (chkActive.Checked)
             {
-                if (string.IsNullOrWhiteSpace(txtInsert.Text))
-                {
-                    RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    chkActive.Checked = false;
-                    return;
-                }
                 if (dgvRole.CurrentRow.Selected)
                 {
+                    if (string.IsNullOrWhiteSpace(txtInsert.Text))
+                    {
+                        RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        chkActive.Checked = false;
+                        return;
+                    }
+
+                    chkNotActive.Checked = false;
                     ActiveStatus(true);
                     chkActive.Checked = false;
                     txtInsert.Clear();
-                    txtDescription.Clear();
                     BindGrid();
+                }
+                else
+                {
+                    RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    chkActive.Checked = false;
+                    chkNotActive.Checked = false;
                 }
             }
         }
@@ -199,23 +222,30 @@ namespace PayegahApp.RoleForm
         {
             if (chkNotActive.Checked)
             {
-                if (string.IsNullOrWhiteSpace(txtInsert.Text))
-                {
-                    RtlMessageBox.Show("برای غیرفعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    chkNotActive.Checked = false;
-                    return;
-                }
                 if (dgvRole.CurrentRow.Selected)
                 {
+                    if (string.IsNullOrWhiteSpace(txtInsert.Text))
+                    {
+                        RtlMessageBox.Show("برای غیرفعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        chkNotActive.Checked = false;
+                        return;
+                    }
+
                     chkActive.Checked = false;
                     ActiveStatus(false);
                     chkNotActive.Checked = false;
                     txtInsert.Clear();
-                    txtDescription.Clear();
                     BindGrid();
 
                 }
+                else
+                {
+                    RtlMessageBox.Show("برای غیرفعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    chkNotActive.Checked = false;
+                    chkActive.Checked = false;
+                }
             }
+
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -17,6 +17,7 @@ namespace PayegahDataLayer
         public int ID { get; set; }
         public long MemID { get; set; }
         public int EventID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public string DateRegestration { get; set; }
     
         public virtual Events Events { get; set; }

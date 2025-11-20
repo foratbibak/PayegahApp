@@ -49,6 +49,8 @@ namespace PayegahApp.RollForm
                 cmbRoles.ValueMember = "RoleType_ID";
                 cmbRoles.DataSource = list;
             }
+            cmbRoles.SelectedIndex = -1;
+            cmbRoles.Text = "لطفا یک آیتم را انتخاب فرمایید.";
         }
         void CmbRole()
         {
@@ -59,23 +61,28 @@ namespace PayegahApp.RollForm
                 cmbRoleName.ValueMember = "Role_ID";
                 cmbRoleName.DataSource = list;
             }
+            cmbRoleName.SelectedIndex = -1;
+            cmbRoleName.Text = "لطفا یک آیتم را انتخاب فرمایید.";
         }
         void BindGrid()
         {
             using (UnitofWork db = new UnitofWork())
             {
                 dgvRole.DataSource=db.MemberRoleRepository.GetAll();
-                //var data = db.MemberRoleRepository.GetAll();
-                //if (cmbFillter.SelectedItem.ToString() == "فعال")
-                //{
-                //    data=data.Where(c=>c.IActive==true).ToList();
-                //}
-                //else if (cmbFillter.SelectedItem.ToString() == "غیرفعال")
-                //{
-                //    data=data.Where(c=>c.IActive==false).ToList();
-                //}
-                //dgvRole.DataSource = data;
+                var data = db.MemberRoleRepository.GetAll();
+                if (cmbFillter.SelectedItem.ToString() == "فعال")
+                {
+                    data = data.Where(c => c.IActive == true).ToList();
+                }
+                else if (cmbFillter.SelectedItem.ToString() == "غیرفعال")
+                {
+                    data = data.Where(c => c.IActive == false).ToList();
+                }
+                dgvRole.DataSource = data;
             }
+            CmbRole();
+            CmbRoleType();
+
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -122,11 +129,6 @@ namespace PayegahApp.RollForm
             {
                 RtlMessageBox.Show("کدملی فقط باید شامل عدد باشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (cmbRoleName.SelectedValue == null && cmbRoles.SelectedValue == null)
-            {
-                RtlMessageBox.Show("لطفا مقام و شورای مورد نظر را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
             Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
             using (UnitofWork db = new UnitofWork())
             {
@@ -162,6 +164,16 @@ namespace PayegahApp.RollForm
         private void cmbFillter_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGrid();
+        }
+
+        private void txtNatoinalCode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

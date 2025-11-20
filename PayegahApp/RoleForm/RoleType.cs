@@ -184,6 +184,15 @@ namespace PayegahApp.RollForm
             }
             using (UnitofWork db = new UnitofWork())
             {
+                Int64 CodeCast2 = Int64.Parse(txtCode.Text);
+                PayegahDataLayer.RoleType rt = db.RoleTypeRepository.GetAll().Where(r => r.Code == CodeCast2).FirstOrDefault();
+                if (rt == null)
+                {
+                    RtlMessageBox.Show(" کد یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtCode.Focus();
+                    return;
+
+                }
                 int CodeCast = int.Parse(txtCode.Text);
                 var pr = db.RoleTypeRepository.GetAll().FirstOrDefault(p=>p.Code == CodeCast);
                 bool isActive = pr.IsActive ?? false;
@@ -271,6 +280,11 @@ namespace PayegahApp.RollForm
         private void cmbFillter_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             BindGrid();
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

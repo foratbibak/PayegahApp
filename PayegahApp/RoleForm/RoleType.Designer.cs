@@ -44,13 +44,13 @@
             this.txtCode = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvRollType = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRoll = new System.Windows.Forms.TextBox();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.requiredFieldValidator2 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -125,28 +125,29 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "عملیات مقام";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // chkNotActive
             // 
             this.chkNotActive.AutoSize = true;
-            this.chkNotActive.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.chkNotActive.Location = new System.Drawing.Point(454, 203);
+            this.chkNotActive.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.chkNotActive.Location = new System.Drawing.Point(364, 191);
             this.chkNotActive.Name = "chkNotActive";
-            this.chkNotActive.Size = new System.Drawing.Size(90, 27);
+            this.chkNotActive.Size = new System.Drawing.Size(131, 25);
             this.chkNotActive.TabIndex = 17;
-            this.chkNotActive.Text = "غیرفعال";
+            this.chkNotActive.Text = "غیرفعال سازی";
             this.chkNotActive.UseVisualStyleBackColor = true;
             this.chkNotActive.CheckedChanged += new System.EventHandler(this.chkNotActive_CheckedChanged);
             // 
             // chkActive
             // 
             this.chkActive.AutoSize = true;
-            this.chkActive.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.chkActive.Location = new System.Drawing.Point(562, 203);
+            this.chkActive.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.chkActive.Location = new System.Drawing.Point(515, 191);
             this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(64, 27);
+            this.chkActive.Size = new System.Drawing.Size(108, 25);
             this.chkActive.TabIndex = 16;
-            this.chkActive.Text = "فعال";
+            this.chkActive.Text = "فعال سازی";
             this.chkActive.UseVisualStyleBackColor = true;
             this.chkActive.CheckedChanged += new System.EventHandler(this.chkActive_CheckedChanged);
             // 
@@ -155,11 +156,11 @@
             this.groupBox4.Controls.Add(this.cmbFillter);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(247, 295);
+            this.groupBox4.Location = new System.Drawing.Point(286, 295);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(379, 82);
+            this.groupBox4.Size = new System.Drawing.Size(340, 82);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "عملیات جستوجو";
@@ -167,9 +168,9 @@
             // cmbFillter
             // 
             this.cmbFillter.FormattingEnabled = true;
-            this.cmbFillter.Location = new System.Drawing.Point(11, 38);
+            this.cmbFillter.Location = new System.Drawing.Point(7, 38);
             this.cmbFillter.Name = "cmbFillter";
-            this.cmbFillter.Size = new System.Drawing.Size(241, 26);
+            this.cmbFillter.Size = new System.Drawing.Size(221, 26);
             this.cmbFillter.TabIndex = 12;
             this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged_1);
             // 
@@ -177,7 +178,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.label3.Location = new System.Drawing.Point(255, 37);
+            this.label3.Location = new System.Drawing.Point(230, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 23);
             this.label3.TabIndex = 13;
@@ -203,11 +204,12 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvRollType);
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12.25F);
             this.groupBox2.Location = new System.Drawing.Point(8, 17);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(234, 360);
+            this.groupBox2.Size = new System.Drawing.Size(245, 360);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "مقام ها";
@@ -226,32 +228,10 @@
             this.dgvRollType.Margin = new System.Windows.Forms.Padding(4);
             this.dgvRollType.Name = "dgvRollType";
             this.dgvRollType.ReadOnly = true;
-            this.dgvRollType.Size = new System.Drawing.Size(218, 329);
+            this.dgvRollType.Size = new System.Drawing.Size(226, 329);
             this.dgvRollType.TabIndex = 1;
             this.dgvRollType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRollType_CellClick);
             this.dgvRollType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRollType_CellContentClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "RollType_ID";
-            this.colID.HeaderText = "Column1";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colCode
-            // 
-            this.colCode.DataPropertyName = "Code";
-            this.colCode.HeaderText = "کد مقام";
-            this.colCode.Name = "colCode";
-            this.colCode.ReadOnly = true;
-            // 
-            // TypeTitle
-            // 
-            this.TypeTitle.DataPropertyName = "TypeTitle";
-            this.TypeTitle.HeaderText = "نام مقام";
-            this.TypeTitle.Name = "TypeTitle";
-            this.TypeTitle.ReadOnly = true;
             // 
             // label1
             // 
@@ -283,6 +263,28 @@
             this.requiredFieldValidator2.ControlToValidate = this.txtCode;
             this.requiredFieldValidator2.ErrorMessage = "لطفا کد مقام را وارد فرمایید.";
             this.requiredFieldValidator2.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator2.Icon")));
+            // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "RoleType_ID";
+            this.colID.HeaderText = "Column1";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // colCode
+            // 
+            this.colCode.DataPropertyName = "Code";
+            this.colCode.HeaderText = "کد مقام";
+            this.colCode.Name = "colCode";
+            this.colCode.ReadOnly = true;
+            // 
+            // TypeTitle
+            // 
+            this.TypeTitle.DataPropertyName = "TypeTitle";
+            this.TypeTitle.HeaderText = "نام مقام";
+            this.TypeTitle.Name = "TypeTitle";
+            this.TypeTitle.ReadOnly = true;
             // 
             // RoleType
             // 
@@ -323,14 +325,14 @@
         private System.Windows.Forms.DataGridView dgvRollType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TypeTitle;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox chkNotActive;
         private System.Windows.Forms.CheckBox chkActive;
         private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
         private System.Windows.Forms.ComboBox cmbFillter;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeTitle;
     }
 }

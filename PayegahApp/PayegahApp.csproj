@@ -81,6 +81,24 @@
     <Compile Include="Attendance_absence\Entrance_Exit.Designer.cs">
       <DependentUpon>Entrance_Exit.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventForm\frmEventType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventForm\frmEventType.Designer.cs">
+      <DependentUpon>frmEventType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventForm\frmAddEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventForm\frmAddEvent.Designer.cs">
+      <DependentUpon>frmAddEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventForm\frmEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventForm\frmEvent.Designer.cs">
+      <DependentUpon>frmEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAsli.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +187,15 @@
     </Compile>
     <EmbeddedResource Include="Attendance_absence\Entrance_Exit.resx">
       <DependentUpon>Entrance_Exit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventForm\frmAddEvent.resx">
+      <DependentUpon>frmAddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventForm\frmEvent.resx">
+      <DependentUpon>frmEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventForm\frmEventType.resx">
+      <DependentUpon>frmEventType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAsli.resx">
       <DependentUpon>FormAsli.cs</DependentUpon>
