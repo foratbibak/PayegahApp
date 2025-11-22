@@ -30,8 +30,6 @@ namespace PayegahApp.RoleForm
             {
                 using (UnitofWork db = new UnitofWork())
                 {
-                    string defaultText = "نامشخص";
-
                     Role r = new Role()
                     {
                         RoleTitle = txtInsert.Text,
@@ -92,6 +90,7 @@ namespace PayegahApp.RoleForm
                 }
             }
         }
+
         private void ActiveStatus(bool Active)
         {
             if (dgvRole.CurrentRow.Selected)

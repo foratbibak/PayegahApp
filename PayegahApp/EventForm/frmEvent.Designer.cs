@@ -32,14 +32,12 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnInsertEvent = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnIsActive = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.txtNationalCode = new System.Windows.Forms.TextBox();
+            this.txtNatoinalCode = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.cmbFillterEvent = new System.Windows.Forms.ComboBox();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnInsertMem = new System.Windows.Forms.Button();
+            this.cmbEvents = new System.Windows.Forms.ComboBox();
+            this.btnEditMem = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -49,6 +47,12 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkActive = new System.Windows.Forms.CheckBox();
+            this.chkNotActive = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -59,19 +63,18 @@
             // btnRefresh
             // 
             this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnRefresh.Location = new System.Drawing.Point(7, 25);
+            this.btnRefresh.Location = new System.Drawing.Point(178, 27);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(140, 53);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnInsertEvent);
-            this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Controls.Add(this.btnIsActive);
             this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -85,7 +88,7 @@
             // btnInsertEvent
             // 
             this.btnInsertEvent.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnInsertEvent.Location = new System.Drawing.Point(613, 25);
+            this.btnInsertEvent.Location = new System.Drawing.Point(473, 27);
             this.btnInsertEvent.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertEvent.Name = "btnInsertEvent";
             this.btnInsertEvent.Size = new System.Drawing.Size(140, 53);
@@ -94,32 +97,10 @@
             this.btnInsertEvent.UseVisualStyleBackColor = true;
             this.btnInsertEvent.Click += new System.EventHandler(this.btnInsertEvent_Click);
             // 
-            // btnEdit
-            // 
-            this.btnEdit.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnEdit.Location = new System.Drawing.Point(465, 25);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(140, 53);
-            this.btnEdit.TabIndex = 6;
-            this.btnEdit.Text = "ویرایش";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            // 
-            // btnIsActive
-            // 
-            this.btnIsActive.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnIsActive.Location = new System.Drawing.Point(297, 25);
-            this.btnIsActive.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIsActive.Name = "btnIsActive";
-            this.btnIsActive.Size = new System.Drawing.Size(165, 53);
-            this.btnIsActive.TabIndex = 5;
-            this.btnIsActive.Text = "فعال وغیرفعال سازی";
-            this.btnIsActive.UseVisualStyleBackColor = true;
-            // 
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnPrint.Location = new System.Drawing.Point(150, 25);
+            this.btnPrint.Location = new System.Drawing.Point(326, 27);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(140, 53);
@@ -127,21 +108,23 @@
             this.btnPrint.Text = "چاپ";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
-            // txtNationalCode
+            // txtNatoinalCode
             // 
-            this.txtNationalCode.Location = new System.Drawing.Point(507, 25);
-            this.txtNationalCode.Name = "txtNationalCode";
-            this.txtNationalCode.Size = new System.Drawing.Size(178, 27);
-            this.txtNationalCode.TabIndex = 5;
+            this.txtNatoinalCode.Location = new System.Drawing.Point(507, 25);
+            this.txtNatoinalCode.Name = "txtNatoinalCode";
+            this.txtNatoinalCode.Size = new System.Drawing.Size(178, 27);
+            this.txtNatoinalCode.TabIndex = 5;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.cmbFillterEvent);
-            this.groupBox2.Controls.Add(this.button6);
+            this.groupBox2.Controls.Add(this.chkNotActive);
+            this.groupBox2.Controls.Add(this.chkActive);
+            this.groupBox2.Controls.Add(this.btnInsertMem);
+            this.groupBox2.Controls.Add(this.cmbEvents);
+            this.groupBox2.Controls.Add(this.btnEditMem);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.txtNationalCode);
+            this.groupBox2.Controls.Add(this.txtNatoinalCode);
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F);
             this.groupBox2.Location = new System.Drawing.Point(8, 98);
             this.groupBox2.Name = "groupBox2";
@@ -150,35 +133,37 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "عملیات ثبت مراسم";
             // 
-            // button5
+            // btnInsertMem
             // 
-            this.button5.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.button5.Location = new System.Drawing.Point(155, 74);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(125, 49);
-            this.button5.TabIndex = 9;
-            this.button5.Text = "ثبت ";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnInsertMem.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.btnInsertMem.Location = new System.Drawing.Point(155, 74);
+            this.btnInsertMem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnInsertMem.Name = "btnInsertMem";
+            this.btnInsertMem.Size = new System.Drawing.Size(125, 49);
+            this.btnInsertMem.TabIndex = 9;
+            this.btnInsertMem.Text = "ثبت ";
+            this.btnInsertMem.UseVisualStyleBackColor = true;
+            this.btnInsertMem.Click += new System.EventHandler(this.button5_Click);
             // 
-            // cmbFillterEvent
+            // cmbEvents
             // 
-            this.cmbFillterEvent.FormattingEnabled = true;
-            this.cmbFillterEvent.Location = new System.Drawing.Point(221, 29);
-            this.cmbFillterEvent.Name = "cmbFillterEvent";
-            this.cmbFillterEvent.Size = new System.Drawing.Size(172, 27);
-            this.cmbFillterEvent.TabIndex = 8;
+            this.cmbEvents.FormattingEnabled = true;
+            this.cmbEvents.Location = new System.Drawing.Point(155, 29);
+            this.cmbEvents.Name = "cmbEvents";
+            this.cmbEvents.Size = new System.Drawing.Size(238, 27);
+            this.cmbEvents.TabIndex = 8;
+            this.cmbEvents.SelectedIndexChanged += new System.EventHandler(this.cmbEvents_SelectedIndexChanged);
             // 
-            // button6
+            // btnEditMem
             // 
-            this.button6.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.button6.Location = new System.Drawing.Point(17, 74);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(130, 49);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "ویرایش ";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnEditMem.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.btnEditMem.Location = new System.Drawing.Point(17, 74);
+            this.btnEditMem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEditMem.Name = "btnEditMem";
+            this.btnEditMem.Size = new System.Drawing.Size(130, 49);
+            this.btnEditMem.TabIndex = 8;
+            this.btnEditMem.Text = "ویرایش ";
+            this.btnEditMem.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -213,9 +198,18 @@
             // 
             // dgvEvent
             // 
+            this.dgvEvent.AllowUserToAddRows = false;
+            this.dgvEvent.AllowUserToDeleteRows = false;
+            this.dgvEvent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.colMemID,
+            this.colEventID,
+            this.colDateRegestration});
             this.dgvEvent.Location = new System.Drawing.Point(9, 25);
             this.dgvEvent.Name = "dgvEvent";
+            this.dgvEvent.ReadOnly = true;
             this.dgvEvent.Size = new System.Drawing.Size(752, 195);
             this.dgvEvent.TabIndex = 0;
             // 
@@ -240,6 +234,7 @@
             this.cmbFillter.Name = "cmbFillter";
             this.cmbFillter.Size = new System.Drawing.Size(172, 27);
             this.cmbFillter.TabIndex = 13;
+            this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
             // txtSearch
             // 
@@ -268,6 +263,59 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "جستوجو :";
             // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "ID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // colMemID
+            // 
+            this.colMemID.DataPropertyName = "MemID";
+            this.colMemID.HeaderText = "کدملی";
+            this.colMemID.Name = "colMemID";
+            this.colMemID.ReadOnly = true;
+            // 
+            // colEventID
+            // 
+            this.colEventID.DataPropertyName = "EventID";
+            this.colEventID.HeaderText = "مراسم";
+            this.colEventID.Name = "colEventID";
+            this.colEventID.ReadOnly = true;
+            // 
+            // colDateRegestration
+            // 
+            this.colDateRegestration.DataPropertyName = "DateRegestration";
+            this.colDateRegestration.HeaderText = "تاریخ ثبت شده";
+            this.colDateRegestration.Name = "colDateRegestration";
+            this.colDateRegestration.ReadOnly = true;
+            // 
+            // chkActive
+            // 
+            this.chkActive.AutoSize = true;
+            this.chkActive.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.chkActive.Location = new System.Drawing.Point(640, 88);
+            this.chkActive.Name = "chkActive";
+            this.chkActive.Size = new System.Drawing.Size(114, 26);
+            this.chkActive.TabIndex = 10;
+            this.chkActive.Text = "فعال سازی";
+            this.chkActive.UseVisualStyleBackColor = true;
+            this.chkActive.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // chkNotActive
+            // 
+            this.chkNotActive.AutoSize = true;
+            this.chkNotActive.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.chkNotActive.Location = new System.Drawing.Point(495, 88);
+            this.chkNotActive.Name = "chkNotActive";
+            this.chkNotActive.Size = new System.Drawing.Size(139, 26);
+            this.chkNotActive.TabIndex = 11;
+            this.chkNotActive.Text = "غیرفعال سازی";
+            this.chkNotActive.UseVisualStyleBackColor = true;
+            this.chkNotActive.CheckedChanged += new System.EventHandler(this.chkNotActive_CheckedChanged);
+            // 
             // frmEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -284,6 +332,7 @@
             this.Name = "frmEvent";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "frmEvent";
+            this.Load += new System.EventHandler(this.frmEvent_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -299,17 +348,15 @@
 
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtNationalCode;
+        private System.Windows.Forms.TextBox txtNatoinalCode;
         private System.Windows.Forms.Button btnInsertEvent;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnIsActive;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox cmbFillterEvent;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnInsertMem;
+        private System.Windows.Forms.ComboBox cmbEvents;
+        private System.Windows.Forms.Button btnEditMem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvEvent;
@@ -317,5 +364,11 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDateRegestration;
+        private System.Windows.Forms.CheckBox chkActive;
+        private System.Windows.Forms.CheckBox chkNotActive;
     }
 }

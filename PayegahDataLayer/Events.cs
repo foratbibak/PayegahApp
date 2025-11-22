@@ -27,8 +27,8 @@ namespace PayegahDataLayer
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime EventDate { get; set; }
     
+        public virtual EventType EventType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventMembers> EventMembers { get; set; }
-        public virtual EventType EventType { get; set; }
     }
 }

@@ -29,7 +29,7 @@ namespace PayegahApp.RollForm
 
         private void frmRoll_Load(object sender, EventArgs e)
         {
-            dgvRole.AutoGenerateColumns=false;
+            dgvRole.AutoGenerateColumns = false;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
@@ -68,7 +68,6 @@ namespace PayegahApp.RollForm
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvRole.DataSource=db.MemberRoleRepository.GetAll();
                 var data = db.MemberRoleRepository.GetAll();
                 if (cmbFillter.SelectedItem.ToString() == "فعال")
                 {
@@ -128,6 +127,7 @@ namespace PayegahApp.RollForm
             if (!Int64.TryParse(txtNatoinalCode.Text, out Int64 code))
             {
                 RtlMessageBox.Show("کدملی فقط باید شامل عدد باشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
             using (UnitofWork db = new UnitofWork())
@@ -144,7 +144,7 @@ namespace PayegahApp.RollForm
                     return;
                 }
                 int roleTypeId = (int)cmbRoles.SelectedValue;
-                int roleId =(int)cmbRoleName.SelectedValue;
+                int roleId = (int)cmbRoleName.SelectedValue;
                 MemberRole mr = new MemberRole()
                 {
                     MemID = NationalCodeCast,
@@ -156,8 +156,56 @@ namespace PayegahApp.RollForm
                 db.MemberRoleRepository.Insert(mr);
                 db.Save();
                 BindGrid();
-                RtlMessageBox.Show("عملیات ثبت مقام با موفقیت انجام شد.","",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RtlMessageBox.Show("عملیات ثبت مقام با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+        }
+        private void ActiveStatuse(bool Active)
+        {
+            if (dgvRole.CurrentRow.Selected)
+            {
+                int ID = int.Parse(dgvRole.CurrentRow.Cells[0].Value.ToString());
+                using (UnitofWork db = new UnitofWork())
+                {
+                    MemberRole mr = db.MemberRoleRepository.GetAll().Where(m => m.ID == ID).FirstOrDefault();
+                    if (mr == null)
+                    {
+                        RtlMessageBox.Show("مقام وارد شده یافت نشد.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    var Get = db.MemberRoleRepository.GetbyID(ID);
+                    bool IsActive = Get.IActive ?? false;
+                    if (Active)
+                    {
+                        if (!IsActive)
+                        {
+                            Get.IActive = true;
+                            db.MemberRoleRepository.Update(Get);
+                            db.Save();
+                            RtlMessageBox.Show("فعال‌سازی با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            RtlMessageBox.Show("این مقام از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        }
+                    }
+                    else
+                    {
+                        if (IsActive)
+                        {
+                            Get.IActive = false;
+                            db.MemberRoleRepository.Update(Get);
+                            db.Save();
+                            RtlMessageBox.Show("غیرفعال‌سازی با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            RtlMessageBox.Show("این نوع از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+
+                }
             }
         }
 
@@ -174,6 +222,113 @@ namespace PayegahApp.RollForm
         private void groupBox3_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkActive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkActive.Checked)
+            {
+                if (dgvRole.CurrentRow.Selected)
+                {
+                    if (string.IsNullOrWhiteSpace(txtNatoinalCode.Text))
+                    {
+                        RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        chkActive.Checked = false;
+                        txtNatoinalCode.Focus();
+                        txtNatoinalCode.Clear();
+                        return;
+                    }
+                    chkNotActive.Checked = false;
+                    ActiveStatuse(true);
+                    chkActive.Checked = false;
+                    txtNatoinalCode.Clear();
+                    BindGrid();
+                }
+                else
+                {
+                    RtlMessageBox.Show("لطفا برای عملیات فعال سازی یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    chkActive.Checked = false;
+                    txtNatoinalCode.Clear();
+                }
+
+            }
+        }
+
+        private void chkNotActive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNotActive.Checked)
+            {
+                if (dgvRole.CurrentRow.Selected)
+                {
+                    if (string.IsNullOrWhiteSpace(txtNatoinalCode.Text))
+                    {
+                        RtlMessageBox.Show("برای غیرفعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        chkNotActive.Checked = false;
+                        txtNatoinalCode.Focus();
+                        txtNatoinalCode.Clear();
+                        return;
+                    }
+                    chkActive.Checked = false;
+                    ActiveStatuse(false);
+                    chkNotActive.Checked = false;
+                    txtNatoinalCode.Clear();
+                    BindGrid();
+                }
+                else
+                {
+                    RtlMessageBox.Show("لطفا برای عملیات غیرفعال سازی یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    chkNotActive.Checked = false;
+                }
+            }
+        }
+
+        private void dgvRole_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dgvRole.CurrentRow.Selected)
+            {
+                int ID=int.Parse(dgvRole.CurrentRow.Cells[0].Value.ToString());
+                using(UnitofWork db =new UnitofWork())
+                {
+                    var Get=db.MemberRoleRepository.GetbyID(ID);
+                    if(Get != null)
+                    {
+                        txtNatoinalCode.Text = Get.MemID.ToString();
+                    }
+                }
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvRole.CurrentRow.Selected)
+            {
+                int ID = int.Parse(dgvRole.CurrentRow.Cells[0].Value.ToString());
+                using (UnitofWork db = new UnitofWork())
+                {
+                    var Get = db.MemberRoleRepository.GetbyID(ID);
+                    Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
+                    Members mr = db.MemberRepository.GetAll().Where(m => m.MemID == NationalCodeCast).FirstOrDefault();
+                    if(mr == null)
+                    {
+                        RtlMessageBox.Show("کدملی وارد شده یافت نشد.","توجه",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    if (Get != null)
+                    {
+                        Get.MemID= NationalCodeCast;
+                    }
+                    db.MemberRoleRepository.Update(Get);
+                    db.Save();
+                    RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
+                    txtNatoinalCode.Clear();
+                    BindGrid();
+                }
+            }
+            else
+            {
+                RtlMessageBox.Show("لطفا برای انجام عملیات ویرایش یک سطر از جدول را انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

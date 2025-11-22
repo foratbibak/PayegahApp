@@ -35,13 +35,13 @@
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Operations" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Operations_OperationType" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Users_Persons" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PayegahDbModel.EventMembers" Width="1.5" PointX="12.875" PointY="6.125" />
         <EntityTypeShape EntityType="PayegahDbModel.Events" Width="1.5" PointX="10.625" PointY="1" />
         <EntityTypeShape EntityType="PayegahDbModel.EventType" Width="1.5" PointX="8.375" PointY="1.25" />
+        <AssociationConnector Association="PayegahDbModel.FK_Events_EventType" />
+        <EntityTypeShape EntityType="PayegahDbModel.EventMembers" Width="1.5" PointX="12.875" PointY="6.125" />
         <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Events" />
         <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Members" />
-        <AssociationConnector Association="PayegahDbModel.FK_Events_EventType" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

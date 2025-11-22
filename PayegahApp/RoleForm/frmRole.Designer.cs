@@ -33,16 +33,11 @@
             this.btnShora = new System.Windows.Forms.Button();
             this.btnrefresh = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.btnIsActive = new System.Windows.Forms.Button();
             this.btnInsertRoll = new System.Windows.Forms.Button();
             this.dgvRole = new System.Windows.Forms.DataGridView();
-            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoleTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbRoleName = new System.Windows.Forms.ComboBox();
             this.btnInsertMemberRole = new System.Windows.Forms.Button();
@@ -55,7 +50,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
-            this.btnEdit = new System.Windows.Forms.Button();
+            this.chkActive = new System.Windows.Forms.CheckBox();
+            this.chkNotActive = new System.Windows.Forms.CheckBox();
+            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoleTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Role_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRole)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -68,7 +69,6 @@
             this.groupBox1.Controls.Add(this.btnShora);
             this.groupBox1.Controls.Add(this.btnrefresh);
             this.groupBox1.Controls.Add(this.btnPrint);
-            this.groupBox1.Controls.Add(this.btnIsActive);
             this.groupBox1.Controls.Add(this.btnInsertRoll);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12.25F);
             this.groupBox1.Location = new System.Drawing.Point(6, 1);
@@ -82,7 +82,7 @@
             // btnShora
             // 
             this.btnShora.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnShora.Location = new System.Drawing.Point(522, 23);
+            this.btnShora.Location = new System.Drawing.Point(426, 26);
             this.btnShora.Name = "btnShora";
             this.btnShora.Size = new System.Drawing.Size(147, 56);
             this.btnShora.TabIndex = 6;
@@ -93,7 +93,7 @@
             // btnrefresh
             // 
             this.btnrefresh.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnrefresh.Location = new System.Drawing.Point(25, 23);
+            this.btnrefresh.Location = new System.Drawing.Point(120, 26);
             this.btnrefresh.Name = "btnrefresh";
             this.btnrefresh.Size = new System.Drawing.Size(147, 56);
             this.btnrefresh.TabIndex = 5;
@@ -104,27 +104,17 @@
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnPrint.Location = new System.Drawing.Point(178, 23);
+            this.btnPrint.Location = new System.Drawing.Point(273, 26);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(147, 56);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "چاپ";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
-            // btnIsActive
-            // 
-            this.btnIsActive.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnIsActive.Location = new System.Drawing.Point(331, 23);
-            this.btnIsActive.Name = "btnIsActive";
-            this.btnIsActive.Size = new System.Drawing.Size(185, 56);
-            this.btnIsActive.TabIndex = 4;
-            this.btnIsActive.Text = "فعال و غیرفعال سازی";
-            this.btnIsActive.UseVisualStyleBackColor = true;
-            // 
             // btnInsertRoll
             // 
             this.btnInsertRoll.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnInsertRoll.Location = new System.Drawing.Point(675, 23);
+            this.btnInsertRoll.Location = new System.Drawing.Point(579, 26);
             this.btnInsertRoll.Name = "btnInsertRoll";
             this.btnInsertRoll.Size = new System.Drawing.Size(147, 56);
             this.btnInsertRoll.TabIndex = 3;
@@ -149,41 +139,7 @@
             this.dgvRole.ReadOnly = true;
             this.dgvRole.Size = new System.Drawing.Size(872, 225);
             this.dgvRole.TabIndex = 1;
-            // 
-            // ColID
-            // 
-            this.ColID.HeaderText = "CULID";
-            this.ColID.Name = "ColID";
-            this.ColID.ReadOnly = true;
-            this.ColID.Visible = false;
-            // 
-            // MemID
-            // 
-            this.MemID.DataPropertyName = "MemID";
-            this.MemID.HeaderText = "کدملی";
-            this.MemID.Name = "MemID";
-            this.MemID.ReadOnly = true;
-            // 
-            // RoleTypeID
-            // 
-            this.RoleTypeID.DataPropertyName = "RoleTypeID";
-            this.RoleTypeID.HeaderText = "مقام";
-            this.RoleTypeID.Name = "RoleTypeID";
-            this.RoleTypeID.ReadOnly = true;
-            // 
-            // Role_ID
-            // 
-            this.Role_ID.DataPropertyName = "Role_ID";
-            this.Role_ID.HeaderText = "شورا";
-            this.Role_ID.Name = "Role_ID";
-            this.Role_ID.ReadOnly = true;
-            // 
-            // DateRegestration
-            // 
-            this.DateRegestration.DataPropertyName = "DateRegestration";
-            this.DateRegestration.HeaderText = "تاریخ ثبت";
-            this.DateRegestration.Name = "DateRegestration";
-            this.DateRegestration.ReadOnly = true;
+            this.dgvRole.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRole_CellClick);
             // 
             // groupBox2
             // 
@@ -198,6 +154,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.chkNotActive);
+            this.groupBox3.Controls.Add(this.chkActive);
             this.groupBox3.Controls.Add(this.btnEdit);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.cmbRoleName);
@@ -214,6 +172,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ثبت مقام برای عضو";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Font = new System.Drawing.Font("Times New Roman", 19.25F, System.Drawing.FontStyle.Bold);
+            this.btnEdit.Location = new System.Drawing.Point(71, 75);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(147, 47);
+            this.btnEdit.TabIndex = 8;
+            this.btnEdit.Text = "ویرایش مقام";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // label5
             // 
@@ -237,7 +206,7 @@
             // btnInsertMemberRole
             // 
             this.btnInsertMemberRole.Font = new System.Drawing.Font("Times New Roman", 19.25F, System.Drawing.FontStyle.Bold);
-            this.btnInsertMemberRole.Location = new System.Drawing.Point(432, 75);
+            this.btnInsertMemberRole.Location = new System.Drawing.Point(224, 75);
             this.btnInsertMemberRole.Name = "btnInsertMemberRole";
             this.btnInsertMemberRole.Size = new System.Drawing.Size(147, 47);
             this.btnInsertMemberRole.TabIndex = 5;
@@ -333,15 +302,63 @@
             this.cmbFillter.TabIndex = 2;
             this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
-            // btnEdit
+            // chkActive
             // 
-            this.btnEdit.Font = new System.Drawing.Font("Times New Roman", 19.25F, System.Drawing.FontStyle.Bold);
-            this.btnEdit.Location = new System.Drawing.Point(279, 75);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(147, 47);
-            this.btnEdit.TabIndex = 8;
-            this.btnEdit.Text = "ویرایش مقام";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.chkActive.AutoSize = true;
+            this.chkActive.Location = new System.Drawing.Point(751, 89);
+            this.chkActive.Name = "chkActive";
+            this.chkActive.Size = new System.Drawing.Size(108, 25);
+            this.chkActive.TabIndex = 9;
+            this.chkActive.Text = "فعال سازی";
+            this.chkActive.UseVisualStyleBackColor = true;
+            this.chkActive.CheckedChanged += new System.EventHandler(this.chkActive_CheckedChanged);
+            // 
+            // chkNotActive
+            // 
+            this.chkNotActive.AutoSize = true;
+            this.chkNotActive.Location = new System.Drawing.Point(614, 89);
+            this.chkNotActive.Name = "chkNotActive";
+            this.chkNotActive.Size = new System.Drawing.Size(131, 25);
+            this.chkNotActive.TabIndex = 10;
+            this.chkNotActive.Text = "غیرفعال سازی";
+            this.chkNotActive.UseVisualStyleBackColor = true;
+            this.chkNotActive.CheckedChanged += new System.EventHandler(this.chkNotActive_CheckedChanged);
+            // 
+            // ColID
+            // 
+            this.ColID.DataPropertyName = "ID";
+            this.ColID.HeaderText = "CULID";
+            this.ColID.Name = "ColID";
+            this.ColID.ReadOnly = true;
+            this.ColID.Visible = false;
+            // 
+            // MemID
+            // 
+            this.MemID.DataPropertyName = "MemID";
+            this.MemID.HeaderText = "کدملی";
+            this.MemID.Name = "MemID";
+            this.MemID.ReadOnly = true;
+            // 
+            // RoleTypeID
+            // 
+            this.RoleTypeID.DataPropertyName = "RoleTypeID";
+            this.RoleTypeID.HeaderText = "مقام";
+            this.RoleTypeID.Name = "RoleTypeID";
+            this.RoleTypeID.ReadOnly = true;
+            // 
+            // Role_ID
+            // 
+            this.Role_ID.DataPropertyName = "Role_ID";
+            this.Role_ID.HeaderText = "شورا";
+            this.Role_ID.Name = "Role_ID";
+            this.Role_ID.ReadOnly = true;
+            // 
+            // DateRegestration
+            // 
+            this.DateRegestration.DataPropertyName = "DateRegestration";
+            this.DateRegestration.HeaderText = "تاریخ ثبت";
+            this.DateRegestration.Name = "DateRegestration";
+            this.DateRegestration.ReadOnly = true;
             // 
             // frmRole
             // 
@@ -374,7 +391,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnIsActive;
         private System.Windows.Forms.Button btnInsertRoll;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.DataGridView dgvRole;
@@ -394,11 +410,13 @@
         private System.Windows.Forms.Button btnShora;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbRoleName;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.CheckBox chkNotActive;
+        private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
         private System.Windows.Forms.DataGridViewTextBoxColumn MemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn RoleTypeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Role_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateRegestration;
-        private System.Windows.Forms.Button btnEdit;
     }
 }

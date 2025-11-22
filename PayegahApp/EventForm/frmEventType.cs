@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Accounting.utility.Convertor;
 using PayegahDataLayer;
 using PayegahDataLayer.Context;
 using ValidationComponents;
@@ -32,6 +33,21 @@ namespace PayegahApp.EventForm
             BindGrid();
 
         }
+        private void ConvertDatesToShamsi()
+        {
+            foreach (DataGridViewRow row in dgvEventType.Rows)
+            {
+                if (row.Cells["colDate"].Value != null &&
+                    DateTime.TryParse(row.Cells["colDate"].Value.ToString(), out DateTime date))
+                {
+                    row.Cells["colDate"].Value = date.ToShamsi();
+                }
+                else
+                {
+                    row.Cells["colDate"].Value = "";
+                }
+            }
+        }
         void BindGrid()
         {
             using (UnitofWork db = new UnitofWork())
@@ -46,6 +62,7 @@ namespace PayegahApp.EventForm
                     data = data.Where(x => x.IsActive == false).ToList();
                 }
                 dgvEventType.DataSource = data;
+                ConvertDatesToShamsi();
             }
         }
 
@@ -133,11 +150,14 @@ namespace PayegahApp.EventForm
                         RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         chkActive.Checked = false;
                         txtTitle.Focus();
+                        txtTitle.Clear();
                         return;
                     }
 
                     chkNotActive.Checked = false;
                     ActiveStatuse(true);
+                    chkActive.Checked=false;
+                    txtTitle.Clear();
                     BindGrid();
 
                 }
@@ -145,6 +165,7 @@ namespace PayegahApp.EventForm
                 {
                     RtlMessageBox.Show("لطفا برای عملیات فعال سازی یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     chkActive.Checked = false;
+                    txtTitle.Clear();
                 }
 
             }
@@ -158,9 +179,10 @@ namespace PayegahApp.EventForm
                 {
                     if (string.IsNullOrWhiteSpace(txtTitle.Text))
                     {
-                        RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        RtlMessageBox.Show("برای غیرفعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         chkNotActive.Checked = false;
                         txtTitle.Focus();
+                        txtTitle.Clear();
                         return;
                     }
                     chkActive.Checked = false;
