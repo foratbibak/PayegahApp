@@ -15,8 +15,9 @@ namespace PayegahDataLayer
     public partial class AmadMembers
     {
         public int ID { get; set; }
-        public Nullable<int> MemID { get; set; }
-        public Nullable<long> AmadID { get; set; }
+        public Nullable<long> MemID { get; set; }
+        public Nullable<int> AmadID { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AmadDateRegestration { get; set; }
     
         public virtual Amad Amad { get; set; }

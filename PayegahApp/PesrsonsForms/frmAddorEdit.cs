@@ -73,12 +73,14 @@ namespace PayegahApp.PesrsonsForms
                     {
                         db.PersonsRepository.Insert(persons);
                         DialogResult = DialogResult.OK;
+                        RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد");
                     }
 
                     else
                     {
                         db.PersonsRepository.Update(persons);
                         DialogResult = DialogResult.OK;
+                        RtlMessageBox.Show("عملیات ویرایش با موفقیت انجام شد");
                     }
                     db.Save();
                     if (P_NationalCode == 0)

@@ -68,7 +68,7 @@ namespace PayegahApp.RoleForm
         private void RoleNames_Load(object sender, EventArgs e)
         {
             dgvRole.AutoGenerateColumns = false;
-
+            dgvRole.ForeColor = Color.Black;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");

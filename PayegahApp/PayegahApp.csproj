@@ -75,6 +75,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Amat\frmAmat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Amat\frmAmat.Designer.cs">
+      <DependentUpon>frmAmat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Amat\frmAmatMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Amat\frmAmatMember.Designer.cs">
+      <DependentUpon>frmAmatMember.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Amat\frmAmatType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Amat\frmAmatType.Designer.cs">
+      <DependentUpon>frmAmatType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Attendance_absence\Entrance_Exit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +122,30 @@
     </Compile>
     <Compile Include="FormAsli.Designer.cs">
       <DependentUpon>FormAsli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsForm\frmDgreeOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationsForm\frmDgreeOperation.Designer.cs">
+      <DependentUpon>frmDgreeOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsForm\frmOperationType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationsForm\frmOperationType.Designer.cs">
+      <DependentUpon>frmOperationType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsForm\frmAddOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationsForm\frmAddOperation.Designer.cs">
+      <DependentUpon>frmAddOperation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperationsForm\OperationMember.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OperationsForm\OperationMember.Designer.cs">
+      <DependentUpon>OperationMember.cs</DependentUpon>
     </Compile>
     <Compile Include="PesrsonsForms\frmAddorEdit.cs">
       <SubType>Form</SubType>
@@ -179,6 +221,15 @@
     <Compile Include="Validator\RequiredFieldValidator.designer.cs">
       <DependentUpon>RequiredFieldValidator.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Amat\frmAmat.resx">
+      <DependentUpon>frmAmat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Amat\frmAmatMember.resx">
+      <DependentUpon>frmAmatMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Amat\frmAmatType.resx">
+      <DependentUpon>frmAmatType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Attendance_absence\Entrance_Exit.resx">
       <DependentUpon>Entrance_Exit.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +244,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAsli.resx">
       <DependentUpon>FormAsli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationsForm\frmDgreeOperation.resx">
+      <DependentUpon>frmDgreeOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationsForm\frmOperationType.resx">
+      <DependentUpon>frmOperationType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationsForm\frmAddOperation.resx">
+      <DependentUpon>frmAddOperation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OperationsForm\OperationMember.resx">
+      <DependentUpon>OperationMember.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PesrsonsForms\frmAddorEdit.resx">
       <DependentUpon>frmAddorEdit.cs</DependentUpon>
@@ -252,6 +315,7 @@
       <Name>PayegahViewModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

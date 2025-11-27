@@ -13,10 +13,10 @@ namespace PayegahDataLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PayegahDbEntites : DbContext
+    public partial class PayegahDbEntities : DbContext
     {
-        public PayegahDbEntites()
-            : base("name=PayegahDbEntites")
+        public PayegahDbEntities()
+            : base("name=PayegahDbEntities")
         {
         }
     
@@ -25,14 +25,16 @@ namespace PayegahDataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Amad> Amad { get; set; }
-        public virtual DbSet<AmadMembers> AmadMembers { get; set; }
         public virtual DbSet<AmadType> AmadType { get; set; }
         public virtual DbSet<Attendance_absence> Attendance_absence { get; set; }
         public virtual DbSet<Dgree> Dgree { get; set; }
         public virtual DbSet<DgreeMembers> DgreeMembers { get; set; }
+        public virtual DbSet<EventMembers> EventMembers { get; set; }
+        public virtual DbSet<Events> Events { get; set; }
+        public virtual DbSet<EventType> EventType { get; set; }
         public virtual DbSet<MemberRole> MemberRole { get; set; }
         public virtual DbSet<Members> Members { get; set; }
+        public virtual DbSet<OperationDgree> OperationDgree { get; set; }
         public virtual DbSet<OperationMembers> OperationMembers { get; set; }
         public virtual DbSet<Operations> Operations { get; set; }
         public virtual DbSet<OperationType> OperationType { get; set; }
@@ -41,8 +43,7 @@ namespace PayegahDataLayer
         public virtual DbSet<RoleType> RoleType { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Events> Events { get; set; }
-        public virtual DbSet<EventType> EventType { get; set; }
-        public virtual DbSet<EventMembers> EventMembers { get; set; }
+        public virtual DbSet<Amad> Amad { get; set; }
+        public virtual DbSet<AmadMembers> AmadMembers { get; set; }
     }
 }

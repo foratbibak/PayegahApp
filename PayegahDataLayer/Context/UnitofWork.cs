@@ -10,7 +10,93 @@ namespace PayegahDataLayer.Context
 {
     public class UnitofWork : IDisposable
     {
-        PayegahDbEntites db = new PayegahDbEntites();
+        PayegahDbEntities db = new PayegahDbEntities();
+
+
+        private PayegahRepository<AmadMembers> _AmadMemberRepository;
+        public PayegahRepository<AmadMembers> AmadMemberRepository
+        {
+            get
+            {
+                if (_AmadMemberRepository == null)
+                {
+                    _AmadMemberRepository = new PayegahRepository<AmadMembers>(db);
+                }
+                return _AmadMemberRepository;
+            }
+        }
+        private PayegahRepository<Amad> _AmadRepository;
+        public PayegahRepository<Amad> AmadRepository
+        {
+            get
+            {
+                if (_AmadRepository == null)
+                {
+                    _AmadRepository = new PayegahRepository<Amad>(db);
+                }
+                return _AmadRepository;
+            }
+        }
+        private PayegahRepository<AmadType> _AmadTypeRepository;
+        public PayegahRepository<AmadType> AmadTypeRepository
+        {
+            get
+            {
+                if (_AmadTypeRepository == null)
+                {
+                    _AmadTypeRepository = new PayegahRepository<AmadType>(db);
+                }
+                return _AmadTypeRepository;
+            }
+        }
+        private PayegahRepository<Operations> _OperationsRepository;
+        public PayegahRepository<Operations> OperationsRepository 
+        {
+            get
+            {
+                if(_OperationsRepository == null)
+                {
+                    _OperationsRepository=new PayegahRepository<Operations>(db);
+                }
+                return _OperationsRepository;
+            }
+        }
+        private PayegahRepository<OperationMembers> _OperationMembersRepository;
+        public PayegahRepository<OperationMembers> OperationMembersRepository
+        {
+            get
+            {
+                if (_OperationMembersRepository == null)
+                {
+                    _OperationMembersRepository = new PayegahRepository<OperationMembers>(db);
+                }
+                return _OperationMembersRepository;
+            }
+        }
+        private PayegahRepository<OperationDgree> _OperationDgreeRepository;
+        public PayegahRepository<OperationDgree> OperationDgreeRepository
+        {
+            get
+            {
+                if (_OperationDgreeRepository == null)
+                {
+                    _OperationDgreeRepository = new PayegahRepository<OperationDgree>(db);
+                }
+                return _OperationDgreeRepository;
+            }
+        }
+        private PayegahRepository<OperationType> _OperationTypeRepository;
+        public PayegahRepository<OperationType> OperationTypeRepository
+        {
+            get
+            {
+                if (_OperationTypeRepository == null)
+                {
+                    _OperationTypeRepository = new PayegahRepository<OperationType>(db);
+                }
+                return _OperationTypeRepository;
+            }
+        }
         private PayegahRepository<EventMembers> _MemberEventRepository;
         public PayegahRepository<EventMembers> MemberEventRepository
         {

@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IsAcitve));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnIsActivefalse = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIsActive = new System.Windows.Forms.Button();
             this.txtNationalCode = new System.Windows.Forms.TextBox();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
-            this.btnIsActivefalse = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,6 +45,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnIsActive);
             this.groupBox1.Controls.Add(this.txtNationalCode);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(9, 5);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.groupBox1.Name = "groupBox1";
@@ -53,6 +54,19 @@
             this.groupBox1.TabIndex = 72;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات فعال و غیر فعال سازی عضو";
+            // 
+            // btnIsActivefalse
+            // 
+            this.btnIsActivefalse.BackColor = System.Drawing.Color.Teal;
+            this.btnIsActivefalse.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnIsActivefalse.Location = new System.Drawing.Point(9, 161);
+            this.btnIsActivefalse.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIsActivefalse.Name = "btnIsActivefalse";
+            this.btnIsActivefalse.Size = new System.Drawing.Size(173, 68);
+            this.btnIsActivefalse.TabIndex = 3;
+            this.btnIsActivefalse.Text = "غیرفعال سازی";
+            this.btnIsActivefalse.UseVisualStyleBackColor = false;
+            this.btnIsActivefalse.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -67,6 +81,7 @@
             // 
             // btnIsActive
             // 
+            this.btnIsActive.BackColor = System.Drawing.Color.Teal;
             this.btnIsActive.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnIsActive.Location = new System.Drawing.Point(190, 161);
             this.btnIsActive.Margin = new System.Windows.Forms.Padding(4);
@@ -74,16 +89,16 @@
             this.btnIsActive.Size = new System.Drawing.Size(173, 68);
             this.btnIsActive.TabIndex = 0;
             this.btnIsActive.Text = "فعال سازی";
-            this.btnIsActive.UseVisualStyleBackColor = true;
+            this.btnIsActive.UseVisualStyleBackColor = false;
             this.btnIsActive.Click += new System.EventHandler(this.btnIsActive_Click);
             // 
             // txtNationalCode
             // 
             this.txtNationalCode.Font = new System.Drawing.Font("Tahoma", 15.25F);
-            this.txtNationalCode.Location = new System.Drawing.Point(4, 52);
+            this.txtNationalCode.Location = new System.Drawing.Point(29, 52);
             this.txtNationalCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtNationalCode.Name = "txtNationalCode";
-            this.txtNationalCode.Size = new System.Drawing.Size(372, 32);
+            this.txtNationalCode.Size = new System.Drawing.Size(347, 32);
             this.txtNationalCode.TabIndex = 1;
             // 
             // requiredFieldValidator1
@@ -93,30 +108,23 @@
             this.requiredFieldValidator1.ErrorMessage = "لطفا کدملی عضو را برای عملیات وارد فرمایید";
             this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
             // 
-            // btnIsActivefalse
-            // 
-            this.btnIsActivefalse.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnIsActivefalse.Location = new System.Drawing.Point(9, 161);
-            this.btnIsActivefalse.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIsActivefalse.Name = "btnIsActivefalse";
-            this.btnIsActivefalse.Size = new System.Drawing.Size(173, 68);
-            this.btnIsActivefalse.TabIndex = 3;
-            this.btnIsActivefalse.Text = "غیرفعال سازی";
-            this.btnIsActivefalse.UseVisualStyleBackColor = true;
-            this.btnIsActivefalse.Click += new System.EventHandler(this.button1_Click);
-            // 
             // IsAcitve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(540, 247);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "IsAcitve";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "فعال سازی عضو";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "عملیات فعال و غیر فعال سازی عضو";
             this.Load += new System.EventHandler(this.IsAcitve_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

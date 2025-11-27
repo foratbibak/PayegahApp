@@ -28,7 +28,7 @@ namespace PayegahApp.Pesrsons
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
             cmbFillter.SelectedIndex = 1;
-
+            dgvPerson.ForeColor = Color.Black;
             BindGrid();
         }
 

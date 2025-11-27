@@ -37,17 +37,17 @@ namespace PayegahApp.Attendance_absence
                         txtNationalCode.Focus();
                         return;
                     }
-                    Int64 nationalcode = Int64.Parse(txtNationalCode.Text);
+                    Int64 nationalcodecast = Int64.Parse(txtNationalCode.Text);
 
                     using (UnitofWork db = new UnitofWork())
                     {
-                        Persons person = db.PersonsRepository.GetAll(p => p.NationalCode == nationalcode).FirstOrDefault();
+                        Persons person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalcodecast).FirstOrDefault();
                         if (person == null)
                         {
                             RtlMessageBox.Show("کاربری با این کدملی یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        var person2 = db.PersonsRepository.GetbyID(nationalcode);
+                        var person2 = db.PersonsRepository.GetbyID(nationalcodecast);
                         if (person2.IsActive != true)
                         {
                             RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);

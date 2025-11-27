@@ -17,11 +17,11 @@ namespace PayegahDataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Members()
         {
-            this.AmadMembers = new HashSet<AmadMembers>();
             this.DgreeMembers = new HashSet<DgreeMembers>();
+            this.EventMembers = new HashSet<EventMembers>();
             this.MemberRole = new HashSet<MemberRole>();
             this.OperationMembers = new HashSet<OperationMembers>();
-            this.EventMembers = new HashSet<EventMembers>();
+            this.AmadMembers = new HashSet<AmadMembers>();
         }
     
         public long MemID { get; set; }
@@ -30,15 +30,15 @@ namespace PayegahDataLayer
         public Nullable<System.DateTime> RecordDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AmadMembers> AmadMembers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DgreeMembers> DgreeMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EventMembers> EventMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberRole> MemberRole { get; set; }
         public virtual Persons Persons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OperationMembers> OperationMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EventMembers> EventMembers { get; set; }
+        public virtual ICollection<AmadMembers> AmadMembers { get; set; }
     }
 }

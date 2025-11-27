@@ -34,15 +34,14 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnNotActive = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnActive = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvPerson = new System.Windows.Forms.DataGridView();
-            this.stiReport = new Stimulsoft.Report.StiReport();
             this.PersonId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NationalCod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +55,7 @@
             this.FatherPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatherPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistrationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stiReport = new Stimulsoft.Report.StiReport();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -64,59 +64,62 @@
             // 
             // btnInsert
             // 
+            this.btnInsert.BackColor = System.Drawing.Color.Teal;
             this.btnInsert.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsert.Location = new System.Drawing.Point(797, 23);
+            this.btnInsert.Location = new System.Drawing.Point(694, 21);
             this.btnInsert.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(171, 56);
+            this.btnInsert.Size = new System.Drawing.Size(171, 61);
             this.btnInsert.TabIndex = 0;
             this.btnInsert.Text = "افزودن عضو جدید";
-            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
             // 
             // btnEdit
             // 
+            this.btnEdit.BackColor = System.Drawing.Color.Teal;
             this.btnEdit.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(642, 23);
+            this.btnEdit.Location = new System.Drawing.Point(539, 21);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(147, 56);
+            this.btnEdit.Size = new System.Drawing.Size(147, 61);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "ویرایش عضو\r\n";
-            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnRefresh
             // 
+            this.btnRefresh.BackColor = System.Drawing.Color.Teal;
             this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.Location = new System.Drawing.Point(177, 23);
+            this.btnRefresh.Location = new System.Drawing.Point(201, 21);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(147, 56);
+            this.btnRefresh.Size = new System.Drawing.Size(147, 61);
             this.btnRefresh.TabIndex = 2;
             this.btnRefresh.Text = "بروزرسانی";
-            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // txtSearch
             // 
-            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.txtSearch.Location = new System.Drawing.Point(522, 29);
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.txtSearch.Location = new System.Drawing.Point(530, 28);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(342, 27);
+            this.txtSearch.Size = new System.Drawing.Size(342, 28);
             this.txtSearch.TabIndex = 5;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnNotActive);
             this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Controls.Add(this.btnActive);
             this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.btnInsert);
             this.groupBox1.Controls.Add(this.btnEdit);
-            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 10.25F);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 11F);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(10, 2);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
@@ -127,48 +130,40 @@
             this.groupBox1.Text = "دکمه های عملیاتی";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // btnNotActive
-            // 
-            this.btnNotActive.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNotActive.Location = new System.Drawing.Point(332, 23);
-            this.btnNotActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnNotActive.Name = "btnNotActive";
-            this.btnNotActive.Size = new System.Drawing.Size(147, 56);
-            this.btnNotActive.TabIndex = 5;
-            this.btnNotActive.Text = "غیر فعال سازی";
-            this.btnNotActive.UseVisualStyleBackColor = true;
-            this.btnNotActive.Click += new System.EventHandler(this.btnNotActive_Click);
-            // 
             // btnPrint
             // 
+            this.btnPrint.BackColor = System.Drawing.Color.Teal;
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(22, 23);
+            this.btnPrint.Location = new System.Drawing.Point(46, 21);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(147, 56);
+            this.btnPrint.Size = new System.Drawing.Size(147, 61);
             this.btnPrint.TabIndex = 4;
-            this.btnPrint.Text = "چاپ";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Text = "پرینت";
+            this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnActive
             // 
+            this.btnActive.BackColor = System.Drawing.Color.Teal;
             this.btnActive.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActive.Location = new System.Drawing.Point(487, 23);
+            this.btnActive.Location = new System.Drawing.Point(350, 21);
             this.btnActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnActive.Name = "btnActive";
-            this.btnActive.Size = new System.Drawing.Size(147, 56);
-            this.btnActive.TabIndex = 3;
-            this.btnActive.Text = "فعال سازی";
-            this.btnActive.UseVisualStyleBackColor = true;
+            this.btnActive.Size = new System.Drawing.Size(181, 61);
+            this.btnActive.TabIndex = 2;
+            this.btnActive.Text = "فعال و غیرفعال سازی";
+            this.btnActive.UseVisualStyleBackColor = false;
             this.btnActive.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.cmbFillter);
             this.groupBox2.Controls.Add(this.txtSearch);
-            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(10, 93);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
@@ -178,11 +173,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "عملیات جستوجو ";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(271, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(110, 21);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "فیلتر جدول :";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(871, 32);
+            this.label1.Location = new System.Drawing.Point(871, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 21);
             this.label1.TabIndex = 9;
@@ -190,17 +195,19 @@
             // 
             // cmbFillter
             // 
+            this.cmbFillter.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.cmbFillter.FormattingEnabled = true;
-            this.cmbFillter.Location = new System.Drawing.Point(22, 25);
+            this.cmbFillter.Location = new System.Drawing.Point(24, 28);
             this.cmbFillter.Name = "cmbFillter";
-            this.cmbFillter.Size = new System.Drawing.Size(241, 26);
+            this.cmbFillter.Size = new System.Drawing.Size(241, 31);
             this.cmbFillter.TabIndex = 8;
             this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dgvPerson);
-            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(10, 168);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox3.Name = "groupBox3";
@@ -236,6 +243,122 @@
             this.dgvPerson.Size = new System.Drawing.Size(959, 347);
             this.dgvPerson.TabIndex = 5;
             // 
+            // PersonId
+            // 
+            this.PersonId.DataPropertyName = "PersonID";
+            this.PersonId.HeaderText = "کد کاربر";
+            this.PersonId.Name = "PersonId";
+            this.PersonId.ReadOnly = true;
+            this.PersonId.Visible = false;
+            // 
+            // NationalCod
+            // 
+            this.NationalCod.DataPropertyName = "NationalCode";
+            this.NationalCod.FillWeight = 200F;
+            this.NationalCod.HeaderText = "کدملی";
+            this.NationalCod.Name = "NationalCod";
+            this.NationalCod.ReadOnly = true;
+            this.NationalCod.Width = 160;
+            // 
+            // PersonName
+            // 
+            this.PersonName.DataPropertyName = "PersonName";
+            this.PersonName.FillWeight = 200F;
+            this.PersonName.HeaderText = "نام عضو";
+            this.PersonName.Name = "PersonName";
+            this.PersonName.ReadOnly = true;
+            this.PersonName.Width = 160;
+            // 
+            // PersonFamily
+            // 
+            this.PersonFamily.DataPropertyName = "PersonFamily";
+            this.PersonFamily.FillWeight = 200F;
+            this.PersonFamily.HeaderText = "نام خانوادگی عضو";
+            this.PersonFamily.Name = "PersonFamily";
+            this.PersonFamily.ReadOnly = true;
+            this.PersonFamily.Width = 170;
+            // 
+            // PersonAddress
+            // 
+            this.PersonAddress.DataPropertyName = "PersonAddress";
+            this.PersonAddress.FillWeight = 200F;
+            this.PersonAddress.HeaderText = "آدرس عضو";
+            this.PersonAddress.Name = "PersonAddress";
+            this.PersonAddress.ReadOnly = true;
+            this.PersonAddress.Width = 160;
+            // 
+            // PostalCode
+            // 
+            this.PostalCode.DataPropertyName = "PostalCode";
+            this.PostalCode.FillWeight = 200F;
+            this.PostalCode.HeaderText = "کدپستی";
+            this.PostalCode.Name = "PostalCode";
+            this.PostalCode.ReadOnly = true;
+            this.PostalCode.Width = 160;
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.DataPropertyName = "PhoneNumber";
+            this.PhoneNumber.FillWeight = 200F;
+            this.PhoneNumber.HeaderText = "شماره تماس عضو";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.ReadOnly = true;
+            this.PhoneNumber.Width = 180;
+            // 
+            // DateBirth
+            // 
+            this.DateBirth.DataPropertyName = "Birthday";
+            this.DateBirth.FillWeight = 200F;
+            this.DateBirth.HeaderText = "تاریخ تولد";
+            this.DateBirth.Name = "DateBirth";
+            this.DateBirth.ReadOnly = true;
+            this.DateBirth.Width = 160;
+            // 
+            // FatherJob
+            // 
+            this.FatherJob.DataPropertyName = "FotherJob";
+            this.FatherJob.FillWeight = 200F;
+            this.FatherJob.HeaderText = "شغل پدر";
+            this.FatherJob.Name = "FatherJob";
+            this.FatherJob.ReadOnly = true;
+            this.FatherJob.Width = 160;
+            // 
+            // MatherJob
+            // 
+            this.MatherJob.DataPropertyName = "MotherJob";
+            this.MatherJob.FillWeight = 200F;
+            this.MatherJob.HeaderText = "شغل مادر";
+            this.MatherJob.Name = "MatherJob";
+            this.MatherJob.ReadOnly = true;
+            this.MatherJob.Width = 160;
+            // 
+            // FatherPhoneNumber
+            // 
+            this.FatherPhoneNumber.DataPropertyName = "FotherPhoneNumber";
+            this.FatherPhoneNumber.FillWeight = 200F;
+            this.FatherPhoneNumber.HeaderText = "شماره تماس پدر";
+            this.FatherPhoneNumber.Name = "FatherPhoneNumber";
+            this.FatherPhoneNumber.ReadOnly = true;
+            this.FatherPhoneNumber.Width = 180;
+            // 
+            // MatherPhoneNumber
+            // 
+            this.MatherPhoneNumber.DataPropertyName = "MotherPhoneNumber";
+            this.MatherPhoneNumber.FillWeight = 200F;
+            this.MatherPhoneNumber.HeaderText = "شماره تماس مادر";
+            this.MatherPhoneNumber.Name = "MatherPhoneNumber";
+            this.MatherPhoneNumber.ReadOnly = true;
+            this.MatherPhoneNumber.Width = 180;
+            // 
+            // RegistrationDate
+            // 
+            this.RegistrationDate.DataPropertyName = "RegistrationDate";
+            this.RegistrationDate.FillWeight = 200F;
+            this.RegistrationDate.HeaderText = "تاریخ ثبت";
+            this.RegistrationDate.Name = "RegistrationDate";
+            this.RegistrationDate.ReadOnly = true;
+            this.RegistrationDate.Width = 160;
+            // 
             // stiReport
             // 
             this.stiReport.CookieContainer = null;
@@ -257,124 +380,11 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
-            // PersonId
-            // 
-            this.PersonId.DataPropertyName = "PersonID";
-            this.PersonId.HeaderText = "کد کاربر";
-            this.PersonId.Name = "PersonId";
-            this.PersonId.ReadOnly = true;
-            this.PersonId.Visible = false;
-            // 
-            // NationalCod
-            // 
-            this.NationalCod.DataPropertyName = "NationalCode";
-            this.NationalCod.FillWeight = 112.1801F;
-            this.NationalCod.HeaderText = "کدملی";
-            this.NationalCod.Name = "NationalCod";
-            this.NationalCod.ReadOnly = true;
-            // 
-            // PersonName
-            // 
-            this.PersonName.DataPropertyName = "PersonName";
-            this.PersonName.FillWeight = 109.1005F;
-            this.PersonName.HeaderText = "نام عضو";
-            this.PersonName.Name = "PersonName";
-            this.PersonName.ReadOnly = true;
-            // 
-            // PersonFamily
-            // 
-            this.PersonFamily.DataPropertyName = "PersonFamily";
-            this.PersonFamily.FillWeight = 100.3754F;
-            this.PersonFamily.HeaderText = "نام خانوادگی عضو";
-            this.PersonFamily.Name = "PersonFamily";
-            this.PersonFamily.ReadOnly = true;
-            this.PersonFamily.Width = 160;
-            // 
-            // PersonAddress
-            // 
-            this.PersonAddress.DataPropertyName = "PersonAddress";
-            this.PersonAddress.FillWeight = 100.2989F;
-            this.PersonAddress.HeaderText = "آدرس عضو";
-            this.PersonAddress.Name = "PersonAddress";
-            this.PersonAddress.ReadOnly = true;
-            this.PersonAddress.Width = 130;
-            // 
-            // PostalCode
-            // 
-            this.PostalCode.DataPropertyName = "PostalCode";
-            this.PostalCode.FillWeight = 99.4603F;
-            this.PostalCode.HeaderText = "کدپستی";
-            this.PostalCode.Name = "PostalCode";
-            this.PostalCode.ReadOnly = true;
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.DataPropertyName = "PhoneNumber";
-            this.PhoneNumber.FillWeight = 95.4987F;
-            this.PhoneNumber.HeaderText = "شماره تماس عضو";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.ReadOnly = true;
-            this.PhoneNumber.Width = 165;
-            // 
-            // DateBirth
-            // 
-            this.DateBirth.DataPropertyName = "Birthday";
-            this.DateBirth.FillWeight = 94.49576F;
-            this.DateBirth.HeaderText = "تاریخ تولد";
-            this.DateBirth.Name = "DateBirth";
-            this.DateBirth.ReadOnly = true;
-            this.DateBirth.Width = 120;
-            // 
-            // FatherJob
-            // 
-            this.FatherJob.DataPropertyName = "FotherJob";
-            this.FatherJob.FillWeight = 96.74873F;
-            this.FatherJob.HeaderText = "شغل پدر";
-            this.FatherJob.Name = "FatherJob";
-            this.FatherJob.ReadOnly = true;
-            this.FatherJob.Width = 130;
-            // 
-            // MatherJob
-            // 
-            this.MatherJob.DataPropertyName = "MotherJob";
-            this.MatherJob.FillWeight = 98.20277F;
-            this.MatherJob.HeaderText = "شغل مادر";
-            this.MatherJob.Name = "MatherJob";
-            this.MatherJob.ReadOnly = true;
-            this.MatherJob.Width = 130;
-            // 
-            // FatherPhoneNumber
-            // 
-            this.FatherPhoneNumber.DataPropertyName = "FotherPhoneNumber";
-            this.FatherPhoneNumber.FillWeight = 97.37F;
-            this.FatherPhoneNumber.HeaderText = "شماره تماس پدر";
-            this.FatherPhoneNumber.Name = "FatherPhoneNumber";
-            this.FatherPhoneNumber.ReadOnly = true;
-            this.FatherPhoneNumber.Width = 160;
-            // 
-            // MatherPhoneNumber
-            // 
-            this.MatherPhoneNumber.DataPropertyName = "MotherPhoneNumber";
-            this.MatherPhoneNumber.FillWeight = 95.9256F;
-            this.MatherPhoneNumber.HeaderText = "شماره تماس مادر";
-            this.MatherPhoneNumber.Name = "MatherPhoneNumber";
-            this.MatherPhoneNumber.ReadOnly = true;
-            this.MatherPhoneNumber.Width = 160;
-            // 
-            // RegistrationDate
-            // 
-            this.RegistrationDate.DataPropertyName = "RegistrationDate";
-            this.RegistrationDate.FillWeight = 100.3437F;
-            this.RegistrationDate.HeaderText = "تاریخ ثبت";
-            this.RegistrationDate.Name = "RegistrationDate";
-            this.RegistrationDate.ReadOnly = true;
-            this.RegistrationDate.Width = 150;
-            // 
             // frmPersons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(994, 548);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
@@ -383,6 +393,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
             this.Name = "frmPersons";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -406,13 +417,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dgvPerson;
         private System.Windows.Forms.Button btnPrint;
         private Stimulsoft.Report.StiReport stiReport;
-        private System.Windows.Forms.Button btnNotActive;
         private System.Windows.Forms.Button btnActive;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbFillter;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dgvPerson;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonId;
         private System.Windows.Forms.DataGridViewTextBoxColumn NationalCod;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonName;

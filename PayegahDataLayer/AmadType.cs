@@ -22,6 +22,7 @@ namespace PayegahDataLayer
     
         public int AmadTypeIID { get; set; }
         public string AmadTitle { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> DateRegistration { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

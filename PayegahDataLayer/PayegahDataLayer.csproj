@@ -87,6 +87,9 @@
     <Compile Include="Members.cs">
       <DependentUpon>PayegahModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="OperationDgree.cs">
+      <DependentUpon>PayegahModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="OperationMembers.cs">
       <DependentUpon>PayegahModel.tt</DependentUpon>
     </Compile>

@@ -60,7 +60,8 @@
             this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.Controls.Add(this.btnEdt);
             this.groupBox4.Controls.Add(this.btnInsertRoll);
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
             this.groupBox4.Location = new System.Drawing.Point(7, 2);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
@@ -72,35 +73,38 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.Teal;
             this.button3.Font = new System.Drawing.Font("Tahoma", 13.25F);
             this.button3.Location = new System.Drawing.Point(89, 23);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 54);
             this.button3.TabIndex = 7;
             this.button3.Text = "بروز رسانی";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnEdt
             // 
+            this.btnEdt.BackColor = System.Drawing.Color.Teal;
             this.btnEdt.Font = new System.Drawing.Font("Tahoma", 13.25F);
             this.btnEdt.Location = new System.Drawing.Point(238, 23);
             this.btnEdt.Name = "btnEdt";
             this.btnEdt.Size = new System.Drawing.Size(143, 54);
             this.btnEdt.TabIndex = 5;
             this.btnEdt.Text = "ویرایش";
-            this.btnEdt.UseVisualStyleBackColor = true;
+            this.btnEdt.UseVisualStyleBackColor = false;
             this.btnEdt.Click += new System.EventHandler(this.btnEdt_Click);
             // 
             // btnInsertRoll
             // 
+            this.btnInsertRoll.BackColor = System.Drawing.Color.Teal;
             this.btnInsertRoll.Font = new System.Drawing.Font("Tahoma", 13.25F);
             this.btnInsertRoll.Location = new System.Drawing.Point(387, 23);
             this.btnInsertRoll.Name = "btnInsertRoll";
             this.btnInsertRoll.Size = new System.Drawing.Size(143, 54);
             this.btnInsertRoll.TabIndex = 4;
             this.btnInsertRoll.Text = "افزودن وظیفه";
-            this.btnInsertRoll.UseVisualStyleBackColor = true;
+            this.btnInsertRoll.UseVisualStyleBackColor = false;
             this.btnInsertRoll.Click += new System.EventHandler(this.btnInsertRoll_Click);
             // 
             // groupBox1
@@ -110,7 +114,8 @@
             this.groupBox1.Controls.Add(this.chkNotActive);
             this.groupBox1.Controls.Add(this.txtInsert);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(302, 100);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
@@ -124,7 +129,8 @@
             // 
             this.groupBox3.Controls.Add(this.cmbFillter);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(13, 228);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
@@ -136,11 +142,12 @@
             // 
             // cmbFillter
             // 
+            this.cmbFillter.Font = new System.Drawing.Font("Tahoma", 13F);
             this.cmbFillter.FormattingEnabled = true;
             this.cmbFillter.Location = new System.Drawing.Point(15, 37);
             this.cmbFillter.Margin = new System.Windows.Forms.Padding(4);
             this.cmbFillter.Name = "cmbFillter";
-            this.cmbFillter.Size = new System.Drawing.Size(203, 30);
+            this.cmbFillter.Size = new System.Drawing.Size(203, 29);
             this.cmbFillter.TabIndex = 10;
             this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
@@ -158,9 +165,10 @@
             // chkActive
             // 
             this.chkActive.AutoSize = true;
+            this.chkActive.Font = new System.Drawing.Font("Tahoma", 14F);
             this.chkActive.Location = new System.Drawing.Point(221, 99);
             this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(95, 26);
+            this.chkActive.Size = new System.Drawing.Size(119, 27);
             this.chkActive.TabIndex = 17;
             this.chkActive.Text = "فعال سازی";
             this.chkActive.UseVisualStyleBackColor = true;
@@ -169,9 +177,10 @@
             // chkNotActive
             // 
             this.chkNotActive.AutoSize = true;
-            this.chkNotActive.Location = new System.Drawing.Point(92, 99);
+            this.chkNotActive.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.chkNotActive.Location = new System.Drawing.Point(64, 99);
             this.chkNotActive.Name = "chkNotActive";
-            this.chkNotActive.Size = new System.Drawing.Size(123, 26);
+            this.chkNotActive.Size = new System.Drawing.Size(151, 27);
             this.chkNotActive.TabIndex = 16;
             this.chkNotActive.Text = "غیر فعال سازی";
             this.chkNotActive.UseVisualStyleBackColor = true;
@@ -179,27 +188,29 @@
             // 
             // txtInsert
             // 
+            this.txtInsert.Font = new System.Drawing.Font("Tahoma", 13F);
             this.txtInsert.Location = new System.Drawing.Point(34, 49);
             this.txtInsert.Margin = new System.Windows.Forms.Padding(4);
             this.txtInsert.Name = "txtInsert";
-            this.txtInsert.Size = new System.Drawing.Size(203, 27);
+            this.txtInsert.Size = new System.Drawing.Size(203, 28);
             this.txtInsert.TabIndex = 12;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.label4.Font = new System.Drawing.Font("Tahoma", 13F);
             this.label4.Location = new System.Drawing.Point(241, 49);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 21);
+            this.label4.Size = new System.Drawing.Size(94, 22);
             this.label4.TabIndex = 13;
             this.label4.Text = "نام وظیفه :";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgvRole);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(7, 100);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
@@ -213,7 +224,6 @@
             // 
             this.dgvRole.AllowUserToAddRows = false;
             this.dgvRole.AllowUserToDeleteRows = false;
-            this.dgvRole.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRole.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRole.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRole_ID,
@@ -245,7 +255,7 @@
             // colRoleTitle
             // 
             this.colRoleTitle.DataPropertyName = "RoleTitle";
-            this.colRoleTitle.FillWeight = 78.17259F;
+            this.colRoleTitle.FillWeight = 78.17258F;
             this.colRoleTitle.HeaderText = "نام وظیفه";
             this.colRoleTitle.Name = "colRoleTitle";
             this.colRoleTitle.ReadOnly = true;
@@ -257,11 +267,13 @@
             this.RegstretionDate.HeaderText = "تاریخ ثبت شده";
             this.RegstretionDate.Name = "RegstretionDate";
             this.RegstretionDate.ReadOnly = true;
+            this.RegstretionDate.Width = 200;
             // 
             // RoleNames
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(667, 435);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -272,6 +284,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "RoleNames";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "اضافه کردن وظیفه";
             this.Load += new System.EventHandler(this.RoleNames_Load);
             this.groupBox4.ResumeLayout(false);

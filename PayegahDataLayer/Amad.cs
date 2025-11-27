@@ -20,12 +20,16 @@ namespace PayegahDataLayer
             this.AmadMembers = new HashSet<AmadMembers>();
         }
     
-        public long AmatID { get; set; }
+        public int AmadID { get; set; }
         public Nullable<int> AmadTypeId { get; set; }
-        public int AmadTitle { get; set; }
-        public string AmadCode { get; set; }
+        public string AmadTitle { get; set; }
+        public Nullable<long> AmadCode { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AmadDate { get; set; }
-    
+        public string AmadFullName
+        {
+            get { return $"{AmadTitle} - {AmadType.AmadTitle}"; }
+        }
         public virtual AmadType AmadType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AmadMembers> AmadMembers { get; set; }

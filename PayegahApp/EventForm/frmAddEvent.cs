@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Accounting.utility.Convertor;
 using PayegahDataLayer;
 using PayegahDataLayer.Context;
 using ValidationComponents;
@@ -30,6 +31,7 @@ namespace PayegahApp.EventForm
         private void frmAddEvent_Load(object sender, EventArgs e)
         {
             dgvEvent.AutoGenerateColumns = false;
+            dgvEvent.ForeColor = Color.Black;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
@@ -37,6 +39,21 @@ namespace PayegahApp.EventForm
             BindGrid();
             cmbEventType();
 
+        }
+        private void ConvertDatesToShamsi()
+        {
+            foreach (DataGridViewRow row in dgvEvent.Rows)
+            {
+                if (row.Cells["colEventDate"].Value != null &&
+                    DateTime.TryParse(row.Cells["colEventDate"].Value.ToString(), out DateTime date))
+                {
+                    row.Cells["colEventDate"].Value = date.ToShamsi();
+                }
+                else
+                {
+                    row.Cells["colEventDate"].Value = "";
+                }
+            }
         }
         void BindGrid()
         {
@@ -52,6 +69,7 @@ namespace PayegahApp.EventForm
                     data = data.Where(c => c.IsActive == false).ToList();
                 }
                 dgvEvent.DataSource = data;
+                ConvertDatesToShamsi();
             }
         }
         void cmbEventType()
@@ -59,7 +77,7 @@ namespace PayegahApp.EventForm
             using (UnitofWork db = new UnitofWork())
             {
 
-                var list = db.EventTypeRopsitory.GetAll().ToList();
+                var list = db.EventTypeRopsitory.GetAll().Where(e=>e.IsActive==true).ToList();
                 cmbEvent.DisplayMember = "Title";
                 cmbEvent.ValueMember = "EventTypeId";
                 cmbEvent.DataSource = list;
@@ -122,19 +140,13 @@ namespace PayegahApp.EventForm
         {
             if (BaseValidator.IsFormValid(this.components))
             {
-                //if ()
-                //{
-                //    RtlMessageBox.Show("عنوان را به صورت عدد وارد نفرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //    txtTitle.Focus();
-                //    return;
-
-                //}
                 if (cmbEvent.SelectedIndex < 0)
                 {
                     RtlMessageBox.Show("لطفا نوع مراسم را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
 
                 }
+          
                 using (UnitofWork db = new UnitofWork())
                 {
                     int EventType = (int)cmbEvent.SelectedValue;
@@ -149,8 +161,8 @@ namespace PayegahApp.EventForm
                     };
                     db.EventsRepository.Insert(et);
                     db.Save();
-                    BindGrid();
                     RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    BindGrid();
                 }
 
             }
@@ -174,6 +186,10 @@ namespace PayegahApp.EventForm
                     {
                         txtTitle.Text = Get.EventTitle;
                         txtDescription.Text = Get.Description;
+                    }
+                    else
+                    {
+                        RtlMessageBox.Show("عملیات با شکست مواجه شد برنامه دوباره راه اندازی کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -204,6 +220,7 @@ namespace PayegahApp.EventForm
                     RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
                     txtTitle.Clear();
                     txtDescription.Clear();
+                    cmbEvent.SelectedIndex = -1;
                     BindGrid();
                 }
             }

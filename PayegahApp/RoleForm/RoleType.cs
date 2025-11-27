@@ -71,6 +71,7 @@ namespace PayegahApp.RollForm
         private void RollType_Load(object sender, EventArgs e)
         {
             dgvRollType.AutoGenerateColumns = false;
+            dgvRollType.ForeColor = Color.Black;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
@@ -147,6 +148,7 @@ namespace PayegahApp.RollForm
 
         private void dgvRollType_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
 
         }
 

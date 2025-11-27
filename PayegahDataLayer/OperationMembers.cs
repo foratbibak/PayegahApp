@@ -17,9 +17,13 @@ namespace PayegahDataLayer
         public int OperationMemberID { get; set; }
         public long MemID { get; set; }
         public int OperationID { get; set; }
+        public Nullable<int> DgreeID { get; set; }
+        public string Descreption { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public System.DateTime DateRegstration { get; set; }
     
         public virtual Members Members { get; set; }
+        public virtual OperationDgree OperationDgree { get; set; }
         public virtual Operations Operations { get; set; }
     }
 }

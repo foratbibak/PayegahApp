@@ -22,10 +22,13 @@ namespace PayegahDataLayer
     
         public int OperationID { get; set; }
         public int OperationTypeID { get; set; }
-        public int OperationDgreeID { get; set; }
         public string OperationTitle { get; set; }
         public System.DateTime OperationDate { get; set; }
-    
+        public Nullable<bool> IsActive { get; set; }
+        public string OPFullName
+        {
+            get { return $"{OperationTitle} - {OperationType.OperationTitle}"; }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OperationMembers> OperationMembers { get; set; }
         public virtual OperationType OperationType { get; set; }

@@ -42,12 +42,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvAtb = new System.Windows.Forms.DataGridView();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.chkShowAll = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.stiReport1 = new Stimulsoft.Report.StiReport();
-            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.IDd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +49,12 @@
             this.colEntranceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colExitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Locked = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkShowAll = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.stiReport1 = new Stimulsoft.Report.StiReport();
+            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -68,25 +68,29 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtNationalCode);
             this.groupBox1.Controls.Add(this.btnEntrance);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(9, 131);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.groupBox1.Size = new System.Drawing.Size(992, 112);
+            this.groupBox1.Size = new System.Drawing.Size(992, 107);
             this.groupBox1.TabIndex = 71;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات ورود و خروج";
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.Teal;
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnExit.Location = new System.Drawing.Point(9, 14);
+            this.btnExit.ForeColor = System.Drawing.Color.Transparent;
+            this.btnExit.Location = new System.Drawing.Point(9, 29);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(173, 68);
             this.btnExit.TabIndex = 3;
             this.btnExit.Text = "خروج";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // label1
@@ -111,14 +115,16 @@
             // 
             // btnEntrance
             // 
+            this.btnEntrance.BackColor = System.Drawing.Color.Teal;
             this.btnEntrance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnEntrance.Location = new System.Drawing.Point(190, 14);
+            this.btnEntrance.ForeColor = System.Drawing.Color.Transparent;
+            this.btnEntrance.Location = new System.Drawing.Point(190, 30);
             this.btnEntrance.Margin = new System.Windows.Forms.Padding(4);
             this.btnEntrance.Name = "btnEntrance";
             this.btnEntrance.Size = new System.Drawing.Size(173, 68);
             this.btnEntrance.TabIndex = 0;
             this.btnEntrance.Text = "ورود";
-            this.btnEntrance.UseVisualStyleBackColor = true;
+            this.btnEntrance.UseVisualStyleBackColor = false;
             this.btnEntrance.Click += new System.EventHandler(this.btnEntrance_Click);
             // 
             // groupBox2
@@ -126,6 +132,8 @@
             this.groupBox2.Controls.Add(this.btnPrint);
             this.groupBox2.Controls.Add(this.btnRefresh);
             this.groupBox2.Controls.Add(this.btnDelete);
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
             this.groupBox2.Location = new System.Drawing.Point(9, 14);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.groupBox2.Name = "groupBox2";
@@ -137,48 +145,54 @@
             // 
             // btnPrint
             // 
+            this.btnPrint.BackColor = System.Drawing.Color.Teal;
             this.btnPrint.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.ForeColor = System.Drawing.Color.Transparent;
             this.btnPrint.Location = new System.Drawing.Point(213, 36);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(173, 68);
             this.btnPrint.TabIndex = 6;
             this.btnPrint.Text = "چاپ";
-            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnRefresh
             // 
+            this.btnRefresh.BackColor = System.Drawing.Color.Teal;
             this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.ForeColor = System.Drawing.Color.Transparent;
             this.btnRefresh.Location = new System.Drawing.Point(395, 36);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(173, 68);
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "بروزرسانی";
-            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.UseVisualStyleBackColor = false;
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.Teal;
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnDelete.ForeColor = System.Drawing.Color.Transparent;
             this.btnDelete.Location = new System.Drawing.Point(576, 36);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(173, 68);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "حذف ";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arabic Typesetting", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label13.Font = new System.Drawing.Font("Arabic Typesetting", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label13.ForeColor = System.Drawing.Color.White;
             this.label13.Location = new System.Drawing.Point(434, 709);
             this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(109, 23);
+            this.label13.Size = new System.Drawing.Size(120, 26);
             this.label13.TabIndex = 74;
             this.label13.Text = "SharpIT Group";
             // 
@@ -186,6 +200,7 @@
             // 
             this.groupBox3.Controls.Add(this.dgvAtb);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
             this.groupBox3.Location = new System.Drawing.Point(9, 323);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.groupBox3.Name = "groupBox3";
@@ -214,81 +229,6 @@
             this.dgvAtb.ReadOnly = true;
             this.dgvAtb.Size = new System.Drawing.Size(973, 354);
             this.dgvAtb.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.chkShowAll);
-            this.groupBox4.Controls.Add(this.label2);
-            this.groupBox4.Controls.Add(this.txtSearch);
-            this.groupBox4.Location = new System.Drawing.Point(9, 236);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.groupBox4.Size = new System.Drawing.Size(992, 86);
-            this.groupBox4.TabIndex = 72;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "عملیات جستوجو";
-            // 
-            // chkShowAll
-            // 
-            this.chkShowAll.AutoSize = true;
-            this.chkShowAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Bold);
-            this.chkShowAll.Location = new System.Drawing.Point(275, 40);
-            this.chkShowAll.Name = "chkShowAll";
-            this.chkShowAll.Size = new System.Drawing.Size(111, 29);
-            this.chkShowAll.TabIndex = 18;
-            this.chkShowAll.Text = "نمایش همه";
-            this.chkShowAll.UseVisualStyleBackColor = true;
-            this.chkShowAll.CheckedChanged += new System.EventHandler(this.chkShowAll_CheckedChanged_1);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 13.25F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(807, 36);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 22);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "جستوجو :";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 15.25F);
-            this.txtSearch.Location = new System.Drawing.Point(425, 37);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(372, 32);
-            this.txtSearch.TabIndex = 1;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // stiReport1
-            // 
-            this.stiReport1.CookieContainer = null;
-            this.stiReport1.EngineVersion = Stimulsoft.Report.Engine.StiEngineVersion.EngineV2;
-            this.stiReport1.ReferencedAssemblies = new string[] {
-        "System.Dll",
-        "System.Drawing.Dll",
-        "System.Windows.Forms.Dll",
-        "System.Data.Dll",
-        "System.Xml.Dll",
-        "Stimulsoft.Controls.Dll",
-        "Stimulsoft.Base.Dll",
-        "Stimulsoft.Report.Dll"};
-            this.stiReport1.ReportAlias = "Report";
-            this.stiReport1.ReportGuid = "c9a26ba173004a64beee960bac49f12f";
-            this.stiReport1.ReportName = "Report";
-            this.stiReport1.ReportSource = null;
-            this.stiReport1.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
-            this.stiReport1.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
-            this.stiReport1.UseProgressInThread = false;
-            // 
-            // requiredFieldValidator1
-            // 
-            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
-            this.requiredFieldValidator1.ControlToValidate = this.txtNationalCode;
-            this.requiredFieldValidator1.ErrorMessage = "لطفا کدملی کاربر را برای عملیات وارد فرمایید.";
-            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
             // 
             // IDd
             // 
@@ -352,10 +292,88 @@
             this.Locked.ReadOnly = true;
             this.Locked.Width = 155;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkShowAll);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Controls.Add(this.txtSearch);
+            this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.groupBox4.ForeColor = System.Drawing.Color.White;
+            this.groupBox4.Location = new System.Drawing.Point(9, 236);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.groupBox4.Size = new System.Drawing.Size(992, 84);
+            this.groupBox4.TabIndex = 72;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "عملیات جستوجو";
+            // 
+            // chkShowAll
+            // 
+            this.chkShowAll.AutoSize = true;
+            this.chkShowAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Bold);
+            this.chkShowAll.Location = new System.Drawing.Point(275, 34);
+            this.chkShowAll.Name = "chkShowAll";
+            this.chkShowAll.Size = new System.Drawing.Size(111, 29);
+            this.chkShowAll.TabIndex = 18;
+            this.chkShowAll.Text = "نمایش همه";
+            this.chkShowAll.UseVisualStyleBackColor = true;
+            this.chkShowAll.CheckedChanged += new System.EventHandler(this.chkShowAll_CheckedChanged_1);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 13.25F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(807, 30);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 22);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "جستوجو :";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font("Tahoma", 15.25F);
+            this.txtSearch.Location = new System.Drawing.Point(425, 31);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(372, 32);
+            this.txtSearch.TabIndex = 1;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // stiReport1
+            // 
+            this.stiReport1.CookieContainer = null;
+            this.stiReport1.EngineVersion = Stimulsoft.Report.Engine.StiEngineVersion.EngineV2;
+            this.stiReport1.ReferencedAssemblies = new string[] {
+        "System.Dll",
+        "System.Drawing.Dll",
+        "System.Windows.Forms.Dll",
+        "System.Data.Dll",
+        "System.Xml.Dll",
+        "Stimulsoft.Controls.Dll",
+        "Stimulsoft.Base.Dll",
+        "Stimulsoft.Report.Dll"};
+            this.stiReport1.ReportAlias = "Report";
+            this.stiReport1.ReportGuid = "c9a26ba173004a64beee960bac49f12f";
+            this.stiReport1.ReportName = "Report";
+            this.stiReport1.ReportSource = null;
+            this.stiReport1.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
+            this.stiReport1.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
+            this.stiReport1.UseProgressInThread = false;
+            // 
+            // requiredFieldValidator1
+            // 
+            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator1.ControlToValidate = this.txtNationalCode;
+            this.requiredFieldValidator1.ErrorMessage = "لطفا کدملی کاربر را برای عملیات وارد فرمایید.";
+            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
+            // 
             // Entrance_Exit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1012, 731);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
@@ -363,12 +381,13 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.groupBox3);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Entrance_Exit";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Entrance_Exit";
+            this.Text = "حضور و غیاب";
             this.Load += new System.EventHandler(this.Entrance_Exit_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

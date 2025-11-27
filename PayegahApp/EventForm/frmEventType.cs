@@ -26,6 +26,7 @@ namespace PayegahApp.EventForm
         private void frmEventType_Load(object sender, EventArgs e)
         {
             dgvEventType.AutoGenerateColumns = false;
+            dgvEventType.ForeColor=Color.Black;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
@@ -62,8 +63,8 @@ namespace PayegahApp.EventForm
                     data = data.Where(x => x.IsActive == false).ToList();
                 }
                 dgvEventType.DataSource = data;
-                ConvertDatesToShamsi();
             }
+            ConvertDatesToShamsi();
         }
 
         private void cmbFillter_SelectedIndexChanged(object sender, EventArgs e)

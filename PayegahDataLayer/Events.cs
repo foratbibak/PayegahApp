@@ -26,9 +26,14 @@ namespace PayegahDataLayer
         public string Description { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public System.DateTime EventDate { get; set; }
-    
-        public virtual EventType EventType { get; set; }
+        public string EventFullName
+        {
+            get { return $"{EventTitle} - {EventType.Title}"; }
+        }
+
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventMembers> EventMembers { get; set; }
+        public virtual EventType EventType { get; set; }
     }
 }
