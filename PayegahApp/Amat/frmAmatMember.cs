@@ -324,5 +324,14 @@ namespace PayegahApp.Amat
             stiReport.RegData("Dt", Dt);
             stiReport.Show();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            using (UnitofWork db = new UnitofWork())
+            {
+                dgvAmadM.DataSource = db.MemberEventRepository.FillterByCodeAmad(txtSearch.Text);
+
+            }
+        }
     }
 }

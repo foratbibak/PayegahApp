@@ -59,5 +59,21 @@ namespace PayegahDataLayer.Services
         {
             return _db.Persons.Where(p=> (p.PersonName + " " + p.PersonFamily).Contains(parameter)||p.PhoneNumber.Contains(parameter)).ToList();
         }
+        public virtual IEnumerable<EventMembers> FillterByCodeEvent(string parameter)
+        {
+            return _db.EventMembers.Where(e => (e.Members.PersonID+" "+e.EventID).Contains(parameter)).ToList();
+        }
+        public virtual IEnumerable<MemberRole> FillterByCodeRole(string parameter)
+        {
+            return _db.MemberRole.Where(e => (e.Members.PersonID + " " + e.Role_ID).Contains(parameter)).ToList();
+        }
+        public virtual IEnumerable<OperationMembers> FillterByCodeOp(string parameter)
+        {
+            return _db.OperationMembers.Where(e => (e.Members.PersonID + " " + e.OperationID).Contains(parameter)).ToList();
+        }
+        public virtual IEnumerable<AmadMembers> FillterByCodeAmad(string parameter)
+        {
+            return _db.AmadMembers.Where(e => (e.Members.PersonID + " " + e.AmadID).Contains(parameter)).ToList();
+        }
     }
 }

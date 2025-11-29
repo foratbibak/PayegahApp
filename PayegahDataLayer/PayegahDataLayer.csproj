@@ -66,6 +66,9 @@
       <DependentUpon>PayegahModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\UnitofWork.cs" />
+    <Compile Include="DecriptionOperation.cs">
+      <DependentUpon>PayegahModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dgree.cs">
       <DependentUpon>PayegahModel.tt</DependentUpon>
     </Compile>

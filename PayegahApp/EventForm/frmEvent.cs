@@ -326,6 +326,14 @@ namespace PayegahApp.EventForm
             stiReport.RegData("Dt", Dt);
             stiReport.Show();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            using (UnitofWork db = new UnitofWork())
+            {
+                dgvEvent.DataSource=db.MemberEventRepository.FillterByCodeEvent(txtSearch.Text);
+            }
+        }
     }
 }
 

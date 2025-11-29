@@ -26,10 +26,7 @@ namespace PayegahDataLayer
         public Nullable<long> AmadCode { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AmadDate { get; set; }
-        public string AmadFullName
-        {
-            get { return $"{AmadTitle} - {AmadType.AmadTitle}"; }
-        }
+    
         public virtual AmadType AmadType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AmadMembers> AmadMembers { get; set; }

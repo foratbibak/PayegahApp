@@ -35,6 +35,11 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnInsertRoll = new System.Windows.Forms.Button();
             this.dgvRole = new System.Windows.Forms.DataGridView();
+            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoleTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Role_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkNotActive = new System.Windows.Forms.CheckBox();
@@ -53,11 +58,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.stiReport = new Stimulsoft.Report.StiReport();
-            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoleTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRole)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -147,6 +147,42 @@
             this.dgvRole.Size = new System.Drawing.Size(872, 225);
             this.dgvRole.TabIndex = 1;
             this.dgvRole.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRole_CellClick);
+            // 
+            // ColID
+            // 
+            this.ColID.DataPropertyName = "ID";
+            this.ColID.HeaderText = "CULID";
+            this.ColID.Name = "ColID";
+            this.ColID.ReadOnly = true;
+            this.ColID.Visible = false;
+            // 
+            // MemID
+            // 
+            this.MemID.DataPropertyName = "MemID";
+            this.MemID.HeaderText = "کدملی";
+            this.MemID.Name = "MemID";
+            this.MemID.ReadOnly = true;
+            // 
+            // RoleTypeID
+            // 
+            this.RoleTypeID.DataPropertyName = "RoleTypeID";
+            this.RoleTypeID.HeaderText = "مقام";
+            this.RoleTypeID.Name = "RoleTypeID";
+            this.RoleTypeID.ReadOnly = true;
+            // 
+            // Role_ID
+            // 
+            this.Role_ID.DataPropertyName = "Role_ID";
+            this.Role_ID.HeaderText = "وظیفه";
+            this.Role_ID.Name = "Role_ID";
+            this.Role_ID.ReadOnly = true;
+            // 
+            // DateRegestration
+            // 
+            this.DateRegestration.DataPropertyName = "DateRegestration";
+            this.DateRegestration.HeaderText = "تاریخ ثبت";
+            this.DateRegestration.Name = "DateRegestration";
+            this.DateRegestration.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -332,6 +368,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(181, 28);
             this.txtSearch.TabIndex = 6;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // cmbFillter
             // 
@@ -363,42 +400,6 @@
             this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
-            // 
-            // ColID
-            // 
-            this.ColID.DataPropertyName = "ID";
-            this.ColID.HeaderText = "CULID";
-            this.ColID.Name = "ColID";
-            this.ColID.ReadOnly = true;
-            this.ColID.Visible = false;
-            // 
-            // MemID
-            // 
-            this.MemID.DataPropertyName = "MemID";
-            this.MemID.HeaderText = "کدملی";
-            this.MemID.Name = "MemID";
-            this.MemID.ReadOnly = true;
-            // 
-            // RoleTypeID
-            // 
-            this.RoleTypeID.DataPropertyName = "RoleTypeID";
-            this.RoleTypeID.HeaderText = "مقام";
-            this.RoleTypeID.Name = "RoleTypeID";
-            this.RoleTypeID.ReadOnly = true;
-            // 
-            // Role_ID
-            // 
-            this.Role_ID.DataPropertyName = "Role_ID";
-            this.Role_ID.HeaderText = "وظیفه";
-            this.Role_ID.Name = "Role_ID";
-            this.Role_ID.ReadOnly = true;
-            // 
-            // DateRegestration
-            // 
-            this.DateRegestration.DataPropertyName = "DateRegestration";
-            this.DateRegestration.HeaderText = "تاریخ ثبت";
-            this.DateRegestration.Name = "DateRegestration";
-            this.DateRegestration.ReadOnly = true;
             // 
             // frmRole
             // 

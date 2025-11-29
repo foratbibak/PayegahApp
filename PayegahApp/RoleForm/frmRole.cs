@@ -380,5 +380,14 @@ namespace PayegahApp.RollForm
             stiReport.RegData("Dt", Dt);
             stiReport.Show();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            using(UnitofWork db=new UnitofWork())
+            {
+                dgvRole.DataSource = db.MemberEventRepository.FillterByCodeRole(txtSearch.Text);
+
+            }
+        }
     }
 }

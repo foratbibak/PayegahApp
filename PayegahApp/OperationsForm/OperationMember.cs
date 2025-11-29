@@ -68,7 +68,7 @@ namespace PayegahApp.OperationsForm
                 cmbOperations.DataSource = List;
             }
             cmbOperations.SelectedIndex = -1;
-            cmbOperations.Text = "لطفا یک مراسم را انتخاب فرمایید";
+            cmbOperations.Text = "لطفا یک عملیات را انتخاب فرمایید";
         }
         void DgreeCombo()
         {
@@ -80,7 +80,7 @@ namespace PayegahApp.OperationsForm
                 cmbDgree.DataSource = List;
             }
             cmbDgree.SelectedIndex = -1;
-            cmbDgree.Text = "لطفا یک مراسم را انتخاب فرمایید";
+            cmbDgree.Text = "لطفا یک مسئولیت را انتخاب فرمایید";
         }
         void BindGrid()
         {
@@ -339,6 +339,15 @@ namespace PayegahApp.OperationsForm
             stiReport.Load(Application.StartupPath + "/ReportOperation.mrt");
             stiReport.RegData("Dt", Dt);
             stiReport.Show();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            using (UnitofWork db = new UnitofWork())
+            {
+                dgvOpM.DataSource = db.MemberEventRepository.FillterByCodeOp(txtSearch.Text);
+
+            }
         }
     }
 }

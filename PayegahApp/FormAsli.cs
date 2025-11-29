@@ -1,92 +1,74 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Accounting.utility.Convertor;
 using PayegahApp.Amat;
-using PayegahApp.Attendance_absence;
 using PayegahApp.EventForm;
+using PayegahApp.frmEntrance_Exit;
 using PayegahApp.OperationsForm;
 using PayegahApp.Pesrsons;
 using PayegahApp.PesrsonsForms;
+using PayegahApp.Reports;
 using PayegahApp.RollForm;
 using PayegahDataLayer;
 using PayegahUtility;
+
 namespace PayegahApp
 {
     public partial class FormAsli : Form
     {
+        private Timer timer;
+
         public FormAsli()
         {
             InitializeComponent();
         }
 
+        private void FormAsli_Load(object sender, EventArgs e)
+        {
+            timer = new Timer();
+            timer.Interval = 1000;   
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+            Timer_Tick(null, null);  
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            lblDate.Text = DateConvertor.ToShamsi(DateTime.Now);      
+            //lblTime.Text = DateTime.Now.ToString("HH:mm:ss");         
+
+        }
         private void btnPerson_Click(object sender, EventArgs e)
         {
             frmPersons frmPersons = new frmPersons();
             frmPersons.ShowDialog();
-
-        }
-
-        private void FormAsli_Load(object sender, EventArgs e)
-        {
-            //this.Hide();
-            //FrmLogin frmLogin = new FrmLogin();
-            //if (frmLogin.ShowDialog() == DialogResult.OK)
-            //{
-            //    this.Show();
-            //    lblDate.Text = DateConvertor.ToSahmsi(DateTime.Now);
-            //    lblTime.Text = DateTime.Now.ToString("HH:mm:ss");
-            //}
-            //else
-            //{
-            //    Application.Exit();
-            //}
-
-
-
-            this.Region = new Region(AppUtility.SetFormRonded(this,50));
-
-
-
-
-
-
         }
 
         private void btnEntrance_Exit_Click(object sender, EventArgs e)
         {
-            Entrance_Exit frm=new Entrance_Exit();
+            Entrance_Exit frm = new Entrance_Exit();
             frm.ShowDialog();
         }
 
         private void btnRoll_Click(object sender, EventArgs e)
         {
-            frmRole frm=new frmRole();
+            frmRole frm = new frmRole();
             frm.ShowDialog();
         }
 
         private void btnMemberInsert_Click(object sender, EventArgs e)
         {
-            MemberInsertOLD frm=new MemberInsertOLD();
+            MemberInsertOLD frm = new MemberInsertOLD();
             frm.ShowDialog();
         }
 
         private void btnEvent_Click(object sender, EventArgs e)
         {
-            frmEvent frm=new frmEvent();
+            frmEvent frm = new frmEvent();
             frm.ShowDialog();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -96,14 +78,20 @@ namespace PayegahApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OperationMember frm=new OperationMember();
+            OperationMember frm = new OperationMember();
             frm.ShowDialog();
         }
 
         private void btnAmat_Click(object sender, EventArgs e)
         {
-            frmAmatMember frm=new frmAmatMember();
+            frmAmatMember frm = new frmAmatMember();
             frm.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Reportfrm reportfrm = new Reportfrm();
+            reportfrm.ShowDialog();
         }
     }
 }

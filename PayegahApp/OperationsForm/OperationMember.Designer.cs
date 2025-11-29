@@ -40,6 +40,11 @@
             this.cmbOperations = new System.Windows.Forms.ComboBox();
             this.btnEditMem = new System.Windows.Forms.Button();
             this.dgvOpM = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgreeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,14 +56,9 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnReport = new System.Windows.Forms.Button();
             this.btnDgree = new System.Windows.Forms.Button();
             this.stiReport = new Stimulsoft.Report.StiReport();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgreeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDescriptionOP = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpM)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,6 +81,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(178, 27);
             this.txtSearch.TabIndex = 10;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // label4
             // 
@@ -194,6 +195,46 @@
             this.dgvOpM.TabIndex = 0;
             this.dgvOpM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOpM_CellClick);
             // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "OperationMemberID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // colMemID
+            // 
+            this.colMemID.DataPropertyName = "MemID";
+            this.colMemID.HeaderText = "کدملی";
+            this.colMemID.Name = "colMemID";
+            this.colMemID.ReadOnly = true;
+            this.colMemID.Width = 200;
+            // 
+            // colOperationID
+            // 
+            this.colOperationID.DataPropertyName = "OperationID";
+            this.colOperationID.HeaderText = "عملیات";
+            this.colOperationID.Name = "colOperationID";
+            this.colOperationID.ReadOnly = true;
+            this.colOperationID.Width = 200;
+            // 
+            // colDgreeID
+            // 
+            this.colDgreeID.DataPropertyName = "DgreeID";
+            this.colDgreeID.HeaderText = "مسئولیت عضو";
+            this.colDgreeID.Name = "colDgreeID";
+            this.colDgreeID.ReadOnly = true;
+            this.colDgreeID.Width = 200;
+            // 
+            // colDateRegestration
+            // 
+            this.colDateRegestration.DataPropertyName = "DateRegstration";
+            this.colDateRegestration.HeaderText = "تاریخ ثبت شده";
+            this.colDateRegestration.Name = "colDateRegestration";
+            this.colDateRegestration.ReadOnly = true;
+            this.colDateRegestration.Width = 200;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -270,7 +311,7 @@
             this.btnInsertOp.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertOp.Name = "btnInsertOp";
             this.btnInsertOp.Size = new System.Drawing.Size(140, 53);
-            this.btnInsertOp.TabIndex = 7;
+            this.btnInsertOp.TabIndex = 1;
             this.btnInsertOp.Text = "افزودن عملیات";
             this.btnInsertOp.UseVisualStyleBackColor = false;
             this.btnInsertOp.Click += new System.EventHandler(this.btnInsertOp_Click);
@@ -283,7 +324,7 @@
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(140, 53);
-            this.btnPrint.TabIndex = 4;
+            this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "چاپ";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -296,7 +337,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(140, 53);
-            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.TabIndex = 6;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -315,7 +356,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnReport);
+            this.groupBox1.Controls.Add(this.btnDescriptionOP);
             this.groupBox1.Controls.Add(this.btnDgree);
             this.groupBox1.Controls.Add(this.btnInsertOp);
             this.groupBox1.Controls.Add(this.btnPrint);
@@ -329,18 +370,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "دکمه های عملیاتی";
             // 
-            // btnReport
-            // 
-            this.btnReport.BackColor = System.Drawing.Color.Teal;
-            this.btnReport.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnReport.Location = new System.Drawing.Point(301, 27);
-            this.btnReport.Margin = new System.Windows.Forms.Padding(4);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(140, 53);
-            this.btnReport.TabIndex = 10;
-            this.btnReport.Text = "گزارش گیری";
-            this.btnReport.UseVisualStyleBackColor = false;
-            // 
             // btnDgree
             // 
             this.btnDgree.BackColor = System.Drawing.Color.Teal;
@@ -349,7 +378,7 @@
             this.btnDgree.Margin = new System.Windows.Forms.Padding(4);
             this.btnDgree.Name = "btnDgree";
             this.btnDgree.Size = new System.Drawing.Size(140, 53);
-            this.btnDgree.TabIndex = 8;
+            this.btnDgree.TabIndex = 2;
             this.btnDgree.Text = "افزودن مسئولیت";
             this.btnDgree.UseVisualStyleBackColor = false;
             this.btnDgree.Click += new System.EventHandler(this.btnDgree_Click);
@@ -375,45 +404,17 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
-            // colID
+            // btnDescriptionOP
             // 
-            this.colID.DataPropertyName = "OperationMemberID";
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colMemID
-            // 
-            this.colMemID.DataPropertyName = "MemID";
-            this.colMemID.HeaderText = "کدملی";
-            this.colMemID.Name = "colMemID";
-            this.colMemID.ReadOnly = true;
-            this.colMemID.Width = 200;
-            // 
-            // colOperationID
-            // 
-            this.colOperationID.DataPropertyName = "OperationID";
-            this.colOperationID.HeaderText = "عملیات";
-            this.colOperationID.Name = "colOperationID";
-            this.colOperationID.ReadOnly = true;
-            this.colOperationID.Width = 200;
-            // 
-            // colDgreeID
-            // 
-            this.colDgreeID.DataPropertyName = "DgreeID";
-            this.colDgreeID.HeaderText = "مسئولیت عضو";
-            this.colDgreeID.Name = "colDgreeID";
-            this.colDgreeID.ReadOnly = true;
-            this.colDgreeID.Width = 200;
-            // 
-            // colDateRegestration
-            // 
-            this.colDateRegestration.DataPropertyName = "DateRegstration";
-            this.colDateRegestration.HeaderText = "تاریخ ثبت شده";
-            this.colDateRegestration.Name = "colDateRegestration";
-            this.colDateRegestration.ReadOnly = true;
-            this.colDateRegestration.Width = 200;
+            this.btnDescriptionOP.BackColor = System.Drawing.Color.Teal;
+            this.btnDescriptionOP.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.btnDescriptionOP.Location = new System.Drawing.Point(301, 27);
+            this.btnDescriptionOP.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDescriptionOP.Name = "btnDescriptionOP";
+            this.btnDescriptionOP.Size = new System.Drawing.Size(140, 53);
+            this.btnDescriptionOP.TabIndex = 4;
+            this.btnDescriptionOP.Text = "گزارش عملیات";
+            this.btnDescriptionOP.UseVisualStyleBackColor = false;
             // 
             // OperationMember
             // 
@@ -471,12 +472,12 @@
         private System.Windows.Forms.Button btnDgree;
         private System.Windows.Forms.ComboBox cmbDgree;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnReport;
         private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDgreeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDateRegestration;
+        private System.Windows.Forms.Button btnDescriptionOP;
     }
 }
