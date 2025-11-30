@@ -56,9 +56,9 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDescriptionOP = new System.Windows.Forms.Button();
             this.btnDgree = new System.Windows.Forms.Button();
             this.stiReport = new Stimulsoft.Report.StiReport();
-            this.btnDescriptionOP = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpM)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -150,7 +150,7 @@
             this.btnInsertMem.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertMem.Name = "btnInsertMem";
             this.btnInsertMem.Size = new System.Drawing.Size(132, 53);
-            this.btnInsertMem.TabIndex = 9;
+            this.btnInsertMem.TabIndex = 6;
             this.btnInsertMem.Text = "ثبت ";
             this.btnInsertMem.UseVisualStyleBackColor = false;
             this.btnInsertMem.Click += new System.EventHandler(this.btnInsertMem_Click);
@@ -172,7 +172,7 @@
             this.btnEditMem.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditMem.Name = "btnEditMem";
             this.btnEditMem.Size = new System.Drawing.Size(130, 53);
-            this.btnEditMem.TabIndex = 8;
+            this.btnEditMem.TabIndex = 7;
             this.btnEditMem.Text = "ویرایش ";
             this.btnEditMem.UseVisualStyleBackColor = false;
             this.btnEditMem.Click += new System.EventHandler(this.btnEditMem_Click);
@@ -324,7 +324,7 @@
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(140, 53);
-            this.btnPrint.TabIndex = 5;
+            this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "چاپ";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -337,7 +337,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(140, 53);
-            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -369,6 +369,19 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "دکمه های عملیاتی";
+            // 
+            // btnDescriptionOP
+            // 
+            this.btnDescriptionOP.BackColor = System.Drawing.Color.Teal;
+            this.btnDescriptionOP.Font = new System.Drawing.Font("Tahoma", 12.25F);
+            this.btnDescriptionOP.Location = new System.Drawing.Point(301, 27);
+            this.btnDescriptionOP.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDescriptionOP.Name = "btnDescriptionOP";
+            this.btnDescriptionOP.Size = new System.Drawing.Size(140, 53);
+            this.btnDescriptionOP.TabIndex = 3;
+            this.btnDescriptionOP.Text = "گزارش عملیات";
+            this.btnDescriptionOP.UseVisualStyleBackColor = false;
+            this.btnDescriptionOP.Click += new System.EventHandler(this.btnDescriptionOP_Click);
             // 
             // btnDgree
             // 
@@ -403,18 +416,6 @@
             this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
-            // 
-            // btnDescriptionOP
-            // 
-            this.btnDescriptionOP.BackColor = System.Drawing.Color.Teal;
-            this.btnDescriptionOP.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.btnDescriptionOP.Location = new System.Drawing.Point(301, 27);
-            this.btnDescriptionOP.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDescriptionOP.Name = "btnDescriptionOP";
-            this.btnDescriptionOP.Size = new System.Drawing.Size(140, 53);
-            this.btnDescriptionOP.TabIndex = 4;
-            this.btnDescriptionOP.Text = "گزارش عملیات";
-            this.btnDescriptionOP.UseVisualStyleBackColor = false;
             // 
             // OperationMember
             // 

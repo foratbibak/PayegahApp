@@ -63,7 +63,7 @@
             this.btnIsActivefalse.Margin = new System.Windows.Forms.Padding(4);
             this.btnIsActivefalse.Name = "btnIsActivefalse";
             this.btnIsActivefalse.Size = new System.Drawing.Size(173, 68);
-            this.btnIsActivefalse.TabIndex = 3;
+            this.btnIsActivefalse.TabIndex = 2;
             this.btnIsActivefalse.Text = "غیرفعال سازی";
             this.btnIsActivefalse.UseVisualStyleBackColor = false;
             this.btnIsActivefalse.Click += new System.EventHandler(this.button1_Click);
@@ -87,7 +87,7 @@
             this.btnIsActive.Margin = new System.Windows.Forms.Padding(4);
             this.btnIsActive.Name = "btnIsActive";
             this.btnIsActive.Size = new System.Drawing.Size(173, 68);
-            this.btnIsActive.TabIndex = 0;
+            this.btnIsActive.TabIndex = 1;
             this.btnIsActive.Text = "فعال سازی";
             this.btnIsActive.UseVisualStyleBackColor = false;
             this.btnIsActive.Click += new System.EventHandler(this.btnIsActive_Click);

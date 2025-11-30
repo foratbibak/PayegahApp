@@ -26,7 +26,6 @@ namespace PayegahDataLayer
         }
     
         public virtual DbSet<AmadType> AmadType { get; set; }
-        public virtual DbSet<Attendance_absence> Attendance_absence { get; set; }
         public virtual DbSet<Dgree> Dgree { get; set; }
         public virtual DbSet<DgreeMembers> DgreeMembers { get; set; }
         public virtual DbSet<EventMembers> EventMembers { get; set; }
@@ -46,5 +45,6 @@ namespace PayegahDataLayer
         public virtual DbSet<AmadMembers> AmadMembers { get; set; }
         public virtual DbSet<DecriptionOperation> DecriptionOperation { get; set; }
         public virtual DbSet<OperationMembers> OperationMembers { get; set; }
+        public virtual DbSet<Attendance_absence> Attendance_absence { get; set; }
     }
 }

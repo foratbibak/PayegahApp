@@ -13,8 +13,8 @@ namespace PayegahViewModel
         public Int64 PersonID { get; set; }
         public string Name { get; set; }
         public string Family { get; set; } 
-        public DateTime? EntranceDate { get; set; }
-        public DateTime? ExitDate { get; set; }
+        public string EntranceDate { get; set; }
+        public string ExitDate { get; set; }
         public string Locked {  get; set; }
         public Persons Persons { get; set; }
 

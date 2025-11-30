@@ -202,7 +202,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(161, 60);
-            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             // 
@@ -215,7 +215,7 @@
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(161, 60);
-            this.btnEdit.TabIndex = 5;
+            this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "ویرایش";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -229,7 +229,7 @@
             this.btnInsertOp.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertOp.Name = "btnInsertOp";
             this.btnInsertOp.Size = new System.Drawing.Size(161, 60);
-            this.btnInsertOp.TabIndex = 4;
+            this.btnInsertOp.TabIndex = 1;
             this.btnInsertOp.Text = "افزودن نوع مراسم";
             this.btnInsertOp.UseVisualStyleBackColor = false;
             this.btnInsertOp.Click += new System.EventHandler(this.btnInsertOp_Click);

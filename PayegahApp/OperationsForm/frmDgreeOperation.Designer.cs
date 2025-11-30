@@ -134,7 +134,7 @@
             this.btnInsertDg.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertDg.Name = "btnInsertDg";
             this.btnInsertDg.Size = new System.Drawing.Size(161, 60);
-            this.btnInsertDg.TabIndex = 8;
+            this.btnInsertDg.TabIndex = 1;
             this.btnInsertDg.Text = "ثبت مسئولیت";
             this.btnInsertDg.UseVisualStyleBackColor = false;
             this.btnInsertDg.Click += new System.EventHandler(this.btnInsertDg_Click);
@@ -148,7 +148,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(161, 60);
-            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             // 
@@ -161,7 +161,7 @@
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(161, 60);
-            this.btnEdit.TabIndex = 5;
+            this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "ویرایش";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);

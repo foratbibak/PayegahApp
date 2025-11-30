@@ -178,7 +178,7 @@
             this.txtName.Location = new System.Drawing.Point(570, 47);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(170, 27);
-            this.txtName.TabIndex = 12;
+            this.txtName.TabIndex = 1;
             // 
             // txtFamily
             // 
@@ -186,7 +186,7 @@
             this.txtFamily.Location = new System.Drawing.Point(286, 45);
             this.txtFamily.Name = "txtFamily";
             this.txtFamily.Size = new System.Drawing.Size(170, 27);
-            this.txtFamily.TabIndex = 13;
+            this.txtFamily.TabIndex = 2;
             // 
             // txtNationalCode
             // 
@@ -194,7 +194,7 @@
             this.txtNationalCode.Location = new System.Drawing.Point(6, 45);
             this.txtNationalCode.Name = "txtNationalCode";
             this.txtNationalCode.Size = new System.Drawing.Size(170, 27);
-            this.txtNationalCode.TabIndex = 14;
+            this.txtNationalCode.TabIndex = 3;
             // 
             // txtAddress
             // 
@@ -202,7 +202,7 @@
             this.txtAddress.Location = new System.Drawing.Point(570, 117);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(170, 27);
-            this.txtAddress.TabIndex = 15;
+            this.txtAddress.TabIndex = 4;
             // 
             // txtPstalCode
             // 
@@ -210,7 +210,7 @@
             this.txtPstalCode.Location = new System.Drawing.Point(286, 114);
             this.txtPstalCode.Name = "txtPstalCode";
             this.txtPstalCode.Size = new System.Drawing.Size(170, 27);
-            this.txtPstalCode.TabIndex = 16;
+            this.txtPstalCode.TabIndex = 5;
             // 
             // txtPhone
             // 
@@ -218,7 +218,7 @@
             this.txtPhone.Location = new System.Drawing.Point(6, 118);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(170, 27);
-            this.txtPhone.TabIndex = 17;
+            this.txtPhone.TabIndex = 6;
             // 
             // txtBirthday
             // 
@@ -226,7 +226,7 @@
             this.txtBirthday.Location = new System.Drawing.Point(570, 191);
             this.txtBirthday.Name = "txtBirthday";
             this.txtBirthday.Size = new System.Drawing.Size(170, 27);
-            this.txtBirthday.TabIndex = 18;
+            this.txtBirthday.TabIndex = 7;
             // 
             // txtFotherJob
             // 
@@ -234,7 +234,7 @@
             this.txtFotherJob.Location = new System.Drawing.Point(286, 191);
             this.txtFotherJob.Name = "txtFotherJob";
             this.txtFotherJob.Size = new System.Drawing.Size(170, 27);
-            this.txtFotherJob.TabIndex = 19;
+            this.txtFotherJob.TabIndex = 8;
             // 
             // txtMotherJob
             // 
@@ -242,7 +242,7 @@
             this.txtMotherJob.Location = new System.Drawing.Point(6, 191);
             this.txtMotherJob.Name = "txtMotherJob";
             this.txtMotherJob.Size = new System.Drawing.Size(170, 27);
-            this.txtMotherJob.TabIndex = 20;
+            this.txtMotherJob.TabIndex = 9;
             // 
             // txtFotherPhone
             // 
@@ -250,7 +250,7 @@
             this.txtFotherPhone.Location = new System.Drawing.Point(499, 253);
             this.txtFotherPhone.Name = "txtFotherPhone";
             this.txtFotherPhone.Size = new System.Drawing.Size(170, 27);
-            this.txtFotherPhone.TabIndex = 21;
+            this.txtFotherPhone.TabIndex = 10;
             // 
             // txtMotherPhone
             // 
@@ -258,7 +258,7 @@
             this.txtMotherPhone.Location = new System.Drawing.Point(6, 248);
             this.txtMotherPhone.Name = "txtMotherPhone";
             this.txtMotherPhone.Size = new System.Drawing.Size(170, 27);
-            this.txtMotherPhone.TabIndex = 22;
+            this.txtMotherPhone.TabIndex = 11;
             // 
             // btnSabt
             // 

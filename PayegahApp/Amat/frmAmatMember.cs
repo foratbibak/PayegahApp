@@ -62,7 +62,7 @@ namespace PayegahApp.Amat
                 cmbAmad.DataSource = List;
             }
             cmbAmad.SelectedIndex = -1;
-            cmbAmad.Text = "لطفا یک مراسم را انتخاب فرمایید";
+            cmbAmad.Text = "لطفا یک نوع از تجهیزات را انتخاب فرمایید";
         }
         void BindGrid()
         {
@@ -104,7 +104,7 @@ namespace PayegahApp.Amat
                         }
                         else
                         {
-                            RtlMessageBox.Show("این مقام از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این آماد از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                     }
@@ -119,7 +119,7 @@ namespace PayegahApp.Amat
                         }
                         else
                         {
-                            RtlMessageBox.Show("این نوع از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این نوع آماد از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
 

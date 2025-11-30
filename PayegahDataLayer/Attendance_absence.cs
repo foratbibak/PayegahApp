@@ -16,8 +16,8 @@ namespace PayegahDataLayer
     {
         public int ID { get; set; }
         public Nullable<long> PersonID { get; set; }
-        public Nullable<System.DateTime> EntranceDate { get; set; }
-        public Nullable<System.DateTime> ExitDate { get; set; }
+        public string EntranceDate { get; set; }
+        public string ExitDate { get; set; }
         public Nullable<System.DateTime> RegestrationDate { get; set; }
         public string Locked { get; set; }
     

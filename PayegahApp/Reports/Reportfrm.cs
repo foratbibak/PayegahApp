@@ -82,9 +82,9 @@ namespace PayegahApp.Reports
                                  .Select(a => new
                                  {
                                      a.PersonID,
-                                     EntranceDate = a.EntranceDate.HasValue ? ToShamsi(a.EntranceDate.Value) : "",
-                                     ExitDate = a.ExitDate.HasValue ? ToShamsi(a.ExitDate.Value) : "",
-                                     RegestrationDate = ToShamsi((DateTime)a.RegestrationDate)
+                                     EntranceDate = a.EntranceDate ?? "",
+                                     ExitDate = a.ExitDate ?? "",         
+                                     RegestrationDate = ToShamsi((DateTime)a.RegestrationDate) 
                                  })
                                  .ToList();
 

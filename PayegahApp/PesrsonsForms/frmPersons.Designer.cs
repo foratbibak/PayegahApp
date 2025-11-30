@@ -70,7 +70,7 @@
             this.btnInsert.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(171, 61);
-            this.btnInsert.TabIndex = 0;
+            this.btnInsert.TabIndex = 1;
             this.btnInsert.Text = "افزودن عضو جدید";
             this.btnInsert.UseVisualStyleBackColor = false;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -83,7 +83,7 @@
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(147, 61);
-            this.btnEdit.TabIndex = 1;
+            this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "ویرایش عضو\r\n";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -96,7 +96,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(147, 61);
-            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "بروزرسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -138,7 +138,7 @@
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(147, 61);
-            this.btnPrint.TabIndex = 4;
+            this.btnPrint.TabIndex = 5;
             this.btnPrint.Text = "پرینت";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -151,7 +151,7 @@
             this.btnActive.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnActive.Name = "btnActive";
             this.btnActive.Size = new System.Drawing.Size(181, 61);
-            this.btnActive.TabIndex = 2;
+            this.btnActive.TabIndex = 3;
             this.btnActive.Text = "فعال و غیرفعال سازی";
             this.btnActive.UseVisualStyleBackColor = false;
             this.btnActive.Click += new System.EventHandler(this.btnDelete_Click);

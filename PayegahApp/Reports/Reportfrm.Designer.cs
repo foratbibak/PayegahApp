@@ -64,7 +64,7 @@
             // 
             this.btnRefresh.BackColor = System.Drawing.Color.Teal;
             this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.btnRefresh.Location = new System.Drawing.Point(370, 22);
+            this.btnRefresh.Location = new System.Drawing.Point(242, 24);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(143, 54);
             this.btnRefresh.TabIndex = 1;
@@ -76,11 +76,11 @@
             // 
             this.btnReport.BackColor = System.Drawing.Color.Teal;
             this.btnReport.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.btnReport.Location = new System.Drawing.Point(519, 22);
+            this.btnReport.Location = new System.Drawing.Point(391, 24);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(143, 54);
             this.btnReport.TabIndex = 0;
-            this.btnReport.Text = "ثبت گزارش";
+            this.btnReport.Text = "گزارش";
             this.btnReport.UseVisualStyleBackColor = false;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
@@ -106,12 +106,12 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(251, 39);
+            this.label1.Location = new System.Drawing.Point(251, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 24);
+            this.label1.Size = new System.Drawing.Size(81, 24);
             this.label1.TabIndex = 19;
-            this.label1.Text = "فرم ها:";
+            this.label1.Text = "جدول ها :";
             // 
             // cmbfrm
             // 
@@ -119,7 +119,7 @@
             this.cmbfrm.FormattingEnabled = true;
             this.cmbfrm.Location = new System.Drawing.Point(6, 37);
             this.cmbfrm.Name = "cmbfrm";
-            this.cmbfrm.Size = new System.Drawing.Size(250, 26);
+            this.cmbfrm.Size = new System.Drawing.Size(243, 26);
             this.cmbfrm.TabIndex = 18;
             // 
             // label3
@@ -127,7 +127,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(469, 36);
+            this.label3.Location = new System.Drawing.Point(487, 39);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 24);
@@ -138,11 +138,11 @@
             // 
             this.txtFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtFromDate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtFromDate.Location = new System.Drawing.Point(560, 36);
+            this.txtFromDate.Location = new System.Drawing.Point(579, 36);
             this.txtFromDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtFromDate.Mask = "0000/00/00";
             this.txtFromDate.Name = "txtFromDate";
-            this.txtFromDate.Size = new System.Drawing.Size(162, 29);
+            this.txtFromDate.Size = new System.Drawing.Size(143, 29);
             this.txtFromDate.TabIndex = 14;
             this.txtFromDate.ValidatingType = typeof(System.DateTime);
             // 
@@ -162,7 +162,7 @@
             // 
             this.txtToDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtToDate.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtToDate.Location = new System.Drawing.Point(322, 36);
+            this.txtToDate.Location = new System.Drawing.Point(344, 36);
             this.txtToDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtToDate.Mask = "0000/00/00";
             this.txtToDate.Name = "txtToDate";

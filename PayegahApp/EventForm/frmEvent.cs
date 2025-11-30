@@ -110,7 +110,7 @@ namespace PayegahApp.EventForm
                         }
                         else
                         {
-                            RtlMessageBox.Show("این مقام از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این مراسم از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                     }
@@ -125,7 +125,7 @@ namespace PayegahApp.EventForm
                         }
                         else
                         {
-                            RtlMessageBox.Show("این نوع از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این نوع مراسم از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
 
@@ -142,7 +142,7 @@ namespace PayegahApp.EventForm
         {
             if (string.IsNullOrWhiteSpace(txtNatoinalCode.Text))
             {
-                RtlMessageBox.Show("لطفا برای ثبت مقام کدملی را وارد فرمایید", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RtlMessageBox.Show("لطفا برای ثبت مراسم کدملی را وارد فرمایید", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtNatoinalCode.Focus();
                 return;
             }
@@ -181,7 +181,7 @@ namespace PayegahApp.EventForm
                 db.Save();
                 txtNatoinalCode.Clear();
                 BindGrid();
-                RtlMessageBox.Show("عملیات ثبت مقام با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RtlMessageBox.Show("عملیات ثبت مراسم با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             }

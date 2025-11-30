@@ -89,7 +89,7 @@ namespace PayegahApp.Amat
                         }
                         else
                         {
-                            RtlMessageBox.Show("این مراسم از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این آماد از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
@@ -104,7 +104,7 @@ namespace PayegahApp.Amat
                         }
                         else
                         {
-                            RtlMessageBox.Show("این مراسم از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این آماد از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                     }
@@ -126,7 +126,7 @@ namespace PayegahApp.Amat
             Int64 CodeCast = Int64.Parse(txtCode.Text);
             if (cmbAmadType.SelectedIndex < 0)
             {
-                RtlMessageBox.Show("لطفا نوع مراسم را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RtlMessageBox.Show("لطفا نوع تجهیزات را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
@@ -178,7 +178,7 @@ namespace PayegahApp.Amat
                 {
                     if (cmbAmadType.SelectedIndex < 0)
                     {
-                        RtlMessageBox.Show("لطفا نوع مراسم را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        RtlMessageBox.Show("لطفا نوع تجهیزات را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     int AmadType = (int)cmbAmadType.SelectedValue;

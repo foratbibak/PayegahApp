@@ -192,7 +192,7 @@
             this.btnInsertOp.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertOp.Name = "btnInsertOp";
             this.btnInsertOp.Size = new System.Drawing.Size(161, 60);
-            this.btnInsertOp.TabIndex = 8;
+            this.btnInsertOp.TabIndex = 1;
             this.btnInsertOp.Text = "ثبت عملیات";
             this.btnInsertOp.UseVisualStyleBackColor = false;
             this.btnInsertOp.Click += new System.EventHandler(this.btnInsertOp_Click);
@@ -223,7 +223,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(161, 60);
-            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -237,7 +237,7 @@
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(161, 60);
-            this.btnEdit.TabIndex = 5;
+            this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "ویرایش";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -251,7 +251,7 @@
             this.btnOpType.Margin = new System.Windows.Forms.Padding(4);
             this.btnOpType.Name = "btnOpType";
             this.btnOpType.Size = new System.Drawing.Size(161, 60);
-            this.btnOpType.TabIndex = 4;
+            this.btnOpType.TabIndex = 2;
             this.btnOpType.Text = "افزودن نوع عملیات";
             this.btnOpType.UseVisualStyleBackColor = false;
             this.btnOpType.Click += new System.EventHandler(this.btnOpType_Click);

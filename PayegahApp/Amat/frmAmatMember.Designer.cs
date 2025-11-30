@@ -145,7 +145,7 @@
             this.btnInsertMem.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertMem.Name = "btnInsertMem";
             this.btnInsertMem.Size = new System.Drawing.Size(132, 53);
-            this.btnInsertMem.TabIndex = 9;
+            this.btnInsertMem.TabIndex = 4;
             this.btnInsertMem.Text = "ثبت ";
             this.btnInsertMem.UseVisualStyleBackColor = false;
             this.btnInsertMem.Click += new System.EventHandler(this.btnInsertMem_Click);
@@ -167,7 +167,7 @@
             this.btnEditMem.Margin = new System.Windows.Forms.Padding(4);
             this.btnEditMem.Name = "btnEditMem";
             this.btnEditMem.Size = new System.Drawing.Size(130, 53);
-            this.btnEditMem.TabIndex = 8;
+            this.btnEditMem.TabIndex = 5;
             this.btnEditMem.Text = "ویرایش ";
             this.btnEditMem.UseVisualStyleBackColor = false;
             this.btnEditMem.Click += new System.EventHandler(this.btnEditMem_Click);
@@ -286,7 +286,7 @@
             this.btnInsertAmad.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertAmad.Name = "btnInsertAmad";
             this.btnInsertAmad.Size = new System.Drawing.Size(139, 61);
-            this.btnInsertAmad.TabIndex = 7;
+            this.btnInsertAmad.TabIndex = 1;
             this.btnInsertAmad.Text = "افزودن تجهیزات";
             this.btnInsertAmad.UseVisualStyleBackColor = false;
             this.btnInsertAmad.Click += new System.EventHandler(this.btnInsertEvent_Click);
@@ -299,7 +299,7 @@
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(140, 61);
-            this.btnPrint.TabIndex = 4;
+            this.btnPrint.TabIndex = 2;
             this.btnPrint.Text = "چاپ";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);

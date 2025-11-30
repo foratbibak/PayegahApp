@@ -116,7 +116,7 @@ namespace PayegahApp.EventForm
                         }
                         else
                         {
-                            RtlMessageBox.Show("این نوع از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این نوع مراسم از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                     }
@@ -131,7 +131,7 @@ namespace PayegahApp.EventForm
                         }
                         else
                         {
-                            RtlMessageBox.Show("این نوع از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این نوع مراسم از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
 

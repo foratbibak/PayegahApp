@@ -81,7 +81,7 @@
             this.btnRefresh.Location = new System.Drawing.Point(95, 26);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(147, 56);
-            this.btnRefresh.TabIndex = 6;
+            this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "بروزرسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.button3_Click);
@@ -93,7 +93,7 @@
             this.btnEdit.Location = new System.Drawing.Point(247, 26);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(127, 56);
-            this.btnEdit.TabIndex = 8;
+            this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "ویرایش";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.button1_Click);
@@ -105,7 +105,7 @@
             this.btnInsertRoll.Location = new System.Drawing.Point(380, 26);
             this.btnInsertRoll.Name = "btnInsertRoll";
             this.btnInsertRoll.Size = new System.Drawing.Size(153, 56);
-            this.btnInsertRoll.TabIndex = 5;
+            this.btnInsertRoll.TabIndex = 1;
             this.btnInsertRoll.Text = "افزودن";
             this.btnInsertRoll.UseVisualStyleBackColor = false;
             this.btnInsertRoll.Click += new System.EventHandler(this.btnInsertRoll_Click);
@@ -207,7 +207,7 @@
             this.txtCode.Location = new System.Drawing.Point(286, 136);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(250, 28);
-            this.txtCode.TabIndex = 12;
+            this.txtCode.TabIndex = 2;
             // 
             // groupBox2
             // 

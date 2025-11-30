@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6906b05e4e684ed1bf35d702b5b12891" Name="Diagram1">
         <EntityTypeShape EntityType="PayegahDbModel.AmadType" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PayegahDbModel.Attendance_absence" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.Dgree" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.DgreeMembers" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.EventMembers" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
@@ -22,7 +21,6 @@
         <EntityTypeShape EntityType="PayegahDbModel.RoleType" Width="1.5" PointX="3" PointY="29" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.Users" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
-        <AssociationConnector Association="PayegahDbModel.FK_Attendance_absence_Persons" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_MemberDgree" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Events" ManuallyRouted="false" />
@@ -45,6 +43,8 @@
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Members" />
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_OperationDgree" />
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Operations" />
+        <EntityTypeShape EntityType="PayegahDbModel.Attendance_absence" Width="1.5" PointX="3" PointY="7.5" />
+        <AssociationConnector Association="PayegahDbModel.FK_Attendance_absence_Persons" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

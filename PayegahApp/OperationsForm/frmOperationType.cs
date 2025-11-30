@@ -128,7 +128,7 @@ namespace PayegahApp.OperationsForm
                     };
                     db.OperationTypeRepository.Insert(op);
                     db.Save();
-                    RtlMessageBox.Show("عملیات ذخخیر سازی با موفقیت انجام شد.","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد.","",MessageBoxButtons.OK,MessageBoxIcon.Information);
                     BindGrid();
                 }
 

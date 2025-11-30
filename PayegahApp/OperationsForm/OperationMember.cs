@@ -123,7 +123,7 @@ namespace PayegahApp.OperationsForm
                         }
                         else
                         {
-                            RtlMessageBox.Show("این مقام از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این عملیات از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         }
                     }
@@ -138,7 +138,7 @@ namespace PayegahApp.OperationsForm
                         }
                         else
                         {
-                            RtlMessageBox.Show("این نوع از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            RtlMessageBox.Show("این عملیات از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
 
@@ -348,6 +348,12 @@ namespace PayegahApp.OperationsForm
                 dgvOpM.DataSource = db.MemberEventRepository.FillterByCodeOp(txtSearch.Text);
 
             }
+        }
+
+        private void btnDescriptionOP_Click(object sender, EventArgs e)
+        {
+            OPDescription frm =new OPDescription();
+            frm.ShowDialog();
         }
     }
 }

@@ -44,10 +44,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvRole = new System.Windows.Forms.DataGridView();
-            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.colRole_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRoleTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegstretionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -78,7 +78,7 @@
             this.button3.Location = new System.Drawing.Point(89, 23);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(143, 54);
-            this.button3.TabIndex = 7;
+            this.button3.TabIndex = 3;
             this.button3.Text = "بروز رسانی";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -90,7 +90,7 @@
             this.btnEdt.Location = new System.Drawing.Point(238, 23);
             this.btnEdt.Name = "btnEdt";
             this.btnEdt.Size = new System.Drawing.Size(143, 54);
-            this.btnEdt.TabIndex = 5;
+            this.btnEdt.TabIndex = 2;
             this.btnEdt.Text = "ویرایش";
             this.btnEdt.UseVisualStyleBackColor = false;
             this.btnEdt.Click += new System.EventHandler(this.btnEdt_Click);
@@ -102,7 +102,7 @@
             this.btnInsertRoll.Location = new System.Drawing.Point(387, 23);
             this.btnInsertRoll.Name = "btnInsertRoll";
             this.btnInsertRoll.Size = new System.Drawing.Size(143, 54);
-            this.btnInsertRoll.TabIndex = 4;
+            this.btnInsertRoll.TabIndex = 1;
             this.btnInsertRoll.Text = "افزودن وظیفه";
             this.btnInsertRoll.UseVisualStyleBackColor = false;
             this.btnInsertRoll.Click += new System.EventHandler(this.btnInsertRoll_Click);
@@ -237,13 +237,6 @@
             this.dgvRole.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRole_CellClick);
             this.dgvRole.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRole_CellContentClick);
             // 
-            // requiredFieldValidator1
-            // 
-            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
-            this.requiredFieldValidator1.ControlToValidate = this.txtInsert;
-            this.requiredFieldValidator1.ErrorMessage = "لطفا نام شورا را وارد فرمایید.";
-            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
-            // 
             // colRole_ID
             // 
             this.colRole_ID.DataPropertyName = "Role_ID";
@@ -268,6 +261,13 @@
             this.RegstretionDate.Name = "RegstretionDate";
             this.RegstretionDate.ReadOnly = true;
             this.RegstretionDate.Width = 200;
+            // 
+            // requiredFieldValidator1
+            // 
+            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator1.ControlToValidate = this.txtInsert;
+            this.requiredFieldValidator1.ErrorMessage = "لطفا نام شورا را وارد فرمایید.";
+            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
             // 
             // RoleNames
             // 

@@ -17,9 +17,9 @@ namespace PayegahDataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Persons()
         {
-            this.Attendance_absence = new HashSet<Attendance_absence>();
             this.Members = new HashSet<Members>();
             this.Users = new HashSet<Users>();
+            this.Attendance_absence = new HashSet<Attendance_absence>();
         }
     
         public int PersonID { get; set; }
@@ -38,10 +38,10 @@ namespace PayegahDataLayer
         public Nullable<System.DateTime> RegistrationDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Attendance_absence> Attendance_absence { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Members> Members { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Attendance_absence> Attendance_absence { get; set; }
     }
 }

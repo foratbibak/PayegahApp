@@ -88,7 +88,7 @@
             this.btnShora.Location = new System.Drawing.Point(426, 26);
             this.btnShora.Name = "btnShora";
             this.btnShora.Size = new System.Drawing.Size(147, 56);
-            this.btnShora.TabIndex = 6;
+            this.btnShora.TabIndex = 2;
             this.btnShora.Text = "افزودن وظیفه";
             this.btnShora.UseVisualStyleBackColor = false;
             this.btnShora.Click += new System.EventHandler(this.btnShora_Click);
@@ -100,7 +100,7 @@
             this.btnrefresh.Location = new System.Drawing.Point(120, 26);
             this.btnrefresh.Name = "btnrefresh";
             this.btnrefresh.Size = new System.Drawing.Size(147, 56);
-            this.btnrefresh.TabIndex = 5;
+            this.btnrefresh.TabIndex = 4;
             this.btnrefresh.Text = "بروزرسانی";
             this.btnrefresh.UseVisualStyleBackColor = false;
             this.btnrefresh.Click += new System.EventHandler(this.button4_Click);
@@ -112,7 +112,7 @@
             this.btnPrint.Location = new System.Drawing.Point(273, 26);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(147, 56);
-            this.btnPrint.TabIndex = 4;
+            this.btnPrint.TabIndex = 3;
             this.btnPrint.Text = "چاپ";
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
@@ -124,7 +124,7 @@
             this.btnInsertRoll.Location = new System.Drawing.Point(579, 26);
             this.btnInsertRoll.Name = "btnInsertRoll";
             this.btnInsertRoll.Size = new System.Drawing.Size(147, 56);
-            this.btnInsertRoll.TabIndex = 3;
+            this.btnInsertRoll.TabIndex = 1;
             this.btnInsertRoll.Text = "افزودن مقام";
             this.btnInsertRoll.UseVisualStyleBackColor = false;
             this.btnInsertRoll.Click += new System.EventHandler(this.btnInsertRoll_Click);
@@ -268,6 +268,7 @@
             // 
             this.cmbRoleName.Font = new System.Drawing.Font("Tahoma", 12F);
             this.cmbRoleName.FormattingEnabled = true;
+            this.cmbRoleName.ItemHeight = 19;
             this.cmbRoleName.Location = new System.Drawing.Point(319, 93);
             this.cmbRoleName.Name = "cmbRoleName";
             this.cmbRoleName.Size = new System.Drawing.Size(217, 27);
@@ -300,6 +301,7 @@
             // 
             this.cmbRoles.Font = new System.Drawing.Font("Tahoma", 12F);
             this.cmbRoles.FormattingEnabled = true;
+            this.cmbRoles.ItemHeight = 19;
             this.cmbRoles.Location = new System.Drawing.Point(319, 33);
             this.cmbRoles.Name = "cmbRoles";
             this.cmbRoles.Size = new System.Drawing.Size(217, 27);

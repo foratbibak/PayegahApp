@@ -12,7 +12,18 @@ namespace PayegahDataLayer.Context
     {
         PayegahDbEntities db = new PayegahDbEntities();
 
-
+        private PayegahRepository<DecriptionOperation> _OPDescriptionRepository;
+        public PayegahRepository<DecriptionOperation> OPDescriptionRepository
+        {
+            get
+            {
+                if (_OPDescriptionRepository == null)
+                {
+                    _OPDescriptionRepository = new PayegahRepository<DecriptionOperation>(db);
+                }
+                return _OPDescriptionRepository;
+            }
+        }
         private PayegahRepository<AmadMembers> _AmadMemberRepository;
         public PayegahRepository<AmadMembers> AmadMemberRepository
         {

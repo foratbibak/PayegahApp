@@ -58,8 +58,8 @@ namespace PayegahApp.frmEntrance_Exit
                         PayegahDataLayer.Attendance_absence atb = new PayegahDataLayer.Attendance_absence()
                         {
                             PersonID = person.NationalCode,
-                            EntranceDate = DateTime.Now,
-                            RegestrationDate = DateTime.Now
+                            EntranceDate = DateTime.Now.ToString(),
+                            RegestrationDate =DateTime.Now,
                         };
                         db.Attendance_AbsenceRepository.Insert(atb);
                         db.Save();
@@ -72,6 +72,7 @@ namespace PayegahApp.frmEntrance_Exit
         }
         private void Entrance_Exit_Load(object sender, EventArgs e)
         {
+            dgvAtb.ForeColor= Color.Black;
             dgvAtb.AutoGenerateColumns = false;
             LockedRecord();
             Bindgrid();
@@ -189,8 +190,8 @@ namespace PayegahApp.frmEntrance_Exit
                         PayegahDataLayer.Attendance_absence atb = new PayegahDataLayer.Attendance_absence()
                         {
                             PersonID = person.NationalCode,
-                            ExitDate = DateTime.Now,
-                            RegestrationDate = DateTime.Now,
+                            ExitDate = DateTime.Now.ToString(),
+                            RegestrationDate = DateTime.Now
                         };
                         db.Attendance_AbsenceRepository.Insert(atb);
                         db.Save();
@@ -277,8 +278,8 @@ namespace PayegahApp.frmEntrance_Exit
                     item.Cells[1].Value.ToString(),
                     item.Cells[2].Value.ToString(),
                     item.Cells[3].Value.ToString(),
-                    item.Cells[4].Value.ToString()
-                //item.Cells[5].Value.ToString()
+                    item.Cells[4].Value.ToString(),
+                    item.Cells[5].Value.ToString()
                     );
             }
             stiReport1.Load(Application.StartupPath + "/ReportAttsensAbsens.mrt");

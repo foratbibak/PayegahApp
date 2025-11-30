@@ -72,7 +72,7 @@ namespace PayegahApp.Amat
                 AmadType op = db.AmadTypeRepository.GetAll().Where(o => o.AmadTypeIID == ID).FirstOrDefault();
                 if (op == null)
                 {
-                    RtlMessageBox.Show("نوع وارد شده وجود ندارد لطفا جدول را بروزرسانی کنید", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RtlMessageBox.Show("این نوع عملیات وارد شده وجود ندارد لطفا جدول را بروزرسانی کنید", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 var Get = db.AmadTypeRepository.GetbyID(ID);
@@ -88,7 +88,7 @@ namespace PayegahApp.Amat
                     }
                     else
                     {
-                        RtlMessageBox.Show("این نوع از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        RtlMessageBox.Show("این نوع عملیات از قبل فعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                     }
                 }
@@ -103,7 +103,7 @@ namespace PayegahApp.Amat
                     }
                     else
                     {
-                        RtlMessageBox.Show("این نوع از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        RtlMessageBox.Show("این نوع عملیات از قبل غیرفعال بوده است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }

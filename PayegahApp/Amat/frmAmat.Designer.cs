@@ -215,7 +215,7 @@
             this.btnInsertAmad.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsertAmad.Name = "btnInsertAmad";
             this.btnInsertAmad.Size = new System.Drawing.Size(161, 60);
-            this.btnInsertAmad.TabIndex = 8;
+            this.btnInsertAmad.TabIndex = 1;
             this.btnInsertAmad.Text = "ثبت تجهیزات";
             this.btnInsertAmad.UseVisualStyleBackColor = false;
             this.btnInsertAmad.Click += new System.EventHandler(this.btnInsertAmad_Click);
@@ -246,7 +246,7 @@
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(161, 60);
-            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "بروز رسانی";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -260,7 +260,7 @@
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(161, 60);
-            this.btnEdit.TabIndex = 5;
+            this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "ویرایش";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -274,7 +274,7 @@
             this.btnAmadType.Margin = new System.Windows.Forms.Padding(4);
             this.btnAmadType.Name = "btnAmadType";
             this.btnAmadType.Size = new System.Drawing.Size(161, 60);
-            this.btnAmadType.TabIndex = 4;
+            this.btnAmadType.TabIndex = 2;
             this.btnAmadType.Text = "افزودن نوع تجهیزات";
             this.btnAmadType.UseVisualStyleBackColor = false;
             this.btnAmadType.Click += new System.EventHandler(this.btnAmadType_Click);

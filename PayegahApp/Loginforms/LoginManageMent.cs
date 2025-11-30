@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PayegahApp.OperationsForm
+namespace PayegahApp.Loginforms
 {
-    public partial class frmDescription : Form
+    public partial class LoginManageMent : Form
     {
-        public frmDescription()
+        public LoginManageMent()
         {
             InitializeComponent();
         }

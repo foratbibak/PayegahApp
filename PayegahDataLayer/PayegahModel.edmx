@@ -41,8 +41,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonID" Type="bigint" />
-          <Property Name="EntranceDate" Type="datetime" />
-          <Property Name="ExitDate" Type="datetime" />
+          <Property Name="EntranceDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExitDate" Type="nvarchar" MaxLength="50" />
           <Property Name="RegestrationDate" Type="datetime" />
           <Property Name="Locked" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -559,18 +559,6 @@
           <Property Name="DateRegistration" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Amad" Relationship="PayegahDbModel.FK_Amad_AmadType" FromRole="AmadType" ToRole="Amad" />
         </EntityType>
-        <EntityType Name="Attendance_absence">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonID" Type="Int64" />
-          <Property Name="EntranceDate" Type="DateTime" Precision="3" />
-          <Property Name="ExitDate" Type="DateTime" Precision="3" />
-          <Property Name="RegestrationDate" Type="DateTime" Precision="3" />
-          <Property Name="Locked" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Persons" Relationship="Self.FK_Attendance_absence_Persons" FromRole="Attendance_absence" ToRole="Persons" />
-        </EntityType>
         <EntityType Name="Dgree">
           <Key>
             <PropertyRef Name="DgreeID" />
@@ -705,9 +693,9 @@
           <Property Name="MotherPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Attendance_absence" Relationship="Self.FK_Attendance_absence_Persons" FromRole="Persons" ToRole="Attendance_absence" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_Persons" FromRole="Persons" ToRole="Members" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
+          <NavigationProperty Name="Attendance_absence" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Persons" ToRole="Attendance_absence" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -751,18 +739,6 @@
           <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Persons" Relationship="Self.FK_Users_Persons" FromRole="Users" ToRole="Persons" />
         </EntityType>
-        <Association Name="FK_Attendance_absence_Persons">
-          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
-          <End Role="Attendance_absence" Type="Self.Attendance_absence" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
-            </Principal>
-            <Dependent Role="Attendance_absence">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DgreeMembers_MemberDgree">
           <End Role="Dgree" Type="Self.Dgree" Multiplicity="1" />
           <End Role="DgreeMembers" Type="Self.DgreeMembers" Multiplicity="*" />
@@ -897,7 +873,6 @@
         </Association>
         <EntityContainer Name="PayegahDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AmadType" EntityType="Self.AmadType" />
-          <EntitySet Name="Attendance_absence" EntityType="Self.Attendance_absence" />
           <EntitySet Name="Dgree" EntityType="Self.Dgree" />
           <EntitySet Name="DgreeMembers" EntityType="Self.DgreeMembers" />
           <EntitySet Name="EventMembers" EntityType="Self.EventMembers" />
@@ -913,10 +888,6 @@
           <EntitySet Name="RoleType" EntityType="Self.RoleType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_Attendance_absence_Persons" Association="Self.FK_Attendance_absence_Persons">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="Attendance_absence" EntitySet="Attendance_absence" />
-          </AssociationSet>
           <AssociationSet Name="FK_DgreeMembers_MemberDgree" Association="Self.FK_DgreeMembers_MemberDgree">
             <End Role="Dgree" EntitySet="Dgree" />
             <End Role="DgreeMembers" EntitySet="DgreeMembers" />
@@ -992,6 +963,11 @@
           <AssociationSet Name="FK_OperationMembers_Operations" Association="PayegahDbModel.FK_OperationMembers_Operations">
             <End Role="Operations" EntitySet="Operations" />
             <End Role="OperationMembers" EntitySet="OperationMembers" />
+          </AssociationSet>
+          <EntitySet Name="Attendance_absence" EntityType="PayegahDbModel.Attendance_absence" />
+          <AssociationSet Name="FK_Attendance_absence_Persons" Association="PayegahDbModel.FK_Attendance_absence_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Attendance_absence" EntitySet="Attendance_absence" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Amad">
@@ -1127,6 +1103,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Attendance_absence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int64" />
+          <Property Name="EntranceDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExitDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegestrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Locked" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Attendance_absence" ToRole="Persons" />
+        </EntityType>
+        <Association Name="FK_Attendance_absence_Persons">
+          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.Attendance_absence" Role="Attendance_absence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="NationalCode" />
+            </Principal>
+            <Dependent Role="Attendance_absence">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1140,18 +1140,6 @@
                 <ScalarProperty Name="AmadTitle" ColumnName="AmadTitle" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DateRegistration" ColumnName="DateRegistration" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Attendance_absence">
-            <EntityTypeMapping TypeName="PayegahDbModel.Attendance_absence">
-              <MappingFragment StoreEntitySet="Attendance_absence">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="EntranceDate" ColumnName="EntranceDate" />
-                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
-                <ScalarProperty Name="RegestrationDate" ColumnName="RegestrationDate" />
-                <ScalarProperty Name="Locked" ColumnName="Locked" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1364,6 +1352,18 @@
                 <ScalarProperty Name="OperationID" ColumnName="OperationID" />
                 <ScalarProperty Name="MemID" ColumnName="MemID" />
                 <ScalarProperty Name="OperationMemberID" ColumnName="OperationMemberID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendance_absence">
+            <EntityTypeMapping TypeName="PayegahDbModel.Attendance_absence">
+              <MappingFragment StoreEntitySet="Attendance_absence">
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="RegestrationDate" ColumnName="RegestrationDate" />
+                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
+                <ScalarProperty Name="EntranceDate" ColumnName="EntranceDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
