@@ -26,7 +26,10 @@ namespace PayegahDataLayer
         public string OperationTitle { get; set; }
         public System.DateTime OperationDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
-    
+        public string OPFullName
+        {
+            get { return $"{OperationTitle} - {OperationType.OperationTitle}"; }
+        }
         public virtual OperationType OperationType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DecriptionOperation> DecriptionOperation { get; set; }

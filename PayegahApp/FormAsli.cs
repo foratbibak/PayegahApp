@@ -6,6 +6,7 @@ using Accounting.utility.Convertor;
 using PayegahApp.Amat;
 using PayegahApp.EventForm;
 using PayegahApp.frmEntrance_Exit;
+using PayegahApp.Loginforms;
 using PayegahApp.OperationsForm;
 using PayegahApp.Pesrsons;
 using PayegahApp.PesrsonsForms;
@@ -19,6 +20,7 @@ namespace PayegahApp
     public partial class FormAsli : Form
     {
         private Timer timer;
+        //private Users currentUser;
 
         public FormAsli()
         {
@@ -27,13 +29,35 @@ namespace PayegahApp
 
         private void FormAsli_Load(object sender, EventArgs e)
         {
-            timer = new Timer();
-            timer.Interval = 1000;   
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            this.Hide();
+            frmLogin frmLogin = new frmLogin();
+            if (frmLogin.ShowDialog() == DialogResult.OK)
+            {
+                this.Show();
+                timer = new Timer();
+                timer.Interval = 1000;
+                timer.Tick += Timer_Tick;
+                timer.Start();
 
-            Timer_Tick(null, null);  
+                Timer_Tick(null, null);
+            }
+
+
+            //ApplyPermissions();
         }
+
+        //private void ApplyPermissions()
+        //{
+        //    btnPerson.Enabled = currentUser.Permissions.CanPerson;
+        //    btnEntrance_Exit.Enabled = currentUser.Permissions.CanEntranceExit;
+        //    btnRoll.Enabled = currentUser.Permissions.CanRoll;
+        //    btnMemberInsert.Enabled = currentUser.Permissions.CanMemberInsert;
+        //    btnEvent.Enabled = currentUser.Permissions.CanEvent;
+        //    button1.Enabled = currentUser.Permissions.CanOperationMember;
+        //    btnAmat.Enabled = currentUser.Permissions.CanAmat;
+        //    button3.Enabled = currentUser.Permissions.CanReport;
+        //    button2.Enabled = currentUser.Permissions.CanManageLogin;
+        //}
 
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -92,6 +116,12 @@ namespace PayegahApp
         {
             Reportfrm reportfrm = new Reportfrm();
             reportfrm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoginManageMent frm=new LoginManageMent();
+            frm.ShowDialog();
         }
     }
 }

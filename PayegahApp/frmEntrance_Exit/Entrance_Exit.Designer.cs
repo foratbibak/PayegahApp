@@ -182,7 +182,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arabic Typesetting", 15F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(434, 709);
+            this.label13.Location = new System.Drawing.Point(456, 642);
             this.label13.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(109, 23);
@@ -198,7 +198,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.groupBox3.Size = new System.Drawing.Size(992, 393);
+            this.groupBox3.Size = new System.Drawing.Size(992, 324);
             this.groupBox3.TabIndex = 73;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "اطلاعات ورود و خروج";
@@ -220,7 +220,7 @@
             this.dgvAtb.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAtb.Name = "dgvAtb";
             this.dgvAtb.ReadOnly = true;
-            this.dgvAtb.Size = new System.Drawing.Size(973, 354);
+            this.dgvAtb.Size = new System.Drawing.Size(973, 286);
             this.dgvAtb.TabIndex = 0;
             // 
             // IDd
@@ -366,7 +366,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1012, 731);
+            this.ClientSize = new System.Drawing.Size(1012, 670);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);

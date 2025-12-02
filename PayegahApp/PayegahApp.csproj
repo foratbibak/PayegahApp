@@ -123,11 +123,11 @@
     <Compile Include="frmEntrance_Exit\Entrance_Exit.Designer.cs">
       <DependentUpon>Entrance_Exit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Loginforms\Form1.cs">
+    <Compile Include="Loginforms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Loginforms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Loginforms\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Loginforms\LoginManageMent.cs">
       <SubType>Form</SubType>
@@ -215,6 +215,7 @@
     <Compile Include="RoleForm\RoleType.Designer.cs">
       <DependentUpon>RoleType.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserPermissions.cs" />
     <Compile Include="Validator\BaseValidator.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -269,8 +270,8 @@
     <EmbeddedResource Include="frmEntrance_Exit\Entrance_Exit.resx">
       <DependentUpon>Entrance_Exit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Loginforms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Loginforms\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Loginforms\LoginManageMent.resx">
       <DependentUpon>LoginManageMent.cs</DependentUpon>

@@ -18,6 +18,7 @@ namespace PayegahDataLayer
         public Nullable<long> PersonID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
         public System.DateTime LoginDate { get; set; }
     
         public virtual Persons Persons { get; set; }

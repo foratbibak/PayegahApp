@@ -12,6 +12,19 @@ namespace PayegahDataLayer.Context
     {
         PayegahDbEntities db = new PayegahDbEntities();
 
+        private PayegahRepository<Users> _UsersRepository;
+        public PayegahRepository<Users> UserRepository
+        {
+            get
+            {
+                if (_UsersRepository == null)
+                {
+                    _UsersRepository=new PayegahRepository<Users>(db);
+                }
+                return _UsersRepository;
+            }
+        }
+
         private PayegahRepository<DecriptionOperation> _OPDescriptionRepository;
         public PayegahRepository<DecriptionOperation> OPDescriptionRepository
         {
@@ -61,13 +74,13 @@ namespace PayegahDataLayer.Context
             }
         }
         private PayegahRepository<Operations> _OperationsRepository;
-        public PayegahRepository<Operations> OperationsRepository 
+        public PayegahRepository<Operations> OperationsRepository
         {
             get
             {
-                if(_OperationsRepository == null)
+                if (_OperationsRepository == null)
                 {
-                    _OperationsRepository=new PayegahRepository<Operations>(db);
+                    _OperationsRepository = new PayegahRepository<Operations>(db);
                 }
                 return _OperationsRepository;
             }
@@ -141,7 +154,7 @@ namespace PayegahDataLayer.Context
             {
                 if (_EventsRepository == null)
                 {
-                   _EventsRepository = new PayegahRepository<Events>(db);
+                    _EventsRepository = new PayegahRepository<Events>(db);
                 }
                 return _EventsRepository;
             }
@@ -154,7 +167,7 @@ namespace PayegahDataLayer.Context
             {
                 if (_MemberRoleRepository == null)
                 {
-                    _MemberRoleRepository=new PayegahRepository<MemberRole>(db);
+                    _MemberRoleRepository = new PayegahRepository<MemberRole>(db);
                 }
                 return _MemberRoleRepository;
             }

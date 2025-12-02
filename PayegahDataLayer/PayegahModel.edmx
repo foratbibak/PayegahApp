@@ -216,6 +216,7 @@
           <Property Name="PersonID" Type="bigint" />
           <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="150" />
           <Property Name="LoginDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_Amad_AmadType">
@@ -694,8 +695,8 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Members" Relationship="Self.FK_Members_Persons" FromRole="Persons" ToRole="Members" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
           <NavigationProperty Name="Attendance_absence" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Persons" ToRole="Attendance_absence" />
+          <NavigationProperty Name="Users" Relationship="PayegahDbModel.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -727,17 +728,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonID" Type="Int64" />
-          <Property Name="UserName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Persons" Relationship="Self.FK_Users_Persons" FromRole="Users" ToRole="Persons" />
         </EntityType>
         <Association Name="FK_DgreeMembers_MemberDgree">
           <End Role="Dgree" Type="Self.Dgree" Multiplicity="1" />
@@ -859,18 +849,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_Persons">
-          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="PayegahDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AmadType" EntityType="Self.AmadType" />
           <EntitySet Name="Dgree" EntityType="Self.Dgree" />
@@ -887,7 +865,6 @@
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="RoleType" EntityType="Self.RoleType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_DgreeMembers_MemberDgree" Association="Self.FK_DgreeMembers_MemberDgree">
             <End Role="Dgree" EntitySet="Dgree" />
             <End Role="DgreeMembers" EntitySet="DgreeMembers" />
@@ -928,10 +905,6 @@
             <End Role="OperationType" EntitySet="OperationType" />
             <End Role="Operations" EntitySet="Operations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_Persons" Association="Self.FK_Users_Persons">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <EntitySet Name="Amad" EntityType="PayegahDbModel.Amad" />
           <EntitySet Name="AmadMembers" EntityType="PayegahDbModel.AmadMembers" />
           <AssociationSet Name="FK_Amad_AmadType" Association="PayegahDbModel.FK_Amad_AmadType">
@@ -968,6 +941,11 @@
           <AssociationSet Name="FK_Attendance_absence_Persons" Association="PayegahDbModel.FK_Attendance_absence_Persons">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="Attendance_absence" EntitySet="Attendance_absence" />
+          </AssociationSet>
+          <EntitySet Name="Users" EntityType="PayegahDbModel.Users" />
+          <AssociationSet Name="FK_Users_Persons" Association="PayegahDbModel.FK_Users_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Amad">
@@ -1123,6 +1101,30 @@
               <PropertyRef Name="NationalCode" />
             </Principal>
             <Dependent Role="Attendance_absence">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int64" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Users_Persons" FromRole="Users" ToRole="Persons" />
+        </EntityType>
+        <Association Name="FK_Users_Persons">
+          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="NationalCode" />
+            </Principal>
+            <Dependent Role="Users">
               <PropertyRef Name="PersonID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1299,17 +1301,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PayegahDbModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Amad">
             <EntityTypeMapping TypeName="PayegahDbModel.Amad">
               <MappingFragment StoreEntitySet="Amad">
@@ -1364,6 +1355,18 @@
                 <ScalarProperty Name="EntranceDate" ColumnName="EntranceDate" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PayegahDbModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

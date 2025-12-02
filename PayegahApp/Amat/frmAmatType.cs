@@ -36,14 +36,14 @@ namespace PayegahApp.Amat
         {
             foreach (DataGridViewRow row in dgvAmatType.Rows)
             {
-                if (row.Cells["RegestrationDate"].Value != null &&
-                    DateTime.TryParse(row.Cells["RegestrationDate"].Value.ToString(), out DateTime date))
+                if (row.Cells["DateRegistration"].Value != null &&
+                    DateTime.TryParse(row.Cells["DateRegistration"].Value.ToString(), out DateTime date))
                 {
-                    row.Cells["RegestrationDate"].Value = date.ToShamsi();
+                    row.Cells["DateRegistration"].Value = date.ToShamsi();
                 }
                 else
                 {
-                    row.Cells["RegestrationDate"].Value = "";
+                    row.Cells["DateRegistration"].Value = "";
                 }
             }
         }

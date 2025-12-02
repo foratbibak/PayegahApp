@@ -39,7 +39,6 @@ namespace PayegahApp.frmEntrance_Exit
                         return;
                     }
                     Int64 nationalcodecast = Int64.Parse(txtNationalCode.Text);
-
                     using (UnitofWork db = new UnitofWork())
                     {
                         Persons person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalcodecast).FirstOrDefault();
@@ -240,7 +239,7 @@ namespace PayegahApp.frmEntrance_Exit
                     string Name = dgvAtb.CurrentRow.Cells[2].Value.ToString();
                     string Family = dgvAtb.CurrentRow.Cells[3].Value.ToString();
                     string FullName = Name + " " + Family;
-                    PayegahDataLayer.Attendance_absence atb = db.Attendance_AbsenceRepository.GetbyID(int.Parse(dgvAtb.CurrentRow.Cells[0].Value.ToString())); if (atb != null) ;
+                    PayegahDataLayer.Attendance_absence atb = db.Attendance_AbsenceRepository.GetbyID(int.Parse(dgvAtb.CurrentRow.Cells[0].Value.ToString())); if (atb != null) 
                     if (atb != null && string.IsNullOrEmpty(atb.Locked))
                     {
                         if (RtlMessageBox.Show($"آیا از حذف کاربر  {FullName} مطمئن  هستید.", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)

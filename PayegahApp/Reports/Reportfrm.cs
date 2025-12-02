@@ -26,8 +26,7 @@ namespace PayegahApp.Reports
             txtFromDate.Text = DateTime.Now.ToShamsi();
             txtToDate.Text = DateTime.Now.ToShamsi();
             dgvResults.ForeColor = Color.Black;
-            dgvResults.AutoGenerateColumns = true; // اجازه بده ستون‌ها بر اساس داده‌ها ساخته شود
-
+            dgvResults.AutoGenerateColumns = true;
             var tables = new List<string>
             {
                 "حضور و غیاب",
@@ -82,9 +81,10 @@ namespace PayegahApp.Reports
                                  .Select(a => new
                                  {
                                      a.PersonID,
-                                     EntranceDate = a.EntranceDate ?? "",
-                                     ExitDate = a.ExitDate ?? "",         
-                                     RegestrationDate = ToShamsi((DateTime)a.RegestrationDate) 
+                                     EntranceDate = string.IsNullOrEmpty(a.EntranceDate)? "": DateTime.Parse(a.EntranceDate).ToShamsi(),
+
+                                     ExitDate = string.IsNullOrEmpty(a.ExitDate)? "": DateTime.Parse(a.ExitDate).ToShamsi(),
+                                     RegestrationDate = ToShamsi((DateTime)a.RegestrationDate)
                                  })
                                  .ToList();
 

@@ -20,7 +20,6 @@
         <EntityTypeShape EntityType="PayegahDbModel.Role" Width="1.5" PointX="3" PointY="26.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.RoleType" Width="1.5" PointX="3" PointY="29" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PayegahDbModel.Users" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
         <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_MemberDgree" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_DgreeMembers_Members" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_EventMembers_Events" ManuallyRouted="false" />
@@ -31,7 +30,6 @@
         <AssociationConnector Association="PayegahDbModel.FK_MemberRoll_PersonRank" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Members_Persons" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Operations_OperationType" ManuallyRouted="false" />
-        <AssociationConnector Association="PayegahDbModel.FK_Users_Persons" ManuallyRouted="false" />
         <EntityTypeShape EntityType="PayegahDbModel.Amad" Width="1.5" PointX="3" PointY="18.5" />
         <EntityTypeShape EntityType="PayegahDbModel.AmadMembers" Width="1.5" PointX="5.25" PointY="11.5" />
         <AssociationConnector Association="PayegahDbModel.FK_Amad_AmadType" />
@@ -45,6 +43,8 @@
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Operations" />
         <EntityTypeShape EntityType="PayegahDbModel.Attendance_absence" Width="1.5" PointX="3" PointY="7.5" />
         <AssociationConnector Association="PayegahDbModel.FK_Attendance_absence_Persons" />
+        <EntityTypeShape EntityType="PayegahDbModel.Users" Width="1.5" PointX="3" PointY="32.5" />
+        <AssociationConnector Association="PayegahDbModel.FK_Users_Persons" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
