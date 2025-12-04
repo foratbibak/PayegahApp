@@ -32,7 +32,7 @@ namespace PayegahApp.OperationsForm
             {
 
                 var list = db.OperationTypeRepository.GetAll().Where(e => e.IsActive == true).ToList();
-                cmbOperation.DisplayMember = "OperationTitle";
+                cmbOperation.DisplayMember = "OperationTypeTitle";
                 cmbOperation.ValueMember = "OperationTypeID";
                 cmbOperation.DataSource = list;
             }
@@ -76,21 +76,6 @@ namespace PayegahApp.OperationsForm
             cmbFillter.SelectedIndex = 1;
             BindGrid();
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvOperation.Rows)
-            {
-                if (row.Cells["colOperationDate"].Value != null &&
-                    DateTime.TryParse(row.Cells["colOperationDate"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["colOperationDate"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["colOperationDate"].Value = "";
-                }
-            }
-        }
         void BindGrid()
         {
             using (UnitofWork db = new UnitofWork())
@@ -104,9 +89,16 @@ namespace PayegahApp.OperationsForm
                 {
                     data = data.Where(x => x.IsActive == false).ToList();
                 }
-                dgvOperation.DataSource = data;
+                var Join = data.Select(s => new
+                {
+                    s.OperationID,
+                    s.OperationTitle,
+                    s.OperationType.OperationTypeTitle,
+                    Date = s.OperationDate != null ? s.OperationDate.ToShamsi() : ""
+
+                }).ToList();
+                dgvOperation.DataSource = Join;
                 cmbOpType();
-                ConvertDatesToShamsi();
             }
         }
 

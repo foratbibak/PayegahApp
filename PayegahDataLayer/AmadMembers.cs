@@ -20,7 +20,7 @@ namespace PayegahDataLayer
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AmadDateRegestration { get; set; }
     
-        public virtual Amad Amad { get; set; }
         public virtual Members Members { get; set; }
+        public virtual Amad Amad { get; set; }
     }
 }

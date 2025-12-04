@@ -34,9 +34,6 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dgvAmatType = new System.Windows.Forms.DataGridView();
-            this.colAmadTypeIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
@@ -49,6 +46,9 @@
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.colAmadTypeIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateRegistration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAmatType)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -87,11 +87,12 @@
             // 
             this.dgvAmatType.AllowUserToAddRows = false;
             this.dgvAmatType.AllowUserToDeleteRows = false;
+            this.dgvAmatType.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvAmatType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAmatType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAmadTypeIID,
             this.colTitle,
-            this.colDate});
+            this.DateRegistration});
             this.dgvAmatType.Location = new System.Drawing.Point(9, 27);
             this.dgvAmatType.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAmatType.Name = "dgvAmatType";
@@ -99,32 +100,6 @@
             this.dgvAmatType.Size = new System.Drawing.Size(325, 304);
             this.dgvAmatType.TabIndex = 0;
             this.dgvAmatType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAmatType_CellClick);
-            // 
-            // colAmadTypeIID
-            // 
-            this.colAmadTypeIID.DataPropertyName = "AmadTypeIID";
-            this.colAmadTypeIID.FillWeight = 78.17259F;
-            this.colAmadTypeIID.HeaderText = "ایدی";
-            this.colAmadTypeIID.Name = "colAmadTypeIID";
-            this.colAmadTypeIID.ReadOnly = true;
-            this.colAmadTypeIID.Visible = false;
-            // 
-            // colTitle
-            // 
-            this.colTitle.DataPropertyName = "AmadTitle";
-            this.colTitle.HeaderText = "نوع تجهیزات";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            this.colTitle.Width = 200;
-            // 
-            // colDate
-            // 
-            this.colDate.DataPropertyName = "DateRegistration";
-            this.colDate.FillWeight = 121.8274F;
-            this.colDate.HeaderText = "تاریخ ثبت";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
-            this.colDate.Width = 200;
             // 
             // groupBox2
             // 
@@ -285,6 +260,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "عملیات ذخیره سازی";
             // 
+            // colAmadTypeIID
+            // 
+            this.colAmadTypeIID.DataPropertyName = "AmadTypeIID";
+            this.colAmadTypeIID.FillWeight = 78.17259F;
+            this.colAmadTypeIID.HeaderText = "ایدی";
+            this.colAmadTypeIID.Name = "colAmadTypeIID";
+            this.colAmadTypeIID.ReadOnly = true;
+            this.colAmadTypeIID.Visible = false;
+            // 
+            // colTitle
+            // 
+            this.colTitle.DataPropertyName = "AmaTypeTitle";
+            this.colTitle.HeaderText = "نوع تجهیزات";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 200;
+            // 
+            // DateRegistration
+            // 
+            this.DateRegistration.DataPropertyName = "DateRegistration";
+            this.DateRegistration.FillWeight = 121.8274F;
+            this.DateRegistration.HeaderText = "تاریخ ثبت";
+            this.DateRegistration.Name = "DateRegistration";
+            this.DateRegistration.ReadOnly = true;
+            this.DateRegistration.Width = 200;
+            // 
             // frmAmatType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,6 +334,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmadTypeIID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateRegistration;
     }
 }

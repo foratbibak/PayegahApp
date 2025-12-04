@@ -43,21 +43,21 @@ namespace PayegahApp.EventForm
             cmbFillter.SelectedIndex = 1;
             BindGrid();
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvEvent.Rows)
-            {
-                if (row.Cells["colDateRegestration"].Value != null &&
-                    DateTime.TryParse(row.Cells["colDateRegestration"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["colDateRegestration"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["colDateRegestration"].Value = "";
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvEvent.Rows)
+        //    {
+        //        if (row.Cells["colDateRegestration"].Value != null &&
+        //            DateTime.TryParse(row.Cells["colDateRegestration"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["colDateRegestration"].Value = date.ToShamsi();
+        //        }
+        //        else
+        //        {
+        //            row.Cells["colDateRegestration"].Value = "";
+        //        }
+        //    }
+        //}
         void EventCombo()
         {
             using (UnitofWork db = new UnitofWork())
@@ -83,9 +83,18 @@ namespace PayegahApp.EventForm
                 {
                     data = data.Where(c => c.IsActive == false).ToList();
                 }
-                dgvEvent.DataSource = data;
+                var Join = data.Select(s => new
+                {
+                    s.ID,
+                    s.Members.Persons.PersonFullName,
+                    s.Members.PersonID,
+                    s.Events.EventTitle,
+                    s.Events.EventType.Title,
+                    Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
+
+                }).ToList();
+                dgvEvent.DataSource = Join;
                 EventCombo();
-                ConvertDatesToShamsi();
             }
         }
         private void ActiveStatuse(bool Active)
@@ -265,7 +274,12 @@ namespace PayegahApp.EventForm
                 Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
                 using (UnitofWork db = new UnitofWork())
                 {
-                    Members em = db.MemberRepository.GetAll().Where(m => m.MemID == NationalCodeCast).FirstOrDefault();
+                    Members em = db.MemberRepository.GetAll().Where(m => m.PersonID == NationalCodeCast).FirstOrDefault();
+                    if (em == null)
+                    {
+                        RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     var Get = db.MemberEventRepository.GetbyID(ID);
                     if (cmbEvents.SelectedIndex < 0)
                     {
@@ -275,7 +289,7 @@ namespace PayegahApp.EventForm
                     int EventIDCast = (int)cmbEvents.SelectedValue;
                     if (Get != null)
                     {
-                        Get.MemID = NationalCodeCast;
+                        Get.MemID = em.MemID;
                         Get.EventID = EventIDCast;
                     }
                     db.MemberEventRepository.Update(Get);
@@ -302,7 +316,7 @@ namespace PayegahApp.EventForm
                     var Get = db.MemberEventRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtNatoinalCode.Text = Get.MemID.ToString();
+                        txtNatoinalCode.Text = Get.Members.PersonID.ToString();
                     }
                 }
             }
@@ -311,15 +325,17 @@ namespace PayegahApp.EventForm
         private void btnPrint_Click(object sender, EventArgs e)
         {
             DataTable Dt = new DataTable();
-            Dt.Columns.Add("MemID");
-            Dt.Columns.Add("EventID");
-            Dt.Columns.Add("DateRegstration");
+            Dt.Columns.Add("PersonFullName");
+            Dt.Columns.Add("PersonID");
+            Dt.Columns.Add("EventTitle");
+            Dt.Columns.Add("Date");
             foreach (DataGridViewRow item in dgvEvent.Rows)
             {
                 Dt.Rows.Add(
                     item.Cells[1].Value.ToString(),
                     item.Cells[2].Value.ToString(),
-                    item.Cells[3].Value.ToString()
+                    item.Cells[3].Value.ToString(),
+                    item.Cells[4].Value.ToString()
                     );
             }
             stiReport.Load(Application.StartupPath + "/ReportEvent.mrt");

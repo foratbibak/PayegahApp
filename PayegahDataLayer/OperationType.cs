@@ -21,7 +21,7 @@ namespace PayegahDataLayer
         }
     
         public int OperationTypeID { get; set; }
-        public string OperationTitle { get; set; }
+        public string OperationTypeTitle { get; set; }
         public System.DateTime DateRegestration { get; set; }
         public Nullable<bool> IsActive { get; set; }
     

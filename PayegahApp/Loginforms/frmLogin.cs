@@ -39,7 +39,6 @@ namespace PayegahApp.Loginforms
 
             using (UnitofWork db = new UnitofWork())
             {
-                //Int64 cast=Int64.Parse(txtUser.Text);
                 if(db.UserRepository.GetAll(u => u.UserName == txtUser.Text && u.Password == txtPass.Text).Any())
                 {
                     DialogResult=DialogResult.OK;
@@ -48,8 +47,28 @@ namespace PayegahApp.Loginforms
                 {
                     MessageBox.Show("نام کاربری یا رمز اشتباه است");
                 }
-                //this.Hide();
             }
+        }
+
+        private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkShowPassword.Checked)
+            {
+                txtPass.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPass.PasswordChar = '*';
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void pictureBox2_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

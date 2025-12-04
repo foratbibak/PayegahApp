@@ -10,7 +10,7 @@
             <PropertyRef Name="AmadID" />
           </Key>
           <Property Name="AmadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AmadTypeId" Type="int" />
+          <Property Name="AmadTypeTitle" Type="int" />
           <Property Name="AmadTitle" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="AmadCode" Type="bigint" />
           <Property Name="IsActive" Type="bit" />
@@ -31,7 +31,7 @@
             <PropertyRef Name="AmadTypeIID" />
           </Key>
           <Property Name="AmadTypeIID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AmadTitle" Type="nvarchar" MaxLength="150" />
+          <Property Name="AmadTypeTitle" Type="nvarchar" MaxLength="150" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="DateRegistration" Type="datetime" />
         </EntityType>
@@ -156,7 +156,7 @@
             <PropertyRef Name="OperationTypeID" />
           </Key>
           <Property Name="OperationTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OperationTitle" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="OperationTypeTitle" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="DateRegestration" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
@@ -227,7 +227,7 @@
               <PropertyRef Name="AmadTypeIID" />
             </Principal>
             <Dependent Role="Amad">
-              <PropertyRef Name="AmadTypeId" />
+              <PropertyRef Name="AmadTypeTitle" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -550,16 +550,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PayegahDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AmadType">
-          <Key>
-            <PropertyRef Name="AmadTypeIID" />
-          </Key>
-          <Property Name="AmadTypeIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AmadTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="DateRegistration" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Amad" Relationship="PayegahDbModel.FK_Amad_AmadType" FromRole="AmadType" ToRole="Amad" />
-        </EntityType>
         <EntityType Name="Dgree">
           <Key>
             <PropertyRef Name="DgreeID" />
@@ -671,7 +661,7 @@
             <PropertyRef Name="OperationTypeID" />
           </Key>
           <Property Name="OperationTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OperationTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperationTypeTitle" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DateRegestration" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Operations" Relationship="Self.FK_Operations_OperationType" FromRole="OperationType" ToRole="Operations" />
@@ -850,7 +840,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="PayegahDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AmadType" EntityType="Self.AmadType" />
           <EntitySet Name="Dgree" EntityType="Self.Dgree" />
           <EntitySet Name="DgreeMembers" EntityType="Self.DgreeMembers" />
           <EntitySet Name="EventMembers" EntityType="Self.EventMembers" />
@@ -905,16 +894,7 @@
             <End Role="OperationType" EntitySet="OperationType" />
             <End Role="Operations" EntitySet="Operations" />
           </AssociationSet>
-          <EntitySet Name="Amad" EntityType="PayegahDbModel.Amad" />
           <EntitySet Name="AmadMembers" EntityType="PayegahDbModel.AmadMembers" />
-          <AssociationSet Name="FK_Amad_AmadType" Association="PayegahDbModel.FK_Amad_AmadType">
-            <End Role="AmadType" EntitySet="AmadType" />
-            <End Role="Amad" EntitySet="Amad" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AmadMembers_Amad" Association="PayegahDbModel.FK_AmadMembers_Amad">
-            <End Role="Amad" EntitySet="Amad" />
-            <End Role="AmadMembers" EntitySet="AmadMembers" />
-          </AssociationSet>
           <AssociationSet Name="FK_AmadMembers_Members1" Association="PayegahDbModel.FK_AmadMembers_Members1">
             <End Role="Members" EntitySet="Members" />
             <End Role="AmadMembers" EntitySet="AmadMembers" />
@@ -947,20 +927,17 @@
             <End Role="Persons" EntitySet="Persons" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="AmadType" EntityType="PayegahDbModel.AmadType" />
+          <EntitySet Name="Amad" EntityType="PayegahDbModel.Amad" />
+          <AssociationSet Name="FK_Amad_AmadType" Association="PayegahDbModel.FK_Amad_AmadType">
+            <End Role="AmadType" EntitySet="AmadType" />
+            <End Role="Amad" EntitySet="Amad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AmadMembers_Amad" Association="PayegahDbModel.FK_AmadMembers_Amad">
+            <End Role="Amad" EntitySet="Amad" />
+            <End Role="AmadMembers" EntitySet="AmadMembers" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Amad">
-          <Key>
-            <PropertyRef Name="AmadID" />
-          </Key>
-          <Property Name="AmadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AmadTypeId" Type="Int32" />
-          <Property Name="AmadTitle" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="AmadCode" Type="Int64" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="AmadDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AmadType" Relationship="PayegahDbModel.FK_Amad_AmadType" FromRole="Amad" ToRole="AmadType" />
-          <NavigationProperty Name="AmadMembers" Relationship="PayegahDbModel.FK_AmadMembers_Amad" FromRole="Amad" ToRole="AmadMembers" />
-        </EntityType>
         <EntityType Name="AmadMembers">
           <Key>
             <PropertyRef Name="ID" />
@@ -970,33 +947,9 @@
           <Property Name="AmadID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="AmadDateRegestration" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Amad" Relationship="PayegahDbModel.FK_AmadMembers_Amad" FromRole="AmadMembers" ToRole="Amad" />
           <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_AmadMembers_Members1" FromRole="AmadMembers" ToRole="Members" />
+          <NavigationProperty Name="Amad" Relationship="PayegahDbModel.FK_AmadMembers_Amad" FromRole="AmadMembers" ToRole="Amad" />
         </EntityType>
-        <Association Name="FK_Amad_AmadType">
-          <End Type="PayegahDbModel.AmadType" Role="AmadType" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.Amad" Role="Amad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AmadType">
-              <PropertyRef Name="AmadTypeIID" />
-            </Principal>
-            <Dependent Role="Amad">
-              <PropertyRef Name="AmadTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AmadMembers_Amad">
-          <End Type="PayegahDbModel.Amad" Role="Amad" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.AmadMembers" Role="AmadMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Amad">
-              <PropertyRef Name="AmadID" />
-            </Principal>
-            <Dependent Role="AmadMembers">
-              <PropertyRef Name="AmadID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AmadMembers_Members1">
           <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="0..1" />
           <End Type="PayegahDbModel.AmadMembers" Role="AmadMembers" Multiplicity="*" />
@@ -1129,22 +1082,59 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AmadType">
+          <Key>
+            <PropertyRef Name="AmadTypeIID" />
+          </Key>
+          <Property Name="AmadTypeIID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AmadTypeTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="DateRegistration" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Amad" Relationship="PayegahDbModel.FK_Amad_AmadType" FromRole="AmadType" ToRole="Amad" />
+        </EntityType>
+        <EntityType Name="Amad">
+          <Key>
+            <PropertyRef Name="AmadID" />
+          </Key>
+          <Property Name="AmadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AmadTypeTitle" Type="Int32" />
+          <Property Name="AmadTitle" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AmadCode" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="AmadDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AmadType" Relationship="PayegahDbModel.FK_Amad_AmadType" FromRole="Amad" ToRole="AmadType" />
+          <NavigationProperty Name="AmadMembers" Relationship="PayegahDbModel.FK_AmadMembers_Amad" FromRole="Amad" ToRole="AmadMembers" />
+        </EntityType>
+        <Association Name="FK_Amad_AmadType">
+          <End Type="PayegahDbModel.AmadType" Role="AmadType" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.Amad" Role="Amad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AmadType">
+              <PropertyRef Name="AmadTypeIID" />
+            </Principal>
+            <Dependent Role="Amad">
+              <PropertyRef Name="AmadTypeTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AmadMembers_Amad">
+          <End Type="PayegahDbModel.Amad" Role="Amad" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.AmadMembers" Role="AmadMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Amad">
+              <PropertyRef Name="AmadID" />
+            </Principal>
+            <Dependent Role="AmadMembers">
+              <PropertyRef Name="AmadID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PayegahDbModelStoreContainer" CdmEntityContainer="PayegahDbEntities">
-          <EntitySetMapping Name="AmadType">
-            <EntityTypeMapping TypeName="PayegahDbModel.AmadType">
-              <MappingFragment StoreEntitySet="AmadType">
-                <ScalarProperty Name="AmadTypeIID" ColumnName="AmadTypeIID" />
-                <ScalarProperty Name="AmadTitle" ColumnName="AmadTitle" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="DateRegistration" ColumnName="DateRegistration" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Dgree">
             <EntityTypeMapping TypeName="PayegahDbModel.Dgree">
               <MappingFragment StoreEntitySet="Dgree">
@@ -1242,8 +1232,8 @@
           <EntitySetMapping Name="OperationType">
             <EntityTypeMapping TypeName="PayegahDbModel.OperationType">
               <MappingFragment StoreEntitySet="OperationType">
+                <ScalarProperty Name="OperationTypeTitle" ColumnName="OperationTypeTitle" />
                 <ScalarProperty Name="OperationTypeID" ColumnName="OperationTypeID" />
-                <ScalarProperty Name="OperationTitle" ColumnName="OperationTitle" />
                 <ScalarProperty Name="DateRegestration" ColumnName="DateRegestration" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </MappingFragment>
@@ -1301,18 +1291,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Amad">
-            <EntityTypeMapping TypeName="PayegahDbModel.Amad">
-              <MappingFragment StoreEntitySet="Amad">
-                <ScalarProperty Name="AmadDate" ColumnName="AmadDate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AmadCode" ColumnName="AmadCode" />
-                <ScalarProperty Name="AmadTitle" ColumnName="AmadTitle" />
-                <ScalarProperty Name="AmadTypeId" ColumnName="AmadTypeId" />
-                <ScalarProperty Name="AmadID" ColumnName="AmadID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AmadMembers">
             <EntityTypeMapping TypeName="PayegahDbModel.AmadMembers">
               <MappingFragment StoreEntitySet="AmadMembers">
@@ -1367,6 +1345,28 @@
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AmadType">
+            <EntityTypeMapping TypeName="PayegahDbModel.AmadType">
+              <MappingFragment StoreEntitySet="AmadType">
+                <ScalarProperty Name="DateRegistration" ColumnName="DateRegistration" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AmadTypeTitle" ColumnName="AmadTypeTitle" />
+                <ScalarProperty Name="AmadTypeIID" ColumnName="AmadTypeIID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Amad">
+            <EntityTypeMapping TypeName="PayegahDbModel.Amad">
+              <MappingFragment StoreEntitySet="Amad">
+                <ScalarProperty Name="AmadDate" ColumnName="AmadDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AmadCode" ColumnName="AmadCode" />
+                <ScalarProperty Name="AmadTitle" ColumnName="AmadTitle" />
+                <ScalarProperty Name="AmadTypeTitle" ColumnName="AmadTypeTitle" />
+                <ScalarProperty Name="AmadID" ColumnName="AmadID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

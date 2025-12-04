@@ -116,7 +116,7 @@ namespace PayegahApp.Amat
                 {
                     AmadType at = new AmadType()
                     {
-                        AmadTitle = txtTitle.Text,
+                        AmadTypeTitle = txtTitle.Text,
                         DateRegistration = DateTime.Now,
                         IsActive = true
                     };
@@ -140,7 +140,7 @@ namespace PayegahApp.Amat
                     var Get = db.AmadTypeRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        Get.AmadTitle = txtTitle.Text;
+                        Get.AmadTypeTitle = txtTitle.Text;
                     }
                     db.AmadTypeRepository.Update(Get);
                     db.Save();
@@ -166,7 +166,7 @@ namespace PayegahApp.Amat
                     var Get = db.AmadTypeRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtTitle.Text = Get.AmadTitle;
+                        txtTitle.Text = Get.AmadTypeTitle;
                     }
                 }
             }

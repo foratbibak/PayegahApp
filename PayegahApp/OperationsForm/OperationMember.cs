@@ -43,21 +43,21 @@ namespace PayegahApp.OperationsForm
             cmbFillter.SelectedIndex = 1;
             BindGrid();
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvOpM.Rows)
-            {
-                if (row.Cells["colDateRegestration"].Value != null &&
-                    DateTime.TryParse(row.Cells["colDateRegestration"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["colDateRegestration"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["colDateRegestration"].Value = "";
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvOpM.Rows)
+        //    {
+        //        if (row.Cells["colDateRegestration"].Value != null &&
+        //            DateTime.TryParse(row.Cells["colDateRegestration"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["colDateRegestration"].Value = date.ToShamsi();
+        //        }
+        //        else
+        //        {
+        //            row.Cells["colDateRegestration"].Value = "";
+        //        }
+        //    }
+        //}
         void OPCombo()
         {
             using (UnitofWork db = new UnitofWork())
@@ -91,12 +91,23 @@ namespace PayegahApp.OperationsForm
                 {
                     data = data.Where(c => c.IsActive == true).ToList();
                 }
+
                 else if (cmbFillter.SelectedItem.ToString() == "غیرفعال")
                 {
                     data = data.Where(c => c.IsActive == false).ToList();
                 }
-                dgvOpM.DataSource = data;
-                ConvertDatesToShamsi();
+                var Join = data.Select(s => new
+                {
+                    s.OperationMemberID,
+                    s.Members.Persons.PersonFullName,
+                    s.Members.PersonID,
+                    s.Operations.OperationTitle,
+                    s.OperationDgree.DgTitle,
+                    Date = s.DateRegstration != null ? s.DateRegstration.ToShamsi() : ""
+
+
+                }).ToList();
+                dgvOpM.DataSource = Join;
                 OPCombo();
                 DgreeCombo();
             }
@@ -211,7 +222,12 @@ namespace PayegahApp.OperationsForm
                 Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
                 using (UnitofWork db = new UnitofWork())
                 {
-                    Members em = db.MemberRepository.GetAll().Where(m => m.MemID == NationalCodeCast).FirstOrDefault();
+                    Members em = db.MemberRepository.GetAll().Where(m => m.PersonID == NationalCodeCast).FirstOrDefault();
+                    if (em == null)
+                    {
+                        RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     var Get = db.OperationMembersRepository.GetbyID(ID);
                     if (cmbOperations.SelectedIndex < 0 || cmbDgree.SelectedIndex < 0)
                     {
@@ -222,7 +238,7 @@ namespace PayegahApp.OperationsForm
                     int DGIDCast = (int)cmbDgree.SelectedValue;
                     if (Get != null)
                     {
-                        Get.MemID = NationalCodeCast;
+                        Get.MemID = em.MemID;
                         Get.OperationID = OPIDCast;
                         Get.DgreeID = DGIDCast;
                     }
@@ -305,34 +321,45 @@ namespace PayegahApp.OperationsForm
 
         private void dgvOpM_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvOpM.CurrentRow.Selected)
+            try
             {
-                int ID = int.Parse(dgvOpM.CurrentRow.Cells[0].Value.ToString());
-                using (UnitofWork db = new UnitofWork())
+                if (dgvOpM.CurrentRow.Selected)
                 {
-                    var Get = db.OperationMembersRepository.GetbyID(ID);
-                    if (Get != null)
+                    int ID = int.Parse(dgvOpM.CurrentRow.Cells[0].Value.ToString());
+                    using (UnitofWork db = new UnitofWork())
                     {
-                        txtNatoinalCode.Text=Get.MemID.ToString();
+                        var Get = db.OperationMembersRepository.GetbyID(ID);
+                        if (Get != null)
+                        {
+                            txtNatoinalCode.Text = Get.Members.PersonID.ToString();
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+
+                RtlMessageBox.Show("ویرایش با خطا مواجه شد");
+            }
+        
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
             DataTable Dt = new DataTable();
-            Dt.Columns.Add("colMemID");
-            Dt.Columns.Add("colOperationID");
-            Dt.Columns.Add("colDgreeID");
-            Dt.Columns.Add("colDateRegestration");
+            Dt.Columns.Add("PersonFullName");
+            Dt.Columns.Add("PersonID");
+            Dt.Columns.Add("OperationTitle");
+            Dt.Columns.Add("DgTitle");
+            Dt.Columns.Add("Date");
             foreach (DataGridViewRow item in dgvOpM.Rows)
             {
                 Dt.Rows.Add(
                     item.Cells[1].Value.ToString(),
                     item.Cells[2].Value.ToString(),
                     item.Cells[3].Value.ToString(),
-                    item.Cells[4].Value.ToString()
+                    item.Cells[4].Value.ToString(),
+                    item.Cells[5].Value.ToString()
 
                     );
             }

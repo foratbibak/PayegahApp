@@ -28,23 +28,30 @@ namespace PayegahApp.Loginforms
             dgvUsers.AutoGenerateColumns = false;
             BindGrid();
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvUsers.Rows)
-            {
-                if (row.Cells["colDate"].Value != null &&
-                    DateTime.TryParse(row.Cells["colDate"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["colDate"].Value = date.ToShamsi();
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvUsers.Rows)
+        //    {
+        //        if (row.Cells["colDate"].Value != null &&
+        //            DateTime.TryParse(row.Cells["colDate"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["colDate"].Value = date.ToShamsi();
+        //        }
+        //    }
+        //}
         void BindGrid()
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvUsers.DataSource = db.UserRepository.GetAll();
-                ConvertDatesToShamsi();
+                dgvUsers.DataSource = db.UserRepository.GetAll().Select(s => new
+                {
+                    s.UserID,
+                    s.Persons.NationalCode,
+                    s.UserName,
+                    s.Password,
+                    Date = s.LoginDate != null ? s.LoginDate.ToShamsi() : ""
+
+                }).ToList();
             }
         }
         private void btnRefresh_Click(object sender, EventArgs e)

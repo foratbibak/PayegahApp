@@ -47,12 +47,12 @@
             this.btnOpType = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvOperation = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperationType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -278,7 +278,7 @@
             this.dgvOperation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
             this.colOperationTitle,
-            this.colOperationTypeID,
+            this.colOperationType,
             this.colOperationDate});
             this.dgvOperation.Location = new System.Drawing.Point(9, 30);
             this.dgvOperation.Margin = new System.Windows.Forms.Padding(4);
@@ -287,40 +287,6 @@
             this.dgvOperation.Size = new System.Drawing.Size(443, 369);
             this.dgvOperation.TabIndex = 0;
             this.dgvOperation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperation_CellClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "OperationID";
-            this.colID.HeaderText = "Column1";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colOperationTitle
-            // 
-            this.colOperationTitle.DataPropertyName = "OperationTitle";
-            this.colOperationTitle.HeaderText = "عنوان عملیات";
-            this.colOperationTitle.Name = "colOperationTitle";
-            this.colOperationTitle.ReadOnly = true;
-            this.colOperationTitle.Width = 135;
-            // 
-            // colOperationTypeID
-            // 
-            this.colOperationTypeID.DataPropertyName = "OperationTypeID";
-            this.colOperationTypeID.FillWeight = 78.17259F;
-            this.colOperationTypeID.HeaderText = "نوع عملیات";
-            this.colOperationTypeID.Name = "colOperationTypeID";
-            this.colOperationTypeID.ReadOnly = true;
-            this.colOperationTypeID.Width = 135;
-            // 
-            // colOperationDate
-            // 
-            this.colOperationDate.DataPropertyName = "OperationDate";
-            this.colOperationDate.FillWeight = 121.8274F;
-            this.colOperationDate.HeaderText = "تایخ ثبت شده";
-            this.colOperationDate.Name = "colOperationDate";
-            this.colOperationDate.ReadOnly = true;
-            this.colOperationDate.Width = 200;
             // 
             // requiredFieldValidator1
             // 
@@ -349,6 +315,40 @@
             this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
+            // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "OperationID";
+            this.colID.HeaderText = "Column1";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // colOperationTitle
+            // 
+            this.colOperationTitle.DataPropertyName = "OperationTitle";
+            this.colOperationTitle.HeaderText = "عنوان عملیات";
+            this.colOperationTitle.Name = "colOperationTitle";
+            this.colOperationTitle.ReadOnly = true;
+            this.colOperationTitle.Width = 135;
+            // 
+            // colOperationType
+            // 
+            this.colOperationType.DataPropertyName = "OperationTypeTitle";
+            this.colOperationType.FillWeight = 78.17259F;
+            this.colOperationType.HeaderText = "نوع عملیات";
+            this.colOperationType.Name = "colOperationType";
+            this.colOperationType.ReadOnly = true;
+            this.colOperationType.Width = 135;
+            // 
+            // colOperationDate
+            // 
+            this.colOperationDate.DataPropertyName = "Date";
+            this.colOperationDate.FillWeight = 121.8274F;
+            this.colOperationDate.HeaderText = "تایخ ثبت شده";
+            this.colOperationDate.Name = "colOperationDate";
+            this.colOperationDate.ReadOnly = true;
+            this.colOperationDate.Width = 200;
             // 
             // frmAddOperation
             // 
@@ -400,10 +400,10 @@
         private System.Windows.Forms.Button btnOpType;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvOperation;
+        private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colOperationTypeID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOperationType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationDate;
-        private Stimulsoft.Report.StiReport stiReport;
     }
 }

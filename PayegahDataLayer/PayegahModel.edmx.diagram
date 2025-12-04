@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6906b05e4e684ed1bf35d702b5b12891" Name="Diagram1">
-        <EntityTypeShape EntityType="PayegahDbModel.AmadType" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.Dgree" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.DgreeMembers" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PayegahDbModel.EventMembers" Width="1.5" PointX="8.25" PointY="11.5" IsExpanded="true" />
@@ -30,10 +29,7 @@
         <AssociationConnector Association="PayegahDbModel.FK_MemberRoll_PersonRank" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Members_Persons" ManuallyRouted="false" />
         <AssociationConnector Association="PayegahDbModel.FK_Operations_OperationType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PayegahDbModel.Amad" Width="1.5" PointX="3" PointY="18.5" />
         <EntityTypeShape EntityType="PayegahDbModel.AmadMembers" Width="1.5" PointX="5.25" PointY="11.5" />
-        <AssociationConnector Association="PayegahDbModel.FK_Amad_AmadType" />
-        <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Amad" />
         <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Members1" />
         <EntityTypeShape EntityType="PayegahDbModel.DecriptionOperation" Width="1.5" PointX="8.25" PointY="2.125" />
         <EntityTypeShape EntityType="PayegahDbModel.OperationMembers" Width="1.5" PointX="8.25" PointY="6.625" />
@@ -45,6 +41,10 @@
         <AssociationConnector Association="PayegahDbModel.FK_Attendance_absence_Persons" />
         <EntityTypeShape EntityType="PayegahDbModel.Users" Width="1.5" PointX="3" PointY="32.5" />
         <AssociationConnector Association="PayegahDbModel.FK_Users_Persons" />
+        <EntityTypeShape EntityType="PayegahDbModel.AmadType" Width="1.5" PointX="0.75" PointY="18.875" />
+        <EntityTypeShape EntityType="PayegahDbModel.Amad" Width="1.5" PointX="3" PointY="18.625" />
+        <AssociationConnector Association="PayegahDbModel.FK_Amad_AmadType" />
+        <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Amad" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

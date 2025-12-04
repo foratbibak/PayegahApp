@@ -34,9 +34,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvOpType = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +46,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpType)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -105,30 +105,6 @@
             this.dgvOpType.Size = new System.Drawing.Size(329, 304);
             this.dgvOpType.TabIndex = 0;
             this.dgvOpType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOpType_CellClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "OperationTypeID";
-            this.colID.HeaderText = "ایدی";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colOperationTitle
-            // 
-            this.colOperationTitle.DataPropertyName = "OperationTitle";
-            this.colOperationTitle.HeaderText = "نوع عملیات";
-            this.colOperationTitle.Name = "colOperationTitle";
-            this.colOperationTitle.ReadOnly = true;
-            this.colOperationTitle.Width = 150;
-            // 
-            // colDateRegestration
-            // 
-            this.colDateRegestration.DataPropertyName = "DateRegestration";
-            this.colDateRegestration.HeaderText = "تاریخ ثبت";
-            this.colDateRegestration.Name = "colDateRegestration";
-            this.colDateRegestration.ReadOnly = true;
-            this.colDateRegestration.Width = 200;
             // 
             // groupBox3
             // 
@@ -296,6 +272,30 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "OperationTypeID";
+            this.colID.HeaderText = "ایدی";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // colOperationTitle
+            // 
+            this.colOperationTitle.DataPropertyName = "OperationTypeTitle";
+            this.colOperationTitle.HeaderText = "نوع عملیات";
+            this.colOperationTitle.Name = "colOperationTitle";
+            this.colOperationTitle.ReadOnly = true;
+            this.colOperationTitle.Width = 150;
+            // 
+            // colDateRegestration
+            // 
+            this.colDateRegestration.DataPropertyName = "DateRegestration";
+            this.colDateRegestration.HeaderText = "تاریخ ثبت";
+            this.colDateRegestration.Name = "colDateRegestration";
+            this.colDateRegestration.ReadOnly = true;
+            this.colDateRegestration.Width = 200;
+            // 
             // frmOperationType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -342,9 +342,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private ValidationComponents.RequiredFieldValidator requiredFieldValidator1;
         private System.Windows.Forms.DataGridView dgvOpType;
+        private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDateRegestration;
-        private Stimulsoft.Report.StiReport stiReport;
     }
 }

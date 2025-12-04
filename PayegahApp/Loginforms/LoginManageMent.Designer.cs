@@ -35,6 +35,8 @@
             this.btnInsertP = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNatnioalCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPassUser = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,8 +48,6 @@
             this.colUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtNatnioalCode = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -132,6 +132,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "عملیات ثبت";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.label3.Location = new System.Drawing.Point(531, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 22);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "کدملی :";
+            // 
+            // txtNatnioalCode
+            // 
+            this.txtNatnioalCode.Location = new System.Drawing.Point(316, 77);
+            this.txtNatnioalCode.Name = "txtNatnioalCode";
+            this.txtNatnioalCode.Size = new System.Drawing.Size(209, 27);
+            this.txtNatnioalCode.TabIndex = 4;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -207,7 +224,7 @@
             // 
             // colPersonID
             // 
-            this.colPersonID.DataPropertyName = "PersonID";
+            this.colPersonID.DataPropertyName = "NationalCode";
             this.colPersonID.HeaderText = "کدملی";
             this.colPersonID.Name = "colPersonID";
             this.colPersonID.ReadOnly = true;
@@ -228,27 +245,10 @@
             // 
             // colDate
             // 
-            this.colDate.DataPropertyName = "LoginDate";
+            this.colDate.DataPropertyName = "Date";
             this.colDate.HeaderText = "تاریخ ثبت";
             this.colDate.Name = "colDate";
             this.colDate.ReadOnly = true;
-            // 
-            // txtNatnioalCode
-            // 
-            this.txtNatnioalCode.Location = new System.Drawing.Point(316, 77);
-            this.txtNatnioalCode.Name = "txtNatnioalCode";
-            this.txtNatnioalCode.Size = new System.Drawing.Size(209, 27);
-            this.txtNatnioalCode.TabIndex = 4;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.label3.Location = new System.Drawing.Point(531, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 22);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "کدملی :";
             // 
             // LoginManageMent
             // 
@@ -292,12 +292,12 @@
         private System.Windows.Forms.Button btnEditMem;
         private System.Windows.Forms.Button btnInsertP;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNatnioalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUserID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPersonID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUserName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtNatnioalCode;
     }
 }

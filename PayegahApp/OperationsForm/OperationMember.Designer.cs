@@ -40,11 +40,6 @@
             this.cmbOperations = new System.Windows.Forms.ComboBox();
             this.btnEditMem = new System.Windows.Forms.Button();
             this.dgvOpM = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgreeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -59,6 +54,12 @@
             this.btnDescriptionOP = new System.Windows.Forms.Button();
             this.btnDgree = new System.Windows.Forms.Button();
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DgTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpM)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -181,59 +182,21 @@
             // 
             this.dgvOpM.AllowUserToAddRows = false;
             this.dgvOpM.AllowUserToDeleteRows = false;
+            this.dgvOpM.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvOpM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOpM.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
-            this.colMemID,
-            this.colOperationID,
-            this.colDgreeID,
-            this.colDateRegestration});
+            this.PersonFullName,
+            this.PersonID,
+            this.OperationTitle,
+            this.DgTitle,
+            this.Date});
             this.dgvOpM.Location = new System.Drawing.Point(6, 25);
             this.dgvOpM.Name = "dgvOpM";
             this.dgvOpM.ReadOnly = true;
             this.dgvOpM.Size = new System.Drawing.Size(879, 246);
             this.dgvOpM.TabIndex = 0;
             this.dgvOpM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOpM_CellClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "OperationMemberID";
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colMemID
-            // 
-            this.colMemID.DataPropertyName = "MemID";
-            this.colMemID.HeaderText = "کدملی";
-            this.colMemID.Name = "colMemID";
-            this.colMemID.ReadOnly = true;
-            this.colMemID.Width = 200;
-            // 
-            // colOperationID
-            // 
-            this.colOperationID.DataPropertyName = "OperationID";
-            this.colOperationID.HeaderText = "عملیات";
-            this.colOperationID.Name = "colOperationID";
-            this.colOperationID.ReadOnly = true;
-            this.colOperationID.Width = 200;
-            // 
-            // colDgreeID
-            // 
-            this.colDgreeID.DataPropertyName = "DgreeID";
-            this.colDgreeID.HeaderText = "مسئولیت عضو";
-            this.colDgreeID.Name = "colDgreeID";
-            this.colDgreeID.ReadOnly = true;
-            this.colDgreeID.Width = 200;
-            // 
-            // colDateRegestration
-            // 
-            this.colDateRegestration.DataPropertyName = "DateRegstration";
-            this.colDateRegestration.HeaderText = "تاریخ ثبت شده";
-            this.colDateRegestration.Name = "colDateRegestration";
-            this.colDateRegestration.ReadOnly = true;
-            this.colDateRegestration.Width = 200;
             // 
             // label2
             // 
@@ -417,6 +380,54 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "OperationMemberID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // PersonFullName
+            // 
+            this.PersonFullName.DataPropertyName = "PersonFullName";
+            this.PersonFullName.HeaderText = "نام و نام خانوادگی";
+            this.PersonFullName.Name = "PersonFullName";
+            this.PersonFullName.ReadOnly = true;
+            this.PersonFullName.Width = 200;
+            // 
+            // PersonID
+            // 
+            this.PersonID.DataPropertyName = "PersonID";
+            this.PersonID.HeaderText = "کدملی";
+            this.PersonID.Name = "PersonID";
+            this.PersonID.ReadOnly = true;
+            this.PersonID.Width = 200;
+            // 
+            // OperationTitle
+            // 
+            this.OperationTitle.DataPropertyName = "OperationTitle";
+            this.OperationTitle.HeaderText = "عملیات";
+            this.OperationTitle.Name = "OperationTitle";
+            this.OperationTitle.ReadOnly = true;
+            this.OperationTitle.Width = 200;
+            // 
+            // DgTitle
+            // 
+            this.DgTitle.DataPropertyName = "DgTitle";
+            this.DgTitle.HeaderText = "مسئولیت عضو";
+            this.DgTitle.Name = "DgTitle";
+            this.DgTitle.ReadOnly = true;
+            this.DgTitle.Width = 200;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "تاریخ ثبت شده";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 200;
+            // 
             // OperationMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -474,11 +485,12 @@
         private System.Windows.Forms.ComboBox cmbDgree;
         private System.Windows.Forms.Label label5;
         private Stimulsoft.Report.StiReport stiReport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colOperationID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDgreeID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDateRegestration;
         private System.Windows.Forms.Button btnDescriptionOP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OperationTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DgTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
     }
 }

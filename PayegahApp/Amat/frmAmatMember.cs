@@ -30,28 +30,28 @@ namespace PayegahApp.Amat
         {
 
             dgvAmadM.AutoGenerateColumns = false;
-            dgvAmadM.ForeColor=Color.Black;
+            dgvAmadM.ForeColor = Color.Black;
             cmbFillter.Items.Add("همه");
-            cmbFillter.Items.Add("فعال");
-            cmbFillter.Items.Add("غیرفعال");
+            cmbFillter.Items.Add("تخصیص");
+            cmbFillter.Items.Add("عدم تخصیص");
             cmbFillter.SelectedIndex = 1;
             BindGrid();
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvAmadM.Rows)
-            {
-                if (row.Cells["ColDate"].Value != null &&
-                    DateTime.TryParse(row.Cells["ColDate"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["ColDate"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["ColDate"].Value = "";
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvAmadM.Rows)
+        //    {
+        //        if (row.Cells["AmadDateRegestration"].Value != null &&
+        //            DateTime.TryParse(row.Cells["AmadDateRegestration"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["AmadDateRegestration"].Value = date.ToShamsi();
+        //        }
+        //        else
+        //        {
+        //            row.Cells["AmadDateRegestration"].Value = "";
+        //        }
+        //    }
+        //}
         void AmCombo()
         {
             using (UnitofWork db = new UnitofWork())
@@ -64,24 +64,44 @@ namespace PayegahApp.Amat
             cmbAmad.SelectedIndex = -1;
             cmbAmad.Text = "لطفا یک نوع از تجهیزات را انتخاب فرمایید";
         }
+
         void BindGrid()
         {
             using (UnitofWork db = new UnitofWork())
             {
                 var data = db.AmadMemberRepository.GetAll();
-                if (cmbFillter.SelectedItem.ToString() == "فعال")
+                if (cmbFillter.SelectedItem.ToString() == "تخصیص")
                 {
                     data = data.Where(c => c.IsActive == true).ToList();
                 }
-                else if (cmbFillter.SelectedItem.ToString() == "غیرفعال")
+                else if (cmbFillter.SelectedItem.ToString() == "تعمیم")
                 {
                     data = data.Where(c => c.IsActive == false).ToList();
                 }
-                dgvAmadM.DataSource = data;
+                //dgvAmadM.DataSource = data.Select(s => new
+                //{
+                //    PersonFullName = s.Members.Persons.PersonFullName,
+                //    PersonID = s.Members.PersonID,
+                //    AmadFullName = s.Amad.AmadFullName,
+                //    AmadDateRegestration = s.AmadDateRegestration
+                //}).ToList();
+                var Join = data.Select(s => new
+                {
+                    s.ID,
+                    s.Members.Persons.PersonFullName,
+                    s.Members.PersonID,
+                    s.Amad.AmadTitle,
+                    s.Amad.AmadType.AmadTypeTitle,
+                    Date = s.AmadDateRegestration != null ? s.AmadDateRegestration.Value.ToShamsi(): ""
+
+                }).ToList();
+                dgvAmadM.DataSource = Join;
+                //ConvertDatesToShamsi();
                 AmCombo();
-                ConvertDatesToShamsi();
             }
         }
+
+
         private void ActiveStatuse(bool Active)
         {
             if (dgvAmadM.CurrentRow.Selected)
@@ -192,7 +212,12 @@ namespace PayegahApp.Amat
                 Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
                 using (UnitofWork db = new UnitofWork())
                 {
-                    Members em = db.MemberRepository.GetAll().Where(m => m.MemID == NationalCodeCast).FirstOrDefault();
+                    Members em = db.MemberRepository.GetAll().Where(m => m.PersonID == NationalCodeCast).FirstOrDefault();
+                    if (em == null)
+                    {
+                        RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     var Get = db.AmadMemberRepository.GetbyID(ID);
                     if (cmbAmad.SelectedIndex < 0)
                     {
@@ -202,7 +227,7 @@ namespace PayegahApp.Amat
                     int AmadIDCast = (int)cmbAmad.SelectedValue;
                     if (Get != null)
                     {
-                        Get.MemID = NationalCodeCast;
+                        Get.MemID = em.MemID;
                         Get.AmadID = AmadIDCast;
                     }
                     db.AmadMemberRepository.Update(Get);
@@ -239,7 +264,7 @@ namespace PayegahApp.Amat
                     var Get = db.AmadMemberRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtNatoinalCode.Text = Get.MemID.ToString();
+                        txtNatoinalCode.Text = Get.Members.PersonID.ToString();
                     }
                 }
             }
@@ -253,7 +278,7 @@ namespace PayegahApp.Amat
                 {
                     if (string.IsNullOrWhiteSpace(txtNatoinalCode.Text))
                     {
-                        RtlMessageBox.Show("برای فعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        RtlMessageBox.Show("برای تخصیص، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         chkActive.Checked = false;
                         txtNatoinalCode.Focus();
                         txtNatoinalCode.Clear();
@@ -267,7 +292,7 @@ namespace PayegahApp.Amat
                 }
                 else
                 {
-                    RtlMessageBox.Show("لطفا برای عملیات فعال سازی یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RtlMessageBox.Show("لطفا برای عملیات تخصیص یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     chkActive.Checked = false;
                     txtNatoinalCode.Clear();
                 }
@@ -284,7 +309,7 @@ namespace PayegahApp.Amat
                 {
                     if (string.IsNullOrWhiteSpace(txtNatoinalCode.Text))
                     {
-                        RtlMessageBox.Show("برای غیرفعال‌سازی، لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        RtlMessageBox.Show("برای ‌،عدم تخصیص لطفاً ابتدا روی یک سطر از جدول کلیک کنید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         chkNotActive.Checked = false;
                         txtNatoinalCode.Focus();
                         txtNatoinalCode.Clear();
@@ -299,7 +324,7 @@ namespace PayegahApp.Amat
                 }
                 else
                 {
-                    RtlMessageBox.Show("لطفا برای عملیات غیرفعال سازی یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RtlMessageBox.Show("لطفا برای عملیات عدم تخصیص یک سطر را ازجدول انتخاب فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     chkNotActive.Checked = false;
                 }
             }
@@ -308,15 +333,22 @@ namespace PayegahApp.Amat
         private void btnPrint_Click(object sender, EventArgs e)
         {
             DataTable Dt = new DataTable();
-            Dt.Columns.Add("MemID");
-            Dt.Columns.Add("AmadID");
-            Dt.Columns.Add("DateRegstration");
+            Dt.Columns.Add("PersonFullName");
+            Dt.Columns.Add("PersonID");
+            Dt.Columns.Add("AmadTitle");
+            Dt.Columns.Add("AmadTypeTitle");
+            Dt.Columns.Add("Date");
+
             foreach (DataGridViewRow item in dgvAmadM.Rows)
             {
                 Dt.Rows.Add(
                     item.Cells[1].Value.ToString(),
                     item.Cells[2].Value.ToString(),
-                    item.Cells[3].Value.ToString()
+                    item.Cells[3].Value.ToString(),
+                    item.Cells[4].Value.ToString(),
+                    item.Cells[5].Value.ToString()
+
+
 
                     );
             }

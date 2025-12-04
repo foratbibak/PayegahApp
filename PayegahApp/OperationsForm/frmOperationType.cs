@@ -122,7 +122,7 @@ namespace PayegahApp.OperationsForm
                 {
                     OperationType op = new OperationType()
                     {
-                        OperationTitle = txtTitle.Text,
+                        OperationTypeTitle = txtTitle.Text,
                         DateRegestration = DateTime.Now,
                         IsActive = true
                     };
@@ -202,7 +202,7 @@ namespace PayegahApp.OperationsForm
                     var Get=db.OperationTypeRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtTitle.Text = Get.OperationTitle;
+                        txtTitle.Text = Get.OperationTypeTitle;
                     }
                 }
             }
@@ -218,7 +218,7 @@ namespace PayegahApp.OperationsForm
                     var Get=db.OperationTypeRepository.GetbyID(ID);
                     if(Get != null)
                     {
-                        Get.OperationTitle = txtTitle.Text;
+                        Get.OperationTypeTitle = txtTitle.Text;
                     }
                     db.OperationTypeRepository.Update(Get);
                     db.Save();

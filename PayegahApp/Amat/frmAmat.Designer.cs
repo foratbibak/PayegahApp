@@ -50,9 +50,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvAmad = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAmadTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAmadTypeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmadTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmadTypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAmadCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -297,12 +298,14 @@
             // 
             this.dgvAmad.AllowUserToAddRows = false;
             this.dgvAmad.AllowUserToDeleteRows = false;
+            this.dgvAmad.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvAmad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAmad.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
-            this.colAmadTitle,
-            this.colAmadTypeId,
-            this.colAmadCode});
+            this.AmadTitle,
+            this.AmadTypeTitle,
+            this.colAmadCode,
+            this.colDate});
             this.dgvAmad.Location = new System.Drawing.Point(11, 30);
             this.dgvAmad.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAmad.Name = "dgvAmad";
@@ -319,21 +322,21 @@
             this.colID.ReadOnly = true;
             this.colID.Visible = false;
             // 
-            // colAmadTitle
+            // AmadTitle
             // 
-            this.colAmadTitle.DataPropertyName = "AmadTitle";
-            this.colAmadTitle.HeaderText = "عنوان مراسم";
-            this.colAmadTitle.Name = "colAmadTitle";
-            this.colAmadTitle.ReadOnly = true;
-            this.colAmadTitle.Width = 170;
+            this.AmadTitle.DataPropertyName = "AmadTitle";
+            this.AmadTitle.HeaderText = "عنوان مراسم";
+            this.AmadTitle.Name = "AmadTitle";
+            this.AmadTitle.ReadOnly = true;
+            this.AmadTitle.Width = 200;
             // 
-            // colAmadTypeId
+            // AmadTypeTitle
             // 
-            this.colAmadTypeId.DataPropertyName = "AmadTypeId";
-            this.colAmadTypeId.HeaderText = "نوع تجهیزات";
-            this.colAmadTypeId.Name = "colAmadTypeId";
-            this.colAmadTypeId.ReadOnly = true;
-            this.colAmadTypeId.Width = 170;
+            this.AmadTypeTitle.DataPropertyName = "AmadTypeTitle";
+            this.AmadTypeTitle.HeaderText = "نوع تجهیزات";
+            this.AmadTypeTitle.Name = "AmadTypeTitle";
+            this.AmadTypeTitle.ReadOnly = true;
+            this.AmadTypeTitle.Width = 200;
             // 
             // colAmadCode
             // 
@@ -342,7 +345,15 @@
             this.colAmadCode.HeaderText = "کد تجهیزات";
             this.colAmadCode.Name = "colAmadCode";
             this.colAmadCode.ReadOnly = true;
-            this.colAmadCode.Width = 170;
+            this.colAmadCode.Width = 200;
+            // 
+            // colDate
+            // 
+            this.colDate.DataPropertyName = "Date";
+            this.colDate.HeaderText = "تاریخ ثبت شده";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            this.colDate.Width = 200;
             // 
             // requiredFieldValidator1
             // 
@@ -356,7 +367,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(883, 551);
+            this.ClientSize = new System.Drawing.Size(883, 534);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
@@ -403,8 +414,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvAmad;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAmadTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAmadTypeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmadTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmadTypeTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmadCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
     }
 }

@@ -32,7 +32,7 @@ namespace PayegahApp.RollForm
         private void frmRoll_Load(object sender, EventArgs e)
         {
             dgvRole.AutoGenerateColumns = false;
-            dgvRole.ForeColor=Color.Black;
+            dgvRole.ForeColor = Color.Black;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
@@ -41,21 +41,21 @@ namespace PayegahApp.RollForm
             CmbRoleType();
             CmbRole();
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvRole.Rows)
-            {
-                if (row.Cells["DateRegestration"].Value != null &&
-                    DateTime.TryParse(row.Cells["DateRegestration"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["DateRegestration"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["DateRegestration"].Value = "";
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvRole.Rows)
+        //    {
+        //        if (row.Cells["DateRegestration"].Value != null &&
+        //            DateTime.TryParse(row.Cells["DateRegestration"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["DateRegestration"].Value = date.ToShamsi();
+        //        }
+        //        else
+        //        {
+        //            row.Cells["DateRegestration"].Value = "";
+        //        }
+        //    }
+        //}
         void CmbRoleType()
         {
             using (UnitofWork db = new UnitofWork())
@@ -72,7 +72,7 @@ namespace PayegahApp.RollForm
         {
             using (UnitofWork db = new UnitofWork())
             {
-                var list = db.RoleRepository.GetAll().Where(x=>x.IsActive==true).ToList();
+                var list = db.RoleRepository.GetAll().Where(x => x.IsActive == true).ToList();
                 cmbRoleName.DisplayMember = "RoleTitle";
                 cmbRoleName.ValueMember = "Role_ID";
                 cmbRoleName.DataSource = list;
@@ -93,11 +93,21 @@ namespace PayegahApp.RollForm
                 {
                     data = data.Where(c => c.IActive == false).ToList();
                 }
-                dgvRole.DataSource = data;
+                var Join = data.Select(s => new
+                {
+                    s.ID,
+                    s.Role.Role_ID,
+                    s.Members.Persons.PersonFullName,
+                    s.Members.PersonID,
+                    s.Role.RoleTitle,
+                    s.RoleType.TypeTitle,
+                    Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
+
+                }).ToList();
+                dgvRole.DataSource = Join;
             }
             CmbRole();
             CmbRoleType();
-            ConvertDatesToShamsi();
 
         }
         private void button4_Click(object sender, EventArgs e)
@@ -310,7 +320,7 @@ namespace PayegahApp.RollForm
                     var Get = db.MemberRoleRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtNatoinalCode.Text = Get.MemID.ToString();
+                        txtNatoinalCode.Text = Get.Members.PersonID.ToString();
                     }
                 }
             }
@@ -325,13 +335,16 @@ namespace PayegahApp.RollForm
                 {
                     var Get = db.MemberRoleRepository.GetbyID(ID);
                     Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
-                    Members mr = db.MemberRepository.GetAll().Where(m => m.MemID == NationalCodeCast).FirstOrDefault();
-                    if (mr == null)
+
+                    var member = db.MemberRepository.GetAll()
+                                    .FirstOrDefault(m => m.PersonID == NationalCodeCast);
+
+                    if (member == null)
                     {
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if(cmbRoleName.SelectedIndex<0 || cmbRoles.SelectedIndex < 0)
+                    if (cmbRoleName.SelectedIndex < 0 || cmbRoles.SelectedIndex < 0)
                     {
                         RtlMessageBox.Show("لطفا برای عملیات ویرایش مقام و وظیفه مورد نظر را از لیست انتخاب فرمایید. ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
@@ -341,7 +354,7 @@ namespace PayegahApp.RollForm
 
                     if (Get != null)
                     {
-                        Get.MemID = NationalCodeCast;
+                        Get.MemID = member.MemID;
                         Get.RoleTypeID = roleTypeId;
                         Get.Role_ID = roleId;
                     }
@@ -362,10 +375,11 @@ namespace PayegahApp.RollForm
         private void btnPrint_Click(object sender, EventArgs e)
         {
             DataTable Dt = new DataTable();
-            Dt.Columns.Add("MemID");
-            Dt.Columns.Add("RoleTypeID");
-            Dt.Columns.Add("Role_ID");
-            Dt.Columns.Add("DateRegestration");
+            Dt.Columns.Add("PersonFullName");
+            Dt.Columns.Add("PersonID");
+            Dt.Columns.Add("TypeTitle");
+            Dt.Columns.Add("RoleTitle");
+            Dt.Columns.Add("Date");
             foreach (DataGridViewRow item in dgvRole.Rows)
             {
                 Dt.Rows.Add(
@@ -383,7 +397,7 @@ namespace PayegahApp.RollForm
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            using(UnitofWork db=new UnitofWork())
+            using (UnitofWork db = new UnitofWork())
             {
                 dgvRole.DataSource = db.MemberEventRepository.FillterByCodeRole(txtSearch.Text);
 

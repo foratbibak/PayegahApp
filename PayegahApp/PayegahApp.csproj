@@ -111,11 +111,11 @@
     <Compile Include="EventForm\frmEvent.Designer.cs">
       <DependentUpon>frmEvent.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAsli.cs">
+    <Compile Include="FrmDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAsli.Designer.cs">
-      <DependentUpon>FormAsli.cs</DependentUpon>
+    <Compile Include="FrmDashboard.Designer.cs">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEntrance_Exit\Entrance_Exit.cs">
       <SubType>Form</SubType>
@@ -264,8 +264,8 @@
     <EmbeddedResource Include="EventForm\frmEventType.resx">
       <DependentUpon>frmEventType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAsli.resx">
-      <DependentUpon>FormAsli.cs</DependentUpon>
+    <EmbeddedResource Include="FrmDashboard.resx">
+      <DependentUpon>FrmDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEntrance_Exit\Entrance_Exit.resx">
       <DependentUpon>Entrance_Exit.cs</DependentUpon>

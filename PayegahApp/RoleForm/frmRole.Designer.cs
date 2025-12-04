@@ -35,11 +35,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnInsertRoll = new System.Windows.Forms.Button();
             this.dgvRole = new System.Windows.Forms.DataGridView();
-            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoleTypeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Role_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkNotActive = new System.Windows.Forms.CheckBox();
@@ -58,6 +53,12 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoleTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRole)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -133,56 +134,21 @@
             // 
             this.dgvRole.AllowUserToAddRows = false;
             this.dgvRole.AllowUserToDeleteRows = false;
-            this.dgvRole.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRole.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvRole.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRole.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColID,
-            this.MemID,
-            this.RoleTypeID,
-            this.Role_ID,
-            this.DateRegestration});
-            this.dgvRole.Location = new System.Drawing.Point(8, 25);
+            this.PersonFullName,
+            this.PersonID,
+            this.RoleTitle,
+            this.TypeTitle,
+            this.Date});
+            this.dgvRole.Location = new System.Drawing.Point(7, 32);
             this.dgvRole.Name = "dgvRole";
             this.dgvRole.ReadOnly = true;
             this.dgvRole.Size = new System.Drawing.Size(872, 225);
             this.dgvRole.TabIndex = 1;
             this.dgvRole.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRole_CellClick);
-            // 
-            // ColID
-            // 
-            this.ColID.DataPropertyName = "ID";
-            this.ColID.HeaderText = "CULID";
-            this.ColID.Name = "ColID";
-            this.ColID.ReadOnly = true;
-            this.ColID.Visible = false;
-            // 
-            // MemID
-            // 
-            this.MemID.DataPropertyName = "MemID";
-            this.MemID.HeaderText = "کدملی";
-            this.MemID.Name = "MemID";
-            this.MemID.ReadOnly = true;
-            // 
-            // RoleTypeID
-            // 
-            this.RoleTypeID.DataPropertyName = "RoleTypeID";
-            this.RoleTypeID.HeaderText = "مقام";
-            this.RoleTypeID.Name = "RoleTypeID";
-            this.RoleTypeID.ReadOnly = true;
-            // 
-            // Role_ID
-            // 
-            this.Role_ID.DataPropertyName = "Role_ID";
-            this.Role_ID.HeaderText = "وظیفه";
-            this.Role_ID.Name = "Role_ID";
-            this.Role_ID.ReadOnly = true;
-            // 
-            // DateRegestration
-            // 
-            this.DateRegestration.DataPropertyName = "DateRegestration";
-            this.DateRegestration.HeaderText = "تاریخ ثبت";
-            this.DateRegestration.Name = "DateRegestration";
-            this.DateRegestration.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -347,7 +313,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.label4.Location = new System.Drawing.Point(792, 50);
+            this.label4.Location = new System.Drawing.Point(789, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 21);
             this.label4.TabIndex = 7;
@@ -357,7 +323,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12.25F);
-            this.label3.Location = new System.Drawing.Point(500, 49);
+            this.label3.Location = new System.Drawing.Point(497, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 21);
             this.label3.TabIndex = 3;
@@ -366,7 +332,7 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.txtSearch.Location = new System.Drawing.Point(611, 45);
+            this.txtSearch.Location = new System.Drawing.Point(608, 37);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(181, 28);
             this.txtSearch.TabIndex = 6;
@@ -376,9 +342,9 @@
             // 
             this.cmbFillter.Font = new System.Drawing.Font("Tahoma", 13F);
             this.cmbFillter.FormattingEnabled = true;
-            this.cmbFillter.Location = new System.Drawing.Point(319, 47);
+            this.cmbFillter.Location = new System.Drawing.Point(270, 39);
             this.cmbFillter.Name = "cmbFillter";
-            this.cmbFillter.Size = new System.Drawing.Size(181, 29);
+            this.cmbFillter.Size = new System.Drawing.Size(227, 29);
             this.cmbFillter.TabIndex = 2;
             this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
@@ -402,6 +368,54 @@
             this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
+            // 
+            // ColID
+            // 
+            this.ColID.DataPropertyName = "ID";
+            this.ColID.HeaderText = "CULID";
+            this.ColID.Name = "ColID";
+            this.ColID.ReadOnly = true;
+            this.ColID.Visible = false;
+            // 
+            // PersonFullName
+            // 
+            this.PersonFullName.DataPropertyName = "PersonFullName";
+            this.PersonFullName.HeaderText = "نام و نام خانوادگی";
+            this.PersonFullName.Name = "PersonFullName";
+            this.PersonFullName.ReadOnly = true;
+            this.PersonFullName.Width = 200;
+            // 
+            // PersonID
+            // 
+            this.PersonID.DataPropertyName = "PersonID";
+            this.PersonID.HeaderText = "کدملی";
+            this.PersonID.Name = "PersonID";
+            this.PersonID.ReadOnly = true;
+            this.PersonID.Width = 200;
+            // 
+            // RoleTitle
+            // 
+            this.RoleTitle.DataPropertyName = "RoleTitle";
+            this.RoleTitle.HeaderText = "مقام";
+            this.RoleTitle.Name = "RoleTitle";
+            this.RoleTitle.ReadOnly = true;
+            this.RoleTitle.Width = 200;
+            // 
+            // TypeTitle
+            // 
+            this.TypeTitle.DataPropertyName = "TypeTitle";
+            this.TypeTitle.HeaderText = "وظیفه";
+            this.TypeTitle.Name = "TypeTitle";
+            this.TypeTitle.ReadOnly = true;
+            this.TypeTitle.Width = 200;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.HeaderText = "تاریخ ثبت";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 200;
             // 
             // frmRole
             // 
@@ -460,9 +474,10 @@
         private System.Windows.Forms.CheckBox chkActive;
         private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RoleTypeID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Role_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DateRegestration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RoleTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TypeTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
     }
 }

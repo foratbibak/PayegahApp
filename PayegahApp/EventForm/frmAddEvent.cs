@@ -40,21 +40,21 @@ namespace PayegahApp.EventForm
             cmbEventType();
 
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvEvent.Rows)
-            {
-                if (row.Cells["colEventDate"].Value != null &&
-                    DateTime.TryParse(row.Cells["colEventDate"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["colEventDate"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["colEventDate"].Value = "";
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvEvent.Rows)
+        //    {
+        //        if (row.Cells["colEventDate"].Value != null &&
+        //            DateTime.TryParse(row.Cells["colEventDate"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["colEventDate"].Value = date.ToShamsi();
+        //        }
+        //        else
+        //        {
+        //            row.Cells["colEventDate"].Value = "";
+        //        }
+        //    }
+        //}
         void BindGrid()
         {
             using (UnitofWork db = new UnitofWork())
@@ -68,8 +68,16 @@ namespace PayegahApp.EventForm
                 {
                     data = data.Where(c => c.IsActive == false).ToList();
                 }
-                dgvEvent.DataSource = data;
-                ConvertDatesToShamsi();
+                var Join = data.Select(s => new
+                {
+                    s.EventID,
+                    s.EventTitle,
+                    s.EventType.Title,
+                    s.Description,
+                    Date = s.EventDate != null ? s.EventDate.ToShamsi() : ""
+
+                }).ToList();
+                dgvEvent.DataSource = Join;
             }
         }
         void cmbEventType()

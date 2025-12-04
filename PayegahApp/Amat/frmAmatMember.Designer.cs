@@ -44,9 +44,11 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvAmadM = new System.Windows.Forms.DataGridView();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAmadID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAmadFull = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmadDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtNatoinalCode = new System.Windows.Forms.TextBox();
             this.btnInsertAmad = new System.Windows.Forms.Button();
@@ -117,11 +119,11 @@
             // 
             this.chkNotActive.AutoSize = true;
             this.chkNotActive.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.chkNotActive.Location = new System.Drawing.Point(495, 88);
+            this.chkNotActive.Location = new System.Drawing.Point(537, 84);
             this.chkNotActive.Name = "chkNotActive";
-            this.chkNotActive.Size = new System.Drawing.Size(139, 26);
+            this.chkNotActive.Size = new System.Drawing.Size(125, 26);
             this.chkNotActive.TabIndex = 11;
-            this.chkNotActive.Text = "غیرفعال سازی";
+            this.chkNotActive.Text = "عدم تخصیص";
             this.chkNotActive.UseVisualStyleBackColor = true;
             this.chkNotActive.CheckedChanged += new System.EventHandler(this.chkNotActive_CheckedChanged);
             // 
@@ -129,11 +131,11 @@
             // 
             this.chkActive.AutoSize = true;
             this.chkActive.Font = new System.Drawing.Font("Tahoma", 13F);
-            this.chkActive.Location = new System.Drawing.Point(640, 88);
+            this.chkActive.Location = new System.Drawing.Point(668, 84);
             this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(114, 26);
+            this.chkActive.Size = new System.Drawing.Size(87, 26);
             this.chkActive.TabIndex = 10;
-            this.chkActive.Text = "فعال سازی";
+            this.chkActive.Text = "تخصیص";
             this.chkActive.UseVisualStyleBackColor = true;
             this.chkActive.CheckedChanged += new System.EventHandler(this.chkActive_CheckedChanged);
             // 
@@ -152,11 +154,11 @@
             // 
             // cmbAmad
             // 
-            this.cmbAmad.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.cmbAmad.Font = new System.Drawing.Font("Tahoma", 12F);
             this.cmbAmad.FormattingEnabled = true;
-            this.cmbAmad.Location = new System.Drawing.Point(167, 25);
+            this.cmbAmad.Location = new System.Drawing.Point(128, 25);
             this.cmbAmad.Name = "cmbAmad";
-            this.cmbAmad.Size = new System.Drawing.Size(252, 29);
+            this.cmbAmad.Size = new System.Drawing.Size(291, 27);
             this.cmbAmad.TabIndex = 8;
             // 
             // btnEditMem
@@ -208,13 +210,15 @@
             // 
             this.dgvAmadM.AllowUserToAddRows = false;
             this.dgvAmadM.AllowUserToDeleteRows = false;
-            this.dgvAmadM.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAmadM.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvAmadM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAmadM.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
-            this.colMemID,
-            this.colAmadID,
-            this.ColDate});
+            this.ColName,
+            this.colPersonID,
+            this.colAmadFull,
+            this.colType,
+            this.AmadDateRegestration});
             this.dgvAmadM.Location = new System.Drawing.Point(9, 25);
             this.dgvAmadM.Name = "dgvAmadM";
             this.dgvAmadM.ReadOnly = true;
@@ -230,26 +234,45 @@
             this.colID.ReadOnly = true;
             this.colID.Visible = false;
             // 
-            // colMemID
+            // ColName
             // 
-            this.colMemID.DataPropertyName = "MemID";
-            this.colMemID.HeaderText = "کدملی";
-            this.colMemID.Name = "colMemID";
-            this.colMemID.ReadOnly = true;
+            this.ColName.DataPropertyName = "PersonFullName";
+            this.ColName.HeaderText = "نام و نام خانوادگی";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
+            this.ColName.Width = 200;
             // 
-            // colAmadID
+            // colPersonID
             // 
-            this.colAmadID.DataPropertyName = "AmadID";
-            this.colAmadID.HeaderText = "تجهیزات";
-            this.colAmadID.Name = "colAmadID";
-            this.colAmadID.ReadOnly = true;
+            this.colPersonID.DataPropertyName = "PersonID";
+            this.colPersonID.HeaderText = "کدملی";
+            this.colPersonID.Name = "colPersonID";
+            this.colPersonID.ReadOnly = true;
+            this.colPersonID.Width = 200;
             // 
-            // ColDate
+            // colAmadFull
             // 
-            this.ColDate.DataPropertyName = "AmadDateRegestration";
-            this.ColDate.HeaderText = "تاریخ ثبت شده";
-            this.ColDate.Name = "ColDate";
-            this.ColDate.ReadOnly = true;
+            this.colAmadFull.DataPropertyName = "AmadTitle";
+            this.colAmadFull.HeaderText = "تجهیزات";
+            this.colAmadFull.Name = "colAmadFull";
+            this.colAmadFull.ReadOnly = true;
+            this.colAmadFull.Width = 200;
+            // 
+            // colType
+            // 
+            this.colType.DataPropertyName = "AmadTypeTitle";
+            this.colType.HeaderText = "نوع تجهیزات";
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            this.colType.Width = 200;
+            // 
+            // AmadDateRegestration
+            // 
+            this.AmadDateRegestration.DataPropertyName = "Date";
+            this.AmadDateRegestration.HeaderText = "تاریخ ثبت شده";
+            this.AmadDateRegestration.Name = "AmadDateRegestration";
+            this.AmadDateRegestration.ReadOnly = true;
+            this.AmadDateRegestration.Width = 200;
             // 
             // groupBox2
             // 
@@ -404,10 +427,12 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colAmadID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColDate;
         private Stimulsoft.Report.StiReport stiReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAmadFull;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmadDateRegestration;
     }
 }

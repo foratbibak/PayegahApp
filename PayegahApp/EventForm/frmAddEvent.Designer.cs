@@ -75,6 +75,7 @@
             // 
             this.dgvEvent.AllowUserToAddRows = false;
             this.dgvEvent.AllowUserToDeleteRows = false;
+            this.dgvEvent.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEventID,
@@ -339,7 +340,7 @@
             // 
             // colEventType
             // 
-            this.colEventType.DataPropertyName = "EventTypeID";
+            this.colEventType.DataPropertyName = "Title";
             this.colEventType.FillWeight = 78.17259F;
             this.colEventType.HeaderText = "نوع مراسم";
             this.colEventType.Name = "colEventType";
@@ -357,7 +358,7 @@
             // 
             // colEventDate
             // 
-            this.colEventDate.DataPropertyName = "EventDate";
+            this.colEventDate.DataPropertyName = "Date";
             this.colEventDate.HeaderText = "تاریخ ثبت شده";
             this.colEventDate.Name = "colEventDate";
             this.colEventDate.ReadOnly = true;

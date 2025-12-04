@@ -43,13 +43,13 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvEventType = new System.Windows.Forms.DataGridView();
-            this.colEventType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.requiredFieldValidator2 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colEventType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -212,7 +212,7 @@
             // 
             this.dgvEventType.AllowUserToAddRows = false;
             this.dgvEventType.AllowUserToDeleteRows = false;
-            this.dgvEventType.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEventType.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvEventType.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEventType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEventType,
@@ -226,30 +226,6 @@
             this.dgvEventType.TabIndex = 0;
             this.dgvEventType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventType_CellClick);
             this.dgvEventType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventType_CellContentClick);
-            // 
-            // colEventType
-            // 
-            this.colEventType.DataPropertyName = "EventTypeId";
-            this.colEventType.FillWeight = 78.17259F;
-            this.colEventType.HeaderText = "ایدی";
-            this.colEventType.Name = "colEventType";
-            this.colEventType.ReadOnly = true;
-            this.colEventType.Visible = false;
-            // 
-            // colTitle
-            // 
-            this.colTitle.DataPropertyName = "Title";
-            this.colTitle.HeaderText = "نوع مراسم";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            // 
-            // colDate
-            // 
-            this.colDate.DataPropertyName = "DateRegstretion";
-            this.colDate.FillWeight = 121.8274F;
-            this.colDate.HeaderText = "تاریخ ثبت";
-            this.colDate.Name = "colDate";
-            this.colDate.ReadOnly = true;
             // 
             // label4
             // 
@@ -309,6 +285,32 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
+            // colEventType
+            // 
+            this.colEventType.DataPropertyName = "EventTypeId";
+            this.colEventType.FillWeight = 78.17259F;
+            this.colEventType.HeaderText = "ایدی";
+            this.colEventType.Name = "colEventType";
+            this.colEventType.ReadOnly = true;
+            this.colEventType.Visible = false;
+            // 
+            // colTitle
+            // 
+            this.colTitle.DataPropertyName = "Title";
+            this.colTitle.HeaderText = "نوع مراسم";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.ReadOnly = true;
+            this.colTitle.Width = 200;
+            // 
+            // colDate
+            // 
+            this.colDate.DataPropertyName = "DateRegstretion";
+            this.colDate.FillWeight = 121.8274F;
+            this.colDate.HeaderText = "تاریخ ثبت";
+            this.colDate.Name = "colDate";
+            this.colDate.ReadOnly = true;
+            this.colDate.Width = 200;
+            // 
             // frmEventType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -355,10 +357,10 @@
         private System.Windows.Forms.DataGridView dgvEventType;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
+        private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEventType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
-        private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
-        private Stimulsoft.Report.StiReport stiReport;
     }
 }

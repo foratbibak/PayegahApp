@@ -38,7 +38,7 @@ namespace PayegahApp.Reports
 
             cmbfrm.DataSource = tables;
             cmbfrm.SelectedIndex = -1;
-            cmbfrm.Text = "لطفا یک عملیات را انتخاب فرمایید";
+            cmbfrm.Text = "لطفا یک جدول را انتخاب فرمایید";
         }
 
         public static DateTime ConvertShamsiToGregorian(string shamsiDate)

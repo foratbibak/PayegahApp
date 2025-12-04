@@ -3,20 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PayegahApp.Loginforms;
 
 namespace PayegahApp
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormAsli());
+
+            using (frmLogin login = new frmLogin())
+            {
+                if (login.ShowDialog() == DialogResult.OK)
+                {
+                    Application.Run(new FrmDashboard());
+                }
+                else
+                {
+                    // اگر لاگین درست نبود یا کاربر زد ضربدر، کل برنامه ببنده
+                    Application.Exit();
+                }
+            }
         }
     }
 }

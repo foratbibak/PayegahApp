@@ -36,7 +36,10 @@ namespace PayegahDataLayer
         public string MotherPhoneNumber { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> RegistrationDate { get; set; }
-    
+        public string PersonFullName
+        {
+            get { return $"{PersonName} - {PersonFamily}"; }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Members> Members { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

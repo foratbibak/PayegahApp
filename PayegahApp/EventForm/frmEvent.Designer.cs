@@ -44,16 +44,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvEvent = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -237,13 +238,14 @@
             // 
             this.dgvEvent.AllowUserToAddRows = false;
             this.dgvEvent.AllowUserToDeleteRows = false;
-            this.dgvEvent.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEvent.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvEvent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEvent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
-            this.colMemID,
-            this.colEventID,
-            this.colDateRegestration});
+            this.PersonFullName,
+            this.PersonID,
+            this.EventTitle,
+            this.Date});
             this.dgvEvent.Location = new System.Drawing.Point(9, 25);
             this.dgvEvent.Name = "dgvEvent";
             this.dgvEvent.ReadOnly = true;
@@ -251,35 +253,6 @@
             this.dgvEvent.TabIndex = 0;
             this.dgvEvent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvent_CellClick);
             this.dgvEvent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvent_CellContentClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "ID";
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colMemID
-            // 
-            this.colMemID.DataPropertyName = "MemID";
-            this.colMemID.HeaderText = "کدملی";
-            this.colMemID.Name = "colMemID";
-            this.colMemID.ReadOnly = true;
-            // 
-            // colEventID
-            // 
-            this.colEventID.DataPropertyName = "EventID";
-            this.colEventID.HeaderText = "مراسم";
-            this.colEventID.Name = "colEventID";
-            this.colEventID.ReadOnly = true;
-            // 
-            // colDateRegestration
-            // 
-            this.colDateRegestration.DataPropertyName = "DateRegestration";
-            this.colDateRegestration.HeaderText = "تاریخ ثبت شده";
-            this.colDateRegestration.Name = "colDateRegestration";
-            this.colDateRegestration.ReadOnly = true;
             // 
             // groupBox3
             // 
@@ -354,6 +327,50 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "ID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // PersonFullName
+            // 
+            this.PersonFullName.DataPropertyName = "PersonFullName";
+            this.PersonFullName.FillWeight = 369.5432F;
+            this.PersonFullName.HeaderText = "نام و نام خانوادگی";
+            this.PersonFullName.Name = "PersonFullName";
+            this.PersonFullName.ReadOnly = true;
+            this.PersonFullName.Width = 200;
+            // 
+            // PersonID
+            // 
+            this.PersonID.DataPropertyName = "PersonID";
+            this.PersonID.FillWeight = 10.15228F;
+            this.PersonID.HeaderText = "کدملی";
+            this.PersonID.Name = "PersonID";
+            this.PersonID.ReadOnly = true;
+            this.PersonID.Width = 200;
+            // 
+            // EventTitle
+            // 
+            this.EventTitle.DataPropertyName = "EventTitle";
+            this.EventTitle.FillWeight = 10.15228F;
+            this.EventTitle.HeaderText = "مراسم";
+            this.EventTitle.Name = "EventTitle";
+            this.EventTitle.ReadOnly = true;
+            this.EventTitle.Width = 200;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.FillWeight = 10.15228F;
+            this.Date.HeaderText = "تاریخ ثبت شده";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 200;
+            // 
             // frmEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -407,10 +424,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkActive;
         private System.Windows.Forms.CheckBox chkNotActive;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEventID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDateRegestration;
         private Stimulsoft.Report.StiReport stiReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EventTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
     }
 }

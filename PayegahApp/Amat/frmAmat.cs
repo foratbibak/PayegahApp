@@ -48,7 +48,16 @@ namespace PayegahApp.Amat
                 {
                     data = data.Where(c => c.IsActive == false).ToList();
                 }
-                dgvAmad.DataSource = data;
+                var Join = data.Select(s => new
+                {
+                    s.AmadID,
+                    s.AmadTitle,
+                    s.AmadType.AmadTypeTitle,
+                    s.AmadCode,
+                    Date = s.AmadDate != null ? s.AmadDate.Value.ToShamsi() : ""
+
+                }).ToList();
+                dgvAmad.DataSource = Join;
             }
         }
         void cmbAmad()
@@ -57,7 +66,7 @@ namespace PayegahApp.Amat
             {
 
                 var list = db.AmadTypeRepository.GetAll().Where(e => e.IsActive == true).ToList();
-                cmbAmadType.DisplayMember = "AmadTitle";
+                cmbAmadType.DisplayMember = "AmadTypeTitle";
                 cmbAmadType.ValueMember = "AmadTypeIID";
                 cmbAmadType.DataSource = list;
             }
@@ -137,7 +146,7 @@ namespace PayegahApp.Amat
                 Amad et = new Amad()
                 {
                     AmadTitle = txtTitle.Text,
-                    AmadTypeId = EventType,
+                    AmadTypeTitle = EventType,
                     AmadCode = CodeCast,
                     IsActive = true,
                     AmadDate = DateTime.Now
@@ -187,7 +196,7 @@ namespace PayegahApp.Amat
                     {
                         Get.AmadTitle = txtTitle.Text;
                         Get.AmadCode = CodeCast;
-                        Get.AmadTypeId = AmadType;
+                        Get.AmadCode = AmadType;
                     }
                     db.AmadRepository.Update(Get);
                     db.Save();
