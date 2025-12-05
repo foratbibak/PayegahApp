@@ -361,7 +361,7 @@ namespace PayegahApp.Amat
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvAmadM.DataSource = db.MemberEventRepository.FillterByCodeAmad(txtSearch.Text);
+                dgvAmadM.DataSource = db.MemberEventRepository.FilterByCodeAmad(txtSearch.Text);
 
             }
         }

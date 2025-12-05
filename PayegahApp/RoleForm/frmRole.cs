@@ -386,7 +386,8 @@ namespace PayegahApp.RollForm
                     item.Cells[1].Value.ToString(),
                     item.Cells[2].Value.ToString(),
                     item.Cells[3].Value.ToString(),
-                    item.Cells[4].Value.ToString()
+                    item.Cells[4].Value.ToString(),
+                    item.Cells[5].Value.ToString()
 
                     );
             }
@@ -399,7 +400,7 @@ namespace PayegahApp.RollForm
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvRole.DataSource = db.MemberEventRepository.FillterByCodeRole(txtSearch.Text);
+                dgvRole.DataSource = db.MemberEventRepository.FilterByCodeRole(txtSearch.Text);
 
             }
         }

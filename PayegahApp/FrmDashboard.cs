@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Accounting.utility.Convertor;
+﻿using Accounting.utility.Convertor;
 using PayegahApp.Amat;
 using PayegahApp.EventForm;
 using PayegahApp.frmEntrance_Exit;
@@ -16,6 +7,16 @@ using PayegahApp.OperationsForm;
 using PayegahApp.Pesrsons;
 using PayegahApp.Reports;
 using PayegahApp.RollForm;
+using PayegahUtility;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PayegahApp
 {
@@ -39,6 +40,7 @@ namespace PayegahApp
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
+            AppUtility.SetFormRounded(this, 30);
             timerr = new Timer();
             timerr.Interval = 1000;
             timerr.Tick += Timer_Tick;
@@ -117,6 +119,12 @@ namespace PayegahApp
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            aboutus aboutus = new aboutus();
+            aboutus.ShowDialog();
         }
     }
 }

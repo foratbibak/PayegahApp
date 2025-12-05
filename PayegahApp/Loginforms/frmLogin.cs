@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PayegahDataLayer.Context;
+using PayegahUtility;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PayegahDataLayer.Context;
 
 namespace PayegahApp.Loginforms
 {
@@ -20,7 +21,7 @@ namespace PayegahApp.Loginforms
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-
+            AppUtility.SetFormRounded(this, 30);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

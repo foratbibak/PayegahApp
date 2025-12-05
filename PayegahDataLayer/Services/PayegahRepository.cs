@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Accounting.utility.Convertor;
 using PayegahDataLayer.Context;
 
 
@@ -17,13 +18,13 @@ namespace PayegahDataLayer.Services
         public PayegahRepository(PayegahDbEntities db)
         {
             _db = db;
-            _dbSet=_db.Set<TEntity>();
-            
+            _dbSet = _db.Set<TEntity>();
+
         }
         public virtual IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> where = null)
         {
             IQueryable<TEntity> qury = _dbSet;
-            if(where != null)
+            if (where != null)
             {
                 qury = qury.Where(where);
             }
@@ -33,18 +34,18 @@ namespace PayegahDataLayer.Services
         {
             return _dbSet.Find(Id);
         }
-        public virtual void Insert (TEntity entity)
+        public virtual void Insert(TEntity entity)
         {
             _dbSet.Add(entity);
         }
-        public virtual void Update (TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             _dbSet.Attach(entity);
             _db.Entry(entity).State = EntityState.Modified;
-        }   
-        public virtual void Delete (TEntity entity)
+        }
+        public virtual void Delete(TEntity entity)
         {
-            if(_db.Entry(entity).State == EntityState.Detached)
+            if (_db.Entry(entity).State == EntityState.Detached)
             {
                 _dbSet.Attach(entity);
             }
@@ -52,28 +53,119 @@ namespace PayegahDataLayer.Services
         }
         public virtual void DeletebyId(Object Id)
         {
-            var entity =GetbyID(Id);
-            Delete(entity);           
+            var entity = GetbyID(Id);
+            Delete(entity);
         }
-        public virtual IEnumerable<Persons> Fillter(string parameter)
+        public virtual IEnumerable<Persons> Fillter(string parameter) { return _db.Persons.Where(p => (p.PersonName + " " + p.PersonFamily).Contains(parameter) || p.PhoneNumber.Contains(parameter)).ToList(); }
+
+        public virtual IEnumerable<object> FilterByCodeEvent(string parameter)
         {
-            return _db.Persons.Where(p=> (p.PersonName + " " + p.PersonFamily).Contains(parameter)||p.PhoneNumber.Contains(parameter)).ToList();
+            var data = _db.EventMembers
+                .Include(e => e.Members.Persons)
+                .Include(e => e.Events)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(parameter))
+            {
+                data = data.Where(e =>
+                    e.Members.PersonID.ToString().Contains(parameter)
+                    || e.EventID.ToString().Contains(parameter));
+            }
+
+            var list = data.ToList();
+
+            return list.Select(s => new
+            {
+                s.ID,
+                s.Members.Persons.PersonFullName,
+                s.Members.PersonID,
+                s.Events.EventTitle,
+                s.Events.EventType.Title,
+                Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
+            }).ToList();
         }
-        public virtual IEnumerable<EventMembers> FillterByCodeEvent(string parameter)
+
+        public virtual IEnumerable<object> FilterByCodeRole(string parameter)
         {
-            return _db.EventMembers.Where(e => (e.Members.PersonID+" "+e.EventID).Contains(parameter)).ToList();
+            var data = _db.MemberRole
+                .Include(e => e.Members.Persons)
+                .Include(e => e.Role)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(parameter))
+            {
+                data = data.Where(e =>
+                    e.Members.PersonID.ToString().Contains(parameter)
+                    || e.Role_ID.ToString().Contains(parameter));
+            }
+
+            var list = data.ToList();
+
+            return list.Select(s => new
+            {
+                s.ID,
+                s.Role.Role_ID,
+                s.Members.Persons.PersonFullName,
+                s.Members.PersonID,
+                s.Role.RoleTitle,
+                s.RoleType.TypeTitle,
+                Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
+            }).ToList();
         }
-        public virtual IEnumerable<MemberRole> FillterByCodeRole(string parameter)
+
+        public virtual IEnumerable<object> FilterByCodeOp(string parameter)
         {
-            return _db.MemberRole.Where(e => (e.Members.PersonID + " " + e.Role_ID).Contains(parameter)).ToList();
+            var data = _db.OperationMembers
+                .Include(e => e.Members.Persons)
+                .Include(e => e.Operations)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(parameter))
+            {
+                data = data.Where(e =>
+                    e.Members.PersonID.ToString().Contains(parameter)
+                    || e.OperationID.ToString().Contains(parameter));
+            }
+
+            var list = data.ToList();
+
+            return list.Select(s => new
+            {
+                s.OperationMemberID,
+                s.Members.Persons.PersonFullName,
+                s.Members.PersonID,
+                s.Operations.OperationTitle,
+                s.OperationDgree.DgTitle,
+                Date = s.DateRegstration != null ? s.DateRegstration.ToShamsi() : ""
+            }).ToList();
         }
-        public virtual IEnumerable<OperationMembers> FillterByCodeOp(string parameter)
+
+        public virtual IEnumerable<object> FilterByCodeAmad(string parameter)
         {
-            return _db.OperationMembers.Where(e => (e.Members.PersonID + " " + e.OperationID).Contains(parameter)).ToList();
-        }
-        public virtual IEnumerable<AmadMembers> FillterByCodeAmad(string parameter)
-        {
-            return _db.AmadMembers.Where(e => (e.Members.PersonID + " " + e.AmadID).Contains(parameter)).ToList();
+            var data = _db.AmadMembers
+                .Include(e => e.Members.Persons)
+                .Include(e => e.Amad.AmadType)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(parameter))
+            {
+                data = data.Where(e =>
+                    e.Members.PersonID.ToString().Contains(parameter)
+                    || e.Members.Persons.PersonName.Contains(parameter)
+                    || e.Members.Persons.PersonFamily.Contains(parameter));
+            }
+
+            var list = data.ToList();
+
+            return list.Select(s => new
+            {
+                s.ID,
+                PersonFullName = s.Members.Persons.PersonName + " " + s.Members.Persons.PersonFamily,
+                s.Members.PersonID,
+                AmadTitle = s.Amad.AmadTitle,
+                AmadTypeTitle = s.Amad.AmadType.AmadTypeTitle,
+                Date = s.AmadDateRegestration != null ? s.AmadDateRegestration.Value.ToShamsi() : ""
+            }).ToList();
         }
     }
 }

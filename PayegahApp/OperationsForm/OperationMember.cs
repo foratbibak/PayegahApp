@@ -372,7 +372,7 @@ namespace PayegahApp.OperationsForm
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvOpM.DataSource = db.MemberEventRepository.FillterByCodeOp(txtSearch.Text);
+                dgvOpM.DataSource = db.MemberEventRepository.FilterByCodeOp(txtSearch.Text);
 
             }
         }

@@ -347,7 +347,7 @@ namespace PayegahApp.EventForm
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvEvent.DataSource=db.MemberEventRepository.FillterByCodeEvent(txtSearch.Text);
+                dgvEvent.DataSource=db.MemberEventRepository.FilterByCodeEvent(txtSearch.Text);
             }
         }
     }
