@@ -94,7 +94,7 @@ namespace PayegahApp.Reports
                                  .ToList()
                                  .Select(a => new
                                  {
-                                     a.MemID,
+                                     a.Members.PersonID,
                                      a.AmadID,
                                      AmadDateRegestration = ToShamsi((DateTime)a.AmadDateRegestration)
                                  })
@@ -106,7 +106,7 @@ namespace PayegahApp.Reports
                                  .ToList()
                                  .Select(e => new
                                  {
-                                     e.MemID,
+                                     e.Members.PersonID,
                                      e.EventID,
                                      DateRegestration = ToShamsi((DateTime)e.DateRegestration)
                                  })
@@ -118,7 +118,7 @@ namespace PayegahApp.Reports
                                  .ToList()
                                  .Select(o => new
                                  {
-                                     o.MemID,
+                                     o.Members.PersonID,
                                      o.OperationID,
                                      DateRegstration = ToShamsi(o.DateRegstration)
                                  })
@@ -130,7 +130,7 @@ namespace PayegahApp.Reports
                                  .ToList()
                                  .Select(r => new
                                  {
-                                     r.MemID,
+                                     r.Members.PersonID,
                                      r.Role_ID,
                                      r.RoleTypeID,
                                      DateRegestration = ToShamsi((DateTime)r.DateRegestration)

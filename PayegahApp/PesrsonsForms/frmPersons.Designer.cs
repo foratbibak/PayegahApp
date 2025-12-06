@@ -42,6 +42,7 @@
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvPerson = new System.Windows.Forms.DataGridView();
+            this.stiReport = new Stimulsoft.Report.StiReport();
             this.PersonId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NationalCod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +56,7 @@
             this.FatherPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatherPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistrationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stiReport = new Stimulsoft.Report.StiReport();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -235,13 +236,36 @@
             this.MatherJob,
             this.FatherPhoneNumber,
             this.MatherPhoneNumber,
-            this.RegistrationDate});
+            this.RegistrationDate,
+            this.IsActive});
             this.dgvPerson.Location = new System.Drawing.Point(9, 24);
             this.dgvPerson.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvPerson.Name = "dgvPerson";
             this.dgvPerson.ReadOnly = true;
             this.dgvPerson.Size = new System.Drawing.Size(959, 347);
             this.dgvPerson.TabIndex = 5;
+            this.dgvPerson.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvPerson_CellFormatting);
+            // 
+            // stiReport
+            // 
+            this.stiReport.CookieContainer = null;
+            this.stiReport.EngineVersion = Stimulsoft.Report.Engine.StiEngineVersion.EngineV2;
+            this.stiReport.ReferencedAssemblies = new string[] {
+        "System.Dll",
+        "System.Drawing.Dll",
+        "System.Windows.Forms.Dll",
+        "System.Data.Dll",
+        "System.Xml.Dll",
+        "Stimulsoft.Controls.Dll",
+        "Stimulsoft.Base.Dll",
+        "Stimulsoft.Report.Dll"};
+            this.stiReport.ReportAlias = "Report";
+            this.stiReport.ReportGuid = "505d0e360d0c4b91ad55b88945bec60f";
+            this.stiReport.ReportName = "Report";
+            this.stiReport.ReportSource = null;
+            this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
+            this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
+            this.stiReport.UseProgressInThread = false;
             // 
             // PersonId
             // 
@@ -359,26 +383,13 @@
             this.RegistrationDate.ReadOnly = true;
             this.RegistrationDate.Width = 160;
             // 
-            // stiReport
+            // IsActive
             // 
-            this.stiReport.CookieContainer = null;
-            this.stiReport.EngineVersion = Stimulsoft.Report.Engine.StiEngineVersion.EngineV2;
-            this.stiReport.ReferencedAssemblies = new string[] {
-        "System.Dll",
-        "System.Drawing.Dll",
-        "System.Windows.Forms.Dll",
-        "System.Data.Dll",
-        "System.Xml.Dll",
-        "Stimulsoft.Controls.Dll",
-        "Stimulsoft.Base.Dll",
-        "Stimulsoft.Report.Dll"};
-            this.stiReport.ReportAlias = "Report";
-            this.stiReport.ReportGuid = "505d0e360d0c4b91ad55b88945bec60f";
-            this.stiReport.ReportName = "Report";
-            this.stiReport.ReportSource = null;
-            this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
-            this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
-            this.stiReport.UseProgressInThread = false;
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.Width = 200;
             // 
             // frmPersons
             // 
@@ -437,5 +448,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FatherPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatherPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegistrationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

@@ -32,26 +32,32 @@ namespace PayegahApp.OperationsForm
         {
             using (UnitofWork db = new UnitofWork())
             {
-                dgvOPReports.DataSource = db.OPDescriptionRepository.GetAll();
+                 var data= db.OPDescriptionRepository.GetAll();
+                var Join = data.Select(s => new
+                {
+                    s.Operations.OperationTitle,
+                    s.Descreption,
+                    Date = s.RegestrationDate != null ? s.RegestrationDate.Value.ToShamsi() : "",
+                }).ToList();
+                dgvOPReports.DataSource = Join;
                 cmbOP();
-                ConvertDatesToShamsi();
             }
         }
-        private void ConvertDatesToShamsi()
-        {
-            foreach (DataGridViewRow row in dgvOPReports.Rows)
-            {
-                if (row.Cells["RegestrationDate"].Value != null &&
-                    DateTime.TryParse(row.Cells["RegestrationDate"].Value.ToString(), out DateTime date))
-                {
-                    row.Cells["RegestrationDate"].Value = date.ToShamsi();
-                }
-                else
-                {
-                    row.Cells["RegestrationDate"].Value = "";
-                }
-            }
-        }
+        //private void ConvertDatesToShamsi()
+        //{
+        //    foreach (DataGridViewRow row in dgvOPReports.Rows)
+        //    {
+        //        if (row.Cells["RegestrationDate"].Value != null &&
+        //            DateTime.TryParse(row.Cells["RegestrationDate"].Value.ToString(), out DateTime date))
+        //        {
+        //            row.Cells["RegestrationDate"].Value = date.ToShamsi();
+        //        }
+        //        else
+        //        {
+        //            row.Cells["RegestrationDate"].Value = "";
+        //        }
+        //    }
+        //}
         void cmbOP()
         {
             using (UnitofWork db = new UnitofWork())
@@ -67,9 +73,10 @@ namespace PayegahApp.OperationsForm
 
         private void btnInsertDe_Click(object sender, EventArgs e)
         {
+            
             if (string.IsNullOrWhiteSpace(txtDescription.Text))
             {
-                RtlMessageBox.Show("لطفا برای ثبت توضیحات یک عملیات را وارد فرمایید", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RtlMessageBox.Show("گزارش خود را وارد فرمایید.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtDescription.Focus();
                 return;
             }
@@ -78,15 +85,16 @@ namespace PayegahApp.OperationsForm
                 RtlMessageBox.Show("لطفا یک عملیات را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int cmbOP = (int)cmbOPeration.SelectedValue;
+            using (UnitofWork db = new UnitofWork())
+            {
+                int cmbOP = (int)cmbOPeration.SelectedValue;
             PayegahDataLayer.DecriptionOperation d = new PayegahDataLayer.DecriptionOperation()
             {
                 OperationID = cmbOP,
                 Descreption = txtDescription.Text,
                 RegestrationDate = DateTime.Now,
             };
-            using (UnitofWork db = new UnitofWork())
-            {
+            
                 db.OPDescriptionRepository.Insert(d);
                 db.Save();
                 RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد.");
@@ -113,7 +121,7 @@ namespace PayegahApp.OperationsForm
 
         private void Edit_Click(object sender, EventArgs e)
         {
-            if (dgvOPReports == null)
+            if (dgvOPReports != null)
             {
                 if (dgvOPReports.CurrentRow.Selected)
                 {
@@ -138,6 +146,10 @@ namespace PayegahApp.OperationsForm
                             Get.Descreption = txtDescription.Text;
                             Get.OperationID = cmbopCast;
                         }
+                        db.OPDescriptionRepository.Update(Get);
+                        db.Save();
+                        txtDescription.Clear();
+                        RtlMessageBox.Show("تغییرات اعمال شد");
                     }
                 }
               

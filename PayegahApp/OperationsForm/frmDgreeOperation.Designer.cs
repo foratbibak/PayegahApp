@@ -32,9 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDgreeOperation));
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.dgvDgree = new System.Windows.Forms.DataGridView();
-            this.colDgreeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDgTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRegestrationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnInsertDg = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -49,6 +46,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colDgreeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDgTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRegestrationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDgree)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -74,7 +75,8 @@
             this.dgvDgree.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colDgreeID,
             this.colDgTitle,
-            this.colRegestrationDate});
+            this.colRegestrationDate,
+            this.IsActive});
             this.dgvDgree.Location = new System.Drawing.Point(9, 30);
             this.dgvDgree.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDgree.Name = "dgvDgree";
@@ -83,31 +85,7 @@
             this.dgvDgree.TabIndex = 0;
             this.dgvDgree.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDgree_CellClick);
             this.dgvDgree.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDgree_CellContentClick);
-            // 
-            // colDgreeID
-            // 
-            this.colDgreeID.DataPropertyName = "DgreeID";
-            this.colDgreeID.HeaderText = "Column1";
-            this.colDgreeID.Name = "colDgreeID";
-            this.colDgreeID.ReadOnly = true;
-            this.colDgreeID.Visible = false;
-            // 
-            // colDgTitle
-            // 
-            this.colDgTitle.DataPropertyName = "DgTitle";
-            this.colDgTitle.HeaderText = " نام درجه";
-            this.colDgTitle.Name = "colDgTitle";
-            this.colDgTitle.ReadOnly = true;
-            this.colDgTitle.Width = 135;
-            // 
-            // colRegestrationDate
-            // 
-            this.colRegestrationDate.DataPropertyName = "RegestrationDate";
-            this.colRegestrationDate.FillWeight = 121.8274F;
-            this.colRegestrationDate.HeaderText = "تایخ ثبت شده";
-            this.colRegestrationDate.Name = "colRegestrationDate";
-            this.colRegestrationDate.ReadOnly = true;
-            this.colRegestrationDate.Width = 200;
+            this.dgvDgree.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDgree_CellFormatting);
             // 
             // groupBox4
             // 
@@ -299,6 +277,39 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
+            // colDgreeID
+            // 
+            this.colDgreeID.DataPropertyName = "DgreeID";
+            this.colDgreeID.HeaderText = "Column1";
+            this.colDgreeID.Name = "colDgreeID";
+            this.colDgreeID.ReadOnly = true;
+            this.colDgreeID.Visible = false;
+            // 
+            // colDgTitle
+            // 
+            this.colDgTitle.DataPropertyName = "DgTitle";
+            this.colDgTitle.HeaderText = " نام درجه";
+            this.colDgTitle.Name = "colDgTitle";
+            this.colDgTitle.ReadOnly = true;
+            this.colDgTitle.Width = 135;
+            // 
+            // colRegestrationDate
+            // 
+            this.colRegestrationDate.DataPropertyName = "RegestrationDate";
+            this.colRegestrationDate.FillWeight = 121.8274F;
+            this.colRegestrationDate.HeaderText = "تایخ ثبت شده";
+            this.colRegestrationDate.Name = "colRegestrationDate";
+            this.colRegestrationDate.ReadOnly = true;
+            this.colRegestrationDate.Width = 200;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.Width = 150;
+            // 
             // frmDgreeOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -345,9 +356,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox chkNotActive;
         private System.Windows.Forms.GroupBox groupBox1;
+        private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDgreeID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDgTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRegestrationDate;
-        private Stimulsoft.Report.StiReport stiReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

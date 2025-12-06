@@ -41,7 +41,7 @@ namespace PayegahApp.RollForm
                     PayegahDataLayer.RoleType Pr = db.RoleTypeRepository.GetAll().Where(pr => pr.Code == code).FirstOrDefault();
                     if (Pr != null)
                     {
-                        RtlMessageBox.Show("مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        RtlMessageBox.Show("کد مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtRoll.Clear();
                         txtCode.Clear();
                         return;
@@ -61,6 +61,7 @@ namespace PayegahApp.RollForm
                     RtlMessageBox.Show("مقام با موفقیت ثبت شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     db.Save();
                     txtRoll.Clear();
+                    txtCode.Clear();
                     BindGrid();
 
 
@@ -116,22 +117,24 @@ namespace PayegahApp.RollForm
                             txtCode.Clear();
                             return;
                         }
-                        Int64 code = Int64.Parse(txtCode.Text);
-                        PayegahDataLayer.RoleType pr =db.RoleTypeRepository.GetAll().Where(p=>p.Code==code).FirstOrDefault();
-                        if (pr == null)
-                        {
-                            RtlMessageBox.Show("کد مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        Int64 Code = Int64.Parse(txtCode.Text);
+                        //PayegahDataLayer.RoleType pr =db.RoleTypeRepository.GetAll().Where(p=>p.Code== Code).FirstOrDefault();
+                        //if (pr != null)
+                        //{
+                        //    RtlMessageBox.Show("کد مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    return;
+                        //}
                         int ID = int.Parse(dgvRollType.CurrentRow.Cells[0].Value.ToString());
                         var rl = db.RoleTypeRepository.GetbyID(ID);
                         if (rl != null)
                         {
                             rl.TypeTitle = txtRoll.Text;
-                            rl.Code = code;
+                            rl.Code = Code;
                         }
                         db.RoleTypeRepository.Update(rl);
                         db.Save();
+                        txtCode.Clear();
+                        txtRoll.Clear();
                         RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
                         BindGrid();
                     }

@@ -53,6 +53,7 @@
             this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperationType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -279,7 +280,8 @@
             this.colID,
             this.colOperationTitle,
             this.colOperationType,
-            this.colOperationDate});
+            this.colOperationDate,
+            this.IsActive});
             this.dgvOperation.Location = new System.Drawing.Point(9, 30);
             this.dgvOperation.Margin = new System.Windows.Forms.Padding(4);
             this.dgvOperation.Name = "dgvOperation";
@@ -287,6 +289,7 @@
             this.dgvOperation.Size = new System.Drawing.Size(443, 369);
             this.dgvOperation.TabIndex = 0;
             this.dgvOperation.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOperation_CellClick);
+            this.dgvOperation.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOperation_CellFormatting);
             // 
             // requiredFieldValidator1
             // 
@@ -350,6 +353,13 @@
             this.colOperationDate.ReadOnly = true;
             this.colOperationDate.Width = 200;
             // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            // 
             // frmAddOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -405,5 +415,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

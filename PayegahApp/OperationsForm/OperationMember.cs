@@ -103,7 +103,8 @@ namespace PayegahApp.OperationsForm
                     s.Members.PersonID,
                     s.Operations.OperationTitle,
                     s.OperationDgree.DgTitle,
-                    Date = s.DateRegstration != null ? s.DateRegstration.ToShamsi() : ""
+                    Date = s.DateRegstration != null ? s.DateRegstration.ToShamsi() : "",
+                    s.IsActive
 
 
                 }).ToList();
@@ -381,6 +382,16 @@ namespace PayegahApp.OperationsForm
         {
             OPDescription frm =new OPDescription();
             frm.ShowDialog();
+        }
+
+        private void dgvOpM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvOpM.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
         }
     }
 }

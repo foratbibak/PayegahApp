@@ -47,7 +47,6 @@
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.txtPstalCode = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtBirthday = new System.Windows.Forms.TextBox();
             this.txtFotherJob = new System.Windows.Forms.TextBox();
             this.txtMotherJob = new System.Windows.Forms.TextBox();
             this.txtFotherPhone = new System.Windows.Forms.TextBox();
@@ -59,6 +58,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.requiredFieldValidator4 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.txtBirthday = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -220,14 +220,6 @@
             this.txtPhone.Size = new System.Drawing.Size(170, 27);
             this.txtPhone.TabIndex = 6;
             // 
-            // txtBirthday
-            // 
-            this.txtBirthday.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.txtBirthday.Location = new System.Drawing.Point(570, 191);
-            this.txtBirthday.Name = "txtBirthday";
-            this.txtBirthday.Size = new System.Drawing.Size(170, 27);
-            this.txtBirthday.TabIndex = 7;
-            // 
             // txtFotherJob
             // 
             this.txtFotherJob.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -295,6 +287,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtBirthday);
             this.groupBox1.Controls.Add(this.txtFotherPhone);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtMotherPhone);
@@ -304,7 +297,6 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtFotherJob);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtBirthday);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtPhone);
             this.groupBox1.Controls.Add(this.label7);
@@ -345,6 +337,18 @@
             this.requiredFieldValidator4.ControlToValidate = this.txtPhone;
             this.requiredFieldValidator4.ErrorMessage = "لطفا شماره تماس عضو را وارد فرمایید.";
             this.requiredFieldValidator4.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator4.Icon")));
+            // 
+            // txtBirthday
+            // 
+            this.txtBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtBirthday.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtBirthday.Location = new System.Drawing.Point(570, 184);
+            this.txtBirthday.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtBirthday.Mask = "0000/00/00";
+            this.txtBirthday.Name = "txtBirthday";
+            this.txtBirthday.Size = new System.Drawing.Size(170, 29);
+            this.txtBirthday.TabIndex = 15;
+            this.txtBirthday.ValidatingType = typeof(System.DateTime);
             // 
             // frmAddorEdit
             // 
@@ -391,7 +395,6 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPstalCode;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtBirthday;
         private System.Windows.Forms.TextBox txtFotherJob;
         private System.Windows.Forms.TextBox txtMotherJob;
         private System.Windows.Forms.TextBox txtFotherPhone;
@@ -403,5 +406,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label13;
         private ValidationComponents.RequiredFieldValidator requiredFieldValidator4;
+        private System.Windows.Forms.MaskedTextBox txtBirthday;
     }
 }

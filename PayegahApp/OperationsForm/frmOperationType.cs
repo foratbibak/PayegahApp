@@ -233,5 +233,15 @@ namespace PayegahApp.OperationsForm
                 txtTitle.Clear();
             }
         }
+
+        private void dgvOpType_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvOpType.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
+        }
     }
 }

@@ -43,12 +43,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dgvAmadM = new System.Windows.Forms.DataGridView();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAmadFull = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmadDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtNatoinalCode = new System.Windows.Forms.TextBox();
             this.btnInsertAmad = new System.Windows.Forms.Button();
@@ -56,6 +50,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.stiReport = new Stimulsoft.Report.StiReport();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAmadFull = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmadDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAmadM)).BeginInit();
@@ -218,61 +219,15 @@
             this.colPersonID,
             this.colAmadFull,
             this.colType,
-            this.AmadDateRegestration});
+            this.AmadDateRegestration,
+            this.IsActive});
             this.dgvAmadM.Location = new System.Drawing.Point(9, 25);
             this.dgvAmadM.Name = "dgvAmadM";
             this.dgvAmadM.ReadOnly = true;
             this.dgvAmadM.Size = new System.Drawing.Size(752, 195);
             this.dgvAmadM.TabIndex = 0;
             this.dgvAmadM.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAmadM_CellClick);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "ID";
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // ColName
-            // 
-            this.ColName.DataPropertyName = "PersonFullName";
-            this.ColName.HeaderText = "نام و نام خانوادگی";
-            this.ColName.Name = "ColName";
-            this.ColName.ReadOnly = true;
-            this.ColName.Width = 200;
-            // 
-            // colPersonID
-            // 
-            this.colPersonID.DataPropertyName = "PersonID";
-            this.colPersonID.HeaderText = "کدملی";
-            this.colPersonID.Name = "colPersonID";
-            this.colPersonID.ReadOnly = true;
-            this.colPersonID.Width = 200;
-            // 
-            // colAmadFull
-            // 
-            this.colAmadFull.DataPropertyName = "AmadTitle";
-            this.colAmadFull.HeaderText = "تجهیزات";
-            this.colAmadFull.Name = "colAmadFull";
-            this.colAmadFull.ReadOnly = true;
-            this.colAmadFull.Width = 200;
-            // 
-            // colType
-            // 
-            this.colType.DataPropertyName = "AmadTypeTitle";
-            this.colType.HeaderText = "نوع تجهیزات";
-            this.colType.Name = "colType";
-            this.colType.ReadOnly = true;
-            this.colType.Width = 200;
-            // 
-            // AmadDateRegestration
-            // 
-            this.AmadDateRegestration.DataPropertyName = "Date";
-            this.AmadDateRegestration.HeaderText = "تاریخ ثبت شده";
-            this.AmadDateRegestration.Name = "AmadDateRegestration";
-            this.AmadDateRegestration.ReadOnly = true;
-            this.AmadDateRegestration.Width = 200;
+            this.dgvAmadM.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAmadM_CellFormatting);
             // 
             // groupBox2
             // 
@@ -375,6 +330,61 @@
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
             // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "ID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // ColName
+            // 
+            this.ColName.DataPropertyName = "PersonFullName";
+            this.ColName.HeaderText = "نام و نام خانوادگی";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
+            this.ColName.Width = 200;
+            // 
+            // colPersonID
+            // 
+            this.colPersonID.DataPropertyName = "PersonID";
+            this.colPersonID.HeaderText = "کدملی";
+            this.colPersonID.Name = "colPersonID";
+            this.colPersonID.ReadOnly = true;
+            this.colPersonID.Width = 200;
+            // 
+            // colAmadFull
+            // 
+            this.colAmadFull.DataPropertyName = "AmadTitle";
+            this.colAmadFull.HeaderText = "تجهیزات";
+            this.colAmadFull.Name = "colAmadFull";
+            this.colAmadFull.ReadOnly = true;
+            this.colAmadFull.Width = 200;
+            // 
+            // colType
+            // 
+            this.colType.DataPropertyName = "AmadTypeTitle";
+            this.colType.HeaderText = "نوع تجهیزات";
+            this.colType.Name = "colType";
+            this.colType.ReadOnly = true;
+            this.colType.Width = 200;
+            // 
+            // AmadDateRegestration
+            // 
+            this.AmadDateRegestration.DataPropertyName = "Date";
+            this.AmadDateRegestration.HeaderText = "تاریخ ثبت شده";
+            this.AmadDateRegestration.Name = "AmadDateRegestration";
+            this.AmadDateRegestration.ReadOnly = true;
+            this.AmadDateRegestration.Width = 200;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            // 
             // frmAmatMember
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,5 +444,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmadFull;
         private System.Windows.Forms.DataGridViewTextBoxColumn colType;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmadDateRegestration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

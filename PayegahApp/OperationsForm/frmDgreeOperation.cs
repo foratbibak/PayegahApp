@@ -261,5 +261,15 @@ namespace PayegahApp.OperationsForm
                 }
             }
         }
+
+        private void dgvDgree_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvDgree.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
+        }
     }
 }

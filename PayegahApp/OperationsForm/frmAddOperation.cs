@@ -94,7 +94,8 @@ namespace PayegahApp.OperationsForm
                     s.OperationID,
                     s.OperationTitle,
                     s.OperationType.OperationTypeTitle,
-                    Date = s.OperationDate != null ? s.OperationDate.ToShamsi() : ""
+                    Date = s.OperationDate != null ? s.OperationDate.ToShamsi() : "",
+                    s.IsActive
 
                 }).ToList();
                 dgvOperation.DataSource = Join;
@@ -267,6 +268,16 @@ namespace PayegahApp.OperationsForm
                     chkNotActive.Checked = false;
                     txtTitle.Clear();
                 }
+            }
+        }
+
+        private void dgvOperation_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvOperation.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
             }
         }
     }

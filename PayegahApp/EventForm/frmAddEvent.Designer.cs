@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddEvent));
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.dgvEvent = new System.Windows.Forms.DataGridView();
+            this.colEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
@@ -50,11 +56,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
-            this.colEventID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEventType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEventDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvent)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -82,7 +83,8 @@
             this.colEventTitle,
             this.colEventType,
             this.colDescription,
-            this.colEventDate});
+            this.colEventDate,
+            this.IsActive});
             this.dgvEvent.Location = new System.Drawing.Point(9, 30);
             this.dgvEvent.Margin = new System.Windows.Forms.Padding(4);
             this.dgvEvent.Name = "dgvEvent";
@@ -90,6 +92,56 @@
             this.dgvEvent.Size = new System.Drawing.Size(443, 369);
             this.dgvEvent.TabIndex = 0;
             this.dgvEvent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvent_CellClick);
+            this.dgvEvent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvEvent_CellFormatting);
+            // 
+            // colEventID
+            // 
+            this.colEventID.DataPropertyName = "EventID";
+            this.colEventID.HeaderText = "Column1";
+            this.colEventID.Name = "colEventID";
+            this.colEventID.ReadOnly = true;
+            this.colEventID.Visible = false;
+            // 
+            // colEventTitle
+            // 
+            this.colEventTitle.DataPropertyName = "EventTitle";
+            this.colEventTitle.HeaderText = "عنوان مراسم";
+            this.colEventTitle.Name = "colEventTitle";
+            this.colEventTitle.ReadOnly = true;
+            this.colEventTitle.Width = 135;
+            // 
+            // colEventType
+            // 
+            this.colEventType.DataPropertyName = "Title";
+            this.colEventType.FillWeight = 78.17259F;
+            this.colEventType.HeaderText = "نوع مراسم";
+            this.colEventType.Name = "colEventType";
+            this.colEventType.ReadOnly = true;
+            this.colEventType.Width = 135;
+            // 
+            // colDescription
+            // 
+            this.colDescription.DataPropertyName = "Description";
+            this.colDescription.FillWeight = 121.8274F;
+            this.colDescription.HeaderText = "توضیحات";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.ReadOnly = true;
+            this.colDescription.Width = 134;
+            // 
+            // colEventDate
+            // 
+            this.colEventDate.DataPropertyName = "Date";
+            this.colEventDate.HeaderText = "تاریخ ثبت شده";
+            this.colEventDate.Name = "colEventDate";
+            this.colEventDate.ReadOnly = true;
+            this.colEventDate.Width = 200;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -322,48 +374,6 @@
             this.requiredFieldValidator1.ErrorMessage = "لطفا نام شورا را وارد فرمایید.";
             this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
             // 
-            // colEventID
-            // 
-            this.colEventID.DataPropertyName = "EventID";
-            this.colEventID.HeaderText = "Column1";
-            this.colEventID.Name = "colEventID";
-            this.colEventID.ReadOnly = true;
-            this.colEventID.Visible = false;
-            // 
-            // colEventTitle
-            // 
-            this.colEventTitle.DataPropertyName = "EventTitle";
-            this.colEventTitle.HeaderText = "عنوان مراسم";
-            this.colEventTitle.Name = "colEventTitle";
-            this.colEventTitle.ReadOnly = true;
-            this.colEventTitle.Width = 135;
-            // 
-            // colEventType
-            // 
-            this.colEventType.DataPropertyName = "Title";
-            this.colEventType.FillWeight = 78.17259F;
-            this.colEventType.HeaderText = "نوع مراسم";
-            this.colEventType.Name = "colEventType";
-            this.colEventType.ReadOnly = true;
-            this.colEventType.Width = 135;
-            // 
-            // colDescription
-            // 
-            this.colDescription.DataPropertyName = "Description";
-            this.colDescription.FillWeight = 121.8274F;
-            this.colDescription.HeaderText = "توضیحات";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.ReadOnly = true;
-            this.colDescription.Width = 134;
-            // 
-            // colEventDate
-            // 
-            this.colEventDate.DataPropertyName = "Date";
-            this.colEventDate.HeaderText = "تاریخ ثبت شده";
-            this.colEventDate.Name = "colEventDate";
-            this.colEventDate.ReadOnly = true;
-            this.colEventDate.Width = 200;
-            // 
             // frmAddEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -421,5 +431,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEventType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEventDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

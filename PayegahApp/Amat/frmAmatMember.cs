@@ -92,7 +92,8 @@ namespace PayegahApp.Amat
                     s.Members.PersonID,
                     s.Amad.AmadTitle,
                     s.Amad.AmadType.AmadTypeTitle,
-                    Date = s.AmadDateRegestration != null ? s.AmadDateRegestration.Value.ToShamsi(): ""
+                    Date = s.AmadDateRegestration != null ? s.AmadDateRegestration.Value.ToShamsi(): "",
+                    s.IsActive
 
                 }).ToList();
                 dgvAmadM.DataSource = Join;
@@ -363,6 +364,16 @@ namespace PayegahApp.Amat
             {
                 dgvAmadM.DataSource = db.MemberEventRepository.FilterByCodeAmad(txtSearch.Text);
 
+            }
+        }
+
+        private void dgvAmadM_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAmadM.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
             }
         }
     }

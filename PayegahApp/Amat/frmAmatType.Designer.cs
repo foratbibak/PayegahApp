@@ -49,6 +49,7 @@
             this.colAmadTypeIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateRegistration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAmatType)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -92,7 +93,8 @@
             this.dgvAmatType.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAmadTypeIID,
             this.colTitle,
-            this.DateRegistration});
+            this.DateRegistration,
+            this.IsActive});
             this.dgvAmatType.Location = new System.Drawing.Point(9, 27);
             this.dgvAmatType.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAmatType.Name = "dgvAmatType";
@@ -100,6 +102,7 @@
             this.dgvAmatType.Size = new System.Drawing.Size(325, 304);
             this.dgvAmatType.TabIndex = 0;
             this.dgvAmatType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAmatType_CellClick);
+            this.dgvAmatType.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAmatType_CellFormatting);
             // 
             // groupBox2
             // 
@@ -139,6 +142,7 @@
             this.cmbFillter.Name = "cmbFillter";
             this.cmbFillter.Size = new System.Drawing.Size(221, 29);
             this.cmbFillter.TabIndex = 10;
+            this.cmbFillter.SelectedIndexChanged += new System.EventHandler(this.cmbFillter_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -271,7 +275,7 @@
             // 
             // colTitle
             // 
-            this.colTitle.DataPropertyName = "AmaTypeTitle";
+            this.colTitle.DataPropertyName = "AmadTypeTitle";
             this.colTitle.HeaderText = "نوع تجهیزات";
             this.colTitle.Name = "colTitle";
             this.colTitle.ReadOnly = true;
@@ -285,6 +289,13 @@
             this.DateRegistration.Name = "DateRegistration";
             this.DateRegistration.ReadOnly = true;
             this.DateRegistration.Width = 200;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
             // 
             // frmAmatType
             // 
@@ -335,5 +346,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmadTypeIID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateRegistration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

@@ -90,7 +90,8 @@ namespace PayegahApp.EventForm
                     s.Members.PersonID,
                     s.Events.EventTitle,
                     s.Events.EventType.Title,
-                    Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
+                    Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : "",
+                    s.IsActive
 
                 }).ToList();
                 dgvEvent.DataSource = Join;
@@ -348,6 +349,16 @@ namespace PayegahApp.EventForm
             using (UnitofWork db = new UnitofWork())
             {
                 dgvEvent.DataSource=db.MemberEventRepository.FilterByCodeEvent(txtSearch.Text);
+            }
+        }
+
+        private void dgvEvent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvEvent.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
             }
         }
     }

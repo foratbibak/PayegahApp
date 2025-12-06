@@ -31,30 +31,32 @@ namespace PayegahApp.PesrsonsForms
         {
             using (UnitofWork db = new UnitofWork())
             {
-                if (BaseValidator.IsFormValid(this.components))
+                if (!BaseValidator.IsFormValid(this.components))
+                    return;
+
+                if (!string.IsNullOrWhiteSpace(txtNationalCode.Text) && !Int64.TryParse(txtNationalCode.Text, out _))
                 {
-                    if (!string.IsNullOrWhiteSpace(txtNationalCode.Text) && !Int64.TryParse(txtNationalCode.Text, out _))
+                    RtlMessageBox.Show("کد ملی باید فقط شامل عدد باشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtNationalCode.Focus();
+                    return;
+                }
+
+                Int64 nationalCast = Int64.Parse(txtNationalCode.Text);
+                string defaultText = "نامشخص";
+
+                if (P_NationalCode == 0)
+                {
+                    var existingPerson = db.PersonsRepository.GetAll()
+                                            .FirstOrDefault(p => p.NationalCode == nationalCast);
+                    if (existingPerson != null)
                     {
-                        RtlMessageBox.Show("کد ملی باید فقط شامل عدد باشد.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        txtNationalCode.Focus();
+                        RtlMessageBox.Show("عضو وارد شده تکراری است.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    Int64 nationalcast = Int64.Parse(txtNationalCode.Text);
-                    if (P_NationalCode == 0)
-                    {
-                        Persons person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalcast).FirstOrDefault();
-                        if (person != null)
-                        {
-                            RtlMessageBox.Show("عضو وارد شده تکراری است.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
 
-
-                    string defaultText = "نامشخص";
-                    Persons persons = new Persons()
+                    Persons newPerson = new Persons()
                     {
-                        NationalCode = nationalcast,
+                        NationalCode = nationalCast,
                         PersonName = string.IsNullOrWhiteSpace(txtName.Text) ? defaultText : txtName.Text,
                         PersonFamily = string.IsNullOrWhiteSpace(txtFamily.Text) ? defaultText : txtFamily.Text,
                         PersonAddress = string.IsNullOrWhiteSpace(txtAddress.Text) ? defaultText : txtAddress.Text,
@@ -69,39 +71,44 @@ namespace PayegahApp.PesrsonsForms
                         IsActive = this.P_IsActive
                     };
 
-                    if (P_NationalCode == 0)
-                    {
-                        db.PersonsRepository.Insert(persons);
-                        DialogResult = DialogResult.OK;
-                        RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد");
-                    }
+                    db.PersonsRepository.Insert(newPerson);
+                    db.Save();
 
-                    else
+                    Members mem = new Members()
                     {
-                        db.PersonsRepository.Update(persons);
+                        PersonID = newPerson.NationalCode,
+                        IsActive = this.P_IsActive,
+                        RecordDate = DateTime.Now
+                    };
+                    db.MemberRepository.Insert(mem);
+                    db.Save();
+
+                    DialogResult = DialogResult.OK;
+                    RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد");
+                }
+                else 
+                {
+                    var existingPerson = db.PersonsRepository.GetbyID(P_NationalCode);
+                    if (existingPerson != null)
+                    {
+                        existingPerson.PersonName = string.IsNullOrWhiteSpace(txtName.Text) ? defaultText : txtName.Text;
+                        existingPerson.PersonFamily = string.IsNullOrWhiteSpace(txtFamily.Text) ? defaultText : txtFamily.Text;
+                        existingPerson.PersonAddress = string.IsNullOrWhiteSpace(txtAddress.Text) ? defaultText : txtAddress.Text;
+                        existingPerson.PostalCode = string.IsNullOrWhiteSpace(txtPstalCode.Text) ? defaultText : txtPstalCode.Text;
+                        existingPerson.PhoneNumber = string.IsNullOrWhiteSpace(txtPhone.Text) ? defaultText : txtPhone.Text;
+                        existingPerson.Birthday = string.IsNullOrWhiteSpace(txtBirthday.Text) ? defaultText : txtBirthday.Text;
+                        existingPerson.FotherJob = string.IsNullOrWhiteSpace(txtFotherJob.Text) ? defaultText : txtFotherJob.Text;
+                        existingPerson.MotherJob = string.IsNullOrWhiteSpace(txtMotherJob.Text) ? defaultText : txtMotherJob.Text;
+                        existingPerson.FotherPhoneNumber = string.IsNullOrWhiteSpace(txtFotherPhone.Text) ? defaultText : txtFotherPhone.Text;
+                        existingPerson.MotherPhoneNumber = string.IsNullOrWhiteSpace(txtMotherPhone.Text) ? defaultText : txtMotherPhone.Text;
+                        existingPerson.IsActive = this.P_IsActive;
+
+                        db.PersonsRepository.Update(existingPerson);
+                        db.Save();
+
                         DialogResult = DialogResult.OK;
                         RtlMessageBox.Show("عملیات ویرایش با موفقیت انجام شد");
                     }
-                    db.Save();
-                    if (P_NationalCode == 0)
-                    {
-                        using (UnitofWork dbb = new UnitofWork())
-                        {
-                            Int64 nationalCast = Int64.Parse(txtNationalCode.Text);
-                            Members mem = new Members()
-                            {
-
-
-                                PersonID = persons.NationalCode,
-                                IsActive = this.P_IsActive,
-                                RecordDate = DateTime.Now
-                            };
-                            dbb.MemberRepository.Insert(mem);
-                            dbb.Save();
-                        }
-                       
-                    }
-
                 }
             }
         }

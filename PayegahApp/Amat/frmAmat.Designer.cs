@@ -49,12 +49,13 @@
             this.btnAmadType = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvAmad = new System.Windows.Forms.DataGridView();
+            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmadTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmadTypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAmadCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -305,7 +306,8 @@
             this.AmadTitle,
             this.AmadTypeTitle,
             this.colAmadCode,
-            this.colDate});
+            this.colDate,
+            this.IsActive});
             this.dgvAmad.Location = new System.Drawing.Point(11, 30);
             this.dgvAmad.Margin = new System.Windows.Forms.Padding(4);
             this.dgvAmad.Name = "dgvAmad";
@@ -313,10 +315,18 @@
             this.dgvAmad.Size = new System.Drawing.Size(443, 369);
             this.dgvAmad.TabIndex = 0;
             this.dgvAmad.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAmad_CellClick);
+            this.dgvAmad.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvAmad_CellFormatting);
+            // 
+            // requiredFieldValidator1
+            // 
+            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator1.ControlToValidate = this.txtTitle;
+            this.requiredFieldValidator1.ErrorMessage = "لطفا نام شورا را وارد فرمایید.";
+            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
             // 
             // colID
             // 
-            this.colID.DataPropertyName = "AmatID";
+            this.colID.DataPropertyName = "AmadID";
             this.colID.HeaderText = "Column1";
             this.colID.Name = "colID";
             this.colID.ReadOnly = true;
@@ -355,12 +365,12 @@
             this.colDate.ReadOnly = true;
             this.colDate.Width = 200;
             // 
-            // requiredFieldValidator1
+            // IsActive
             // 
-            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
-            this.requiredFieldValidator1.ControlToValidate = this.txtTitle;
-            this.requiredFieldValidator1.ErrorMessage = "لطفا نام شورا را وارد فرمایید.";
-            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
             // 
             // frmAmat
             // 
@@ -418,5 +428,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AmadTypeTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmadCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

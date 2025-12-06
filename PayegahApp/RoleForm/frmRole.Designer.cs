@@ -59,6 +59,7 @@
             this.RoleTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRole)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -142,13 +143,15 @@
             this.PersonID,
             this.RoleTitle,
             this.TypeTitle,
-            this.Date});
+            this.Date,
+            this.IActive});
             this.dgvRole.Location = new System.Drawing.Point(7, 32);
             this.dgvRole.Name = "dgvRole";
             this.dgvRole.ReadOnly = true;
             this.dgvRole.Size = new System.Drawing.Size(872, 225);
             this.dgvRole.TabIndex = 1;
             this.dgvRole.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRole_CellClick);
+            this.dgvRole.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvRole_CellFormatting);
             // 
             // groupBox2
             // 
@@ -417,6 +420,13 @@
             this.Date.ReadOnly = true;
             this.Date.Width = 200;
             // 
+            // IActive
+            // 
+            this.IActive.DataPropertyName = "IActive";
+            this.IActive.HeaderText = "فعال/غیرفعال";
+            this.IActive.Name = "IActive";
+            this.IActive.ReadOnly = true;
+            // 
             // frmRole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -479,5 +489,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RoleTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IActive;
     }
 }

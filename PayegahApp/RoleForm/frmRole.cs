@@ -101,7 +101,8 @@ namespace PayegahApp.RollForm
                     s.Members.PersonID,
                     s.Role.RoleTitle,
                     s.RoleType.TypeTitle,
-                    Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
+                    Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : "",
+                    s.IActive
 
                 }).ToList();
                 dgvRole.DataSource = Join;
@@ -402,6 +403,16 @@ namespace PayegahApp.RollForm
             {
                 dgvRole.DataSource = db.MemberEventRepository.FilterByCodeRole(txtSearch.Text);
 
+            }
+        }
+
+        private void dgvRole_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvRole.Columns[e.ColumnIndex].Name == "IActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
             }
         }
     }

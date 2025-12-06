@@ -54,7 +54,8 @@ namespace PayegahApp.Amat
                     s.AmadTitle,
                     s.AmadType.AmadTypeTitle,
                     s.AmadCode,
-                    Date = s.AmadDate != null ? s.AmadDate.Value.ToShamsi() : ""
+                    Date = s.AmadDate != null ? s.AmadDate.Value.ToShamsi() : "",
+                    s.IsActive
 
                 }).ToList();
                 dgvAmad.DataSource = Join;
@@ -284,14 +285,17 @@ namespace PayegahApp.Amat
         {
             if (dgvAmad.CurrentRow.Selected)
             {
-                int ID = int.Parse(dgvAmad.CurrentRow.Cells[0].Value.ToString());
-                using (UnitofWork db = new UnitofWork())
+               if(dgvAmad.CurrentRow != null)
                 {
-                    var Get = db.AmadRepository.GetbyID(ID);
-                    if (Get != null)
+                    int ID = int.Parse(dgvAmad.CurrentRow.Cells[0].Value.ToString());
+                    using (UnitofWork db = new UnitofWork())
                     {
-                        txtTitle.Text = Get.AmadTitle;
-                        txtCode.Text = Get.AmadCode.ToString();
+                        var Get = db.AmadRepository.GetbyID(ID);
+                        if (Get != null)
+                        {
+                            txtTitle.Text = Get.AmadTitle;
+                            txtCode.Text = Get.AmadCode.ToString();
+                        }
                     }
                 }
             }
@@ -301,6 +305,16 @@ namespace PayegahApp.Amat
         {
             BindGrid();
             cmbAmad();
+        }
+
+        private void dgvAmad_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAmad.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
         }
     }
 }

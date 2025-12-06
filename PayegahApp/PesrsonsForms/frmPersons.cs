@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Accounting.utility.Convertor;
 using PayegahApp.PesrsonsForms;
 using PayegahDataLayer.Context;
 using PayegahDataLayer.Services;
@@ -22,13 +23,16 @@ namespace PayegahApp.Pesrsons
 
 
         private void frmPersons_Load(object sender, EventArgs e)
+
         {
+
             dgvPerson.AutoGenerateColumns = false;
             cmbFillter.Items.Add("همه");
             cmbFillter.Items.Add("فعال");
             cmbFillter.Items.Add("غیرفعال");
             cmbFillter.SelectedIndex = 1;
             dgvPerson.ForeColor = Color.Black;
+
             BindGrid();
         }
 
@@ -36,7 +40,7 @@ namespace PayegahApp.Pesrsons
         {
             using (UnitofWork db = new UnitofWork())
             {
-                var data=db.PersonsRepository.GetAll();
+                var data = db.PersonsRepository.GetAll();
                 if (cmbFillter.SelectedItem.ToString() == "فعال")
                 {
                     data = data.Where(x => x.IsActive == true).ToList();
@@ -46,6 +50,21 @@ namespace PayegahApp.Pesrsons
                     data = data.Where(x => x.IsActive == false).ToList();
                 }
                 dgvPerson.DataSource = data;
+            }
+        }
+        private void ConvertDatesToShamsi()
+        {
+            foreach (DataGridViewRow row in dgvPerson.Rows)
+            {
+                if (row.Cells["RegistrationDate"].Value != null &&
+                    DateTime.TryParse(row.Cells["RegistrationDate"].Value.ToString(), out DateTime date))
+                {
+                    row.Cells["RegistrationDate"].Value = date.ToShamsi();
+                }
+                else
+                {
+                    row.Cells["RegistrationDate"].Value = "";
+                }
             }
         }
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -63,11 +82,11 @@ namespace PayegahApp.Pesrsons
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            IsAcitve frm=new IsAcitve();
-            
-            if(frm.ShowDialog() == DialogResult.OK)
+            IsAcitve frm = new IsAcitve();
+
+            if (frm.ShowDialog() == DialogResult.OK)
             {
-                
+
                 BindGrid();
             }
         }
@@ -110,7 +129,7 @@ namespace PayegahApp.Pesrsons
             Dt.Columns.Add("FotherPhoneNumber");
             Dt.Columns.Add("MotherPhoneNumber");
             Dt.Columns.Add("RegistrationDate");
-            
+
 
 
 
@@ -149,8 +168,8 @@ namespace PayegahApp.Pesrsons
 
         private void btnNotActive_Click(object sender, EventArgs e)
         {
-            IsAcitve frm =new IsAcitve();
-            if(frm.ShowDialog() == DialogResult.OK)
+            IsAcitve frm = new IsAcitve();
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 BindGrid();
             }
@@ -159,6 +178,16 @@ namespace PayegahApp.Pesrsons
         private void cmbFillter_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGrid();
+        }
+
+        private void dgvPerson_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvPerson.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
         }
     }
 }

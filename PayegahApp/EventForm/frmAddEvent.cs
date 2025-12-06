@@ -74,7 +74,8 @@ namespace PayegahApp.EventForm
                     s.EventTitle,
                     s.EventType.Title,
                     s.Description,
-                    Date = s.EventDate != null ? s.EventDate.ToShamsi() : ""
+                    Date = s.EventDate != null ? s.EventDate.ToShamsi() : "",
+                    s.IsActive
 
                 }).ToList();
                 dgvEvent.DataSource = Join;
@@ -169,6 +170,9 @@ namespace PayegahApp.EventForm
                     };
                     db.EventsRepository.Insert(et);
                     db.Save();
+
+                    txtTitle.Clear();
+                    txtDescription.Clear();
                     RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BindGrid();
                 }
@@ -293,6 +297,16 @@ namespace PayegahApp.EventForm
         private void cmbFillter_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindGrid();
+        }
+
+        private void dgvEvent_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvEvent.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
         }
     }
 }

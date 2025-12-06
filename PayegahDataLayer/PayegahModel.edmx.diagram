@@ -31,9 +31,7 @@
         <AssociationConnector Association="PayegahDbModel.FK_Operations_OperationType" ManuallyRouted="false" />
         <EntityTypeShape EntityType="PayegahDbModel.AmadMembers" Width="1.5" PointX="5.25" PointY="11.5" />
         <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Members1" />
-        <EntityTypeShape EntityType="PayegahDbModel.DecriptionOperation" Width="1.5" PointX="8.25" PointY="2.125" />
         <EntityTypeShape EntityType="PayegahDbModel.OperationMembers" Width="1.5" PointX="8.25" PointY="6.625" />
-        <AssociationConnector Association="PayegahDbModel.FK_DecriptionOperation_Operations" />
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Members" />
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_OperationDgree" />
         <AssociationConnector Association="PayegahDbModel.FK_OperationMembers_Operations" />
@@ -45,6 +43,8 @@
         <EntityTypeShape EntityType="PayegahDbModel.Amad" Width="1.5" PointX="3" PointY="18.625" />
         <AssociationConnector Association="PayegahDbModel.FK_Amad_AmadType" />
         <AssociationConnector Association="PayegahDbModel.FK_AmadMembers_Amad" />
+        <EntityTypeShape EntityType="PayegahDbModel.DecriptionOperation" Width="1.5" PointX="8.25" PointY="2.125" />
+        <AssociationConnector Association="PayegahDbModel.FK_DecriptionOperation_Operations" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

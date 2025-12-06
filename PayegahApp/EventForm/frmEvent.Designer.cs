@@ -55,6 +55,7 @@
             this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -245,7 +246,8 @@
             this.PersonFullName,
             this.PersonID,
             this.EventTitle,
-            this.Date});
+            this.Date,
+            this.IsActive});
             this.dgvEvent.Location = new System.Drawing.Point(9, 25);
             this.dgvEvent.Name = "dgvEvent";
             this.dgvEvent.ReadOnly = true;
@@ -253,6 +255,7 @@
             this.dgvEvent.TabIndex = 0;
             this.dgvEvent.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvent_CellClick);
             this.dgvEvent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEvent_CellContentClick);
+            this.dgvEvent.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvEvent_CellFormatting);
             // 
             // groupBox3
             // 
@@ -371,6 +374,14 @@
             this.Date.ReadOnly = true;
             this.Date.Width = 200;
             // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.Width = 150;
+            // 
             // frmEvent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -430,5 +441,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

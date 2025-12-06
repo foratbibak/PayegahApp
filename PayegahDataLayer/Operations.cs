@@ -17,8 +17,8 @@ namespace PayegahDataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Operations()
         {
-            this.DecriptionOperation = new HashSet<DecriptionOperation>();
             this.OperationMembers = new HashSet<OperationMembers>();
+            this.DecriptionOperation = new HashSet<DecriptionOperation>();
         }
     
         public int OperationID { get; set; }
@@ -32,8 +32,8 @@ namespace PayegahDataLayer
         }
         public virtual OperationType OperationType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DecriptionOperation> DecriptionOperation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OperationMembers> OperationMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DecriptionOperation> DecriptionOperation { get; set; }
     }
 }

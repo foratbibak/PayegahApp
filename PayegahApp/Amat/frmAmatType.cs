@@ -232,5 +232,20 @@ namespace PayegahApp.Amat
         {
             BindGrid();
         }
+
+        private void dgvAmatType_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvAmatType.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void cmbFillter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGrid();
+        }
     }
 }

@@ -256,5 +256,15 @@ namespace PayegahApp.EventForm
         {
 
         }
+
+        private void dgvEventType_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgvEventType.Columns[e.ColumnIndex].Name == "Active" && e.Value != null)
+            {
+                bool isActive = (bool)e.Value;
+                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.FormattingApplied = true;
+            }
+        }
     }
 }
