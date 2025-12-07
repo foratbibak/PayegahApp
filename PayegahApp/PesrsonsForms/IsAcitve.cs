@@ -44,11 +44,20 @@ namespace PayegahApp.PesrsonsForms
                         txtNationalCode.Clear();
                         return;
                     }
-                    var person = db.PersonsRepository.GetbyID(national);
-                    if (person.IsActive != true)
+                    if (persons.IsActive != true)
                     {
-                        person.IsActive = true;
-                        db.PersonsRepository.Update(person);
+                        persons.IsActive = true;
+                        db.PersonsRepository.Update(persons);
+                        db.Save();
+
+                        var active = db.MemberRepository.GetAll().Where(p => p.IsActive == true).FirstOrDefault();
+                        bool IsActive = active.IsActive ?? false;
+
+                        if (!IsActive)
+                        {
+                            active.IsActive = true;
+                        }
+                        db.MemberRepository.Update(active);
                         db.Save();
                         RtlMessageBox.Show("فعال سازی عضو با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = DialogResult.OK;
@@ -94,14 +103,19 @@ namespace PayegahApp.PesrsonsForms
                         return;
                     }
 
-
-                    var person = db.PersonsRepository.GetbyID(national);
-
-
-                    if (person.IsActive == true)
+                    if (persons.IsActive == true)
                     {
-                        person.IsActive = false;
-                        db.PersonsRepository.Update(person);
+                        persons.IsActive = false;
+                        db.PersonsRepository.Update(persons);
+                        db.Save();
+                        var active = db.MemberRepository.GetAll().Where(p => p.IsActive == true).FirstOrDefault();
+                        bool IsActive = active.IsActive ?? false;
+
+                        if (IsActive)
+                        {
+                            active.IsActive = false;
+                        }
+                        db.MemberRepository.Update(active);
                         db.Save();
                         RtlMessageBox.Show("غیر فعال سازی عضو با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         DialogResult = DialogResult.OK;

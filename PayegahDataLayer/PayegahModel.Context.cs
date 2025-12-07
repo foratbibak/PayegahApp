@@ -31,20 +31,20 @@ namespace PayegahDataLayer
         public virtual DbSet<Events> Events { get; set; }
         public virtual DbSet<EventType> EventType { get; set; }
         public virtual DbSet<MemberRole> MemberRole { get; set; }
-        public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<OperationDgree> OperationDgree { get; set; }
         public virtual DbSet<Operations> Operations { get; set; }
         public virtual DbSet<OperationType> OperationType { get; set; }
-        public virtual DbSet<Persons> Persons { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<RoleType> RoleType { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<AmadMembers> AmadMembers { get; set; }
         public virtual DbSet<OperationMembers> OperationMembers { get; set; }
-        public virtual DbSet<Attendance_absence> Attendance_absence { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<AmadType> AmadType { get; set; }
         public virtual DbSet<Amad> Amad { get; set; }
         public virtual DbSet<DecriptionOperation> DecriptionOperation { get; set; }
+        public virtual DbSet<Attendance_absence> Attendance_absence { get; set; }
+        public virtual DbSet<Members> Members { get; set; }
+        public virtual DbSet<Persons> Persons { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

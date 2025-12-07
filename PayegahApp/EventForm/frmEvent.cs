@@ -87,7 +87,7 @@ namespace PayegahApp.EventForm
                 {
                     s.ID,
                     s.Members.Persons.PersonFullName,
-                    s.Members.PersonID,
+                    s.Members.Persons.NationalCode,
                     s.Events.EventTitle,
                     s.Events.EventType.Title,
                     Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : "",
@@ -106,7 +106,7 @@ namespace PayegahApp.EventForm
                 Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
                 using (UnitofWork db = new UnitofWork())
                 {
-                    Members m = db.MemberRepository.GetAll().Where(e => e.MemID == NationalCodeCast).FirstOrDefault();
+                    //Members m = db.MemberRepository.GetAll().Where(e => e.MemID == NationalCodeCast).FirstOrDefault();
                     var Get = db.MemberEventRepository.GetbyID(ID);
                     bool IsActive = Get.IsActive ?? false;
                     if (Active)
@@ -166,12 +166,18 @@ namespace PayegahApp.EventForm
             Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
             using (UnitofWork db = new UnitofWork())
             {
-                Members mem = db.MemberRepository.GetAll().Where(n => n.PersonID == NationalCodeCast).FirstOrDefault();
+                Members mem = db.MemberRepository.GetAll().Where(n => n.Persons.NationalCode == NationalCodeCast).FirstOrDefault();
                 if (mem == null)
                 {
                     RtlMessageBox.Show("کدملی وارد شده یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNatoinalCode.Focus();
                     return;
+                }
+                if (mem.IsActive == true)
+                {
+                    RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+
                 }
                 if (cmbEvents.SelectedIndex < 0)
                 {
@@ -275,11 +281,17 @@ namespace PayegahApp.EventForm
                 Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
                 using (UnitofWork db = new UnitofWork())
                 {
-                    Members em = db.MemberRepository.GetAll().Where(m => m.PersonID == NationalCodeCast).FirstOrDefault();
+                    Members em = db.MemberRepository.GetAll().Where(m => m.Persons.NationalCode == NationalCodeCast).FirstOrDefault();
                     if (em == null)
                     {
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+                    if (em.IsActive == true)
+                    {
+                        RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+
                     }
                     var Get = db.MemberEventRepository.GetbyID(ID);
                     if (cmbEvents.SelectedIndex < 0)
@@ -317,7 +329,7 @@ namespace PayegahApp.EventForm
                     var Get = db.MemberEventRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtNatoinalCode.Text = Get.Members.PersonID.ToString();
+                        txtNatoinalCode.Text = Get.Members.Persons.NationalCode.ToString();
                     }
                 }
             }

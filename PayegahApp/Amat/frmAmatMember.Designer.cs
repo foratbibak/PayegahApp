@@ -52,7 +52,7 @@
             this.stiReport = new Stimulsoft.Report.StiReport();
             this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NationalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAmadFull = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AmadDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -216,7 +216,7 @@
             this.dgvAmadM.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colID,
             this.ColName,
-            this.colPersonID,
+            this.NationalCode,
             this.colAmadFull,
             this.colType,
             this.AmadDateRegestration,
@@ -346,13 +346,13 @@
             this.ColName.ReadOnly = true;
             this.ColName.Width = 200;
             // 
-            // colPersonID
+            // NationalCode
             // 
-            this.colPersonID.DataPropertyName = "PersonID";
-            this.colPersonID.HeaderText = "کدملی";
-            this.colPersonID.Name = "colPersonID";
-            this.colPersonID.ReadOnly = true;
-            this.colPersonID.Width = 200;
+            this.NationalCode.DataPropertyName = "NationalCode";
+            this.NationalCode.HeaderText = "کدملی";
+            this.NationalCode.Name = "NationalCode";
+            this.NationalCode.ReadOnly = true;
+            this.NationalCode.Width = 200;
             // 
             // colAmadFull
             // 
@@ -440,7 +440,7 @@
         private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NationalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAmadFull;
         private System.Windows.Forms.DataGridViewTextBoxColumn colType;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmadDateRegestration;

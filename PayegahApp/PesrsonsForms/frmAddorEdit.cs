@@ -15,7 +15,7 @@ namespace PayegahApp.PesrsonsForms
 {
     public partial class frmAddorEdit : Form
     {
-        public Int64 P_NationalCode = 0;
+        public Int64 ID = 0;
         bool P_IsActive = true;
         public frmAddorEdit()
         {
@@ -44,7 +44,7 @@ namespace PayegahApp.PesrsonsForms
                 Int64 nationalCast = Int64.Parse(txtNationalCode.Text);
                 string defaultText = "نامشخص";
 
-                if (P_NationalCode == 0)
+                if (ID == 0)
                 {
                     var existingPerson = db.PersonsRepository.GetAll()
                                             .FirstOrDefault(p => p.NationalCode == nationalCast);
@@ -76,7 +76,7 @@ namespace PayegahApp.PesrsonsForms
 
                     Members mem = new Members()
                     {
-                        PersonID = newPerson.NationalCode,
+                        PersonID = newPerson.PersonID,
                         IsActive = this.P_IsActive,
                         RecordDate = DateTime.Now
                     };
@@ -88,7 +88,7 @@ namespace PayegahApp.PesrsonsForms
                 }
                 else
                 {
-                    var person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalCast && p.NationalCode != P_NationalCode).FirstOrDefault();
+                    var person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalCast && p.PersonID !=ID ).FirstOrDefault();
 
                     if (person != null)
                     {
@@ -99,7 +99,7 @@ namespace PayegahApp.PesrsonsForms
 
 
 
-                    var existingPerson = db.PersonsRepository.GetbyID(P_NationalCode);
+                    var existingPerson = db.PersonsRepository.GetbyID(ID);
                     if (existingPerson != null)
                     {
                         existingPerson.NationalCode = nationalCast;
@@ -114,13 +114,12 @@ namespace PayegahApp.PesrsonsForms
                         existingPerson.FotherPhoneNumber = string.IsNullOrWhiteSpace(txtFotherPhone.Text) ? defaultText : txtFotherPhone.Text;
                         existingPerson.MotherPhoneNumber = string.IsNullOrWhiteSpace(txtMotherPhone.Text) ? defaultText : txtMotherPhone.Text;
                         existingPerson.IsActive = this.P_IsActive;
-
-                        db.PersonsRepository.Update(existingPerson);
-                        db.Save();
-
-                        DialogResult = DialogResult.OK;
-                        RtlMessageBox.Show("عملیات ویرایش با موفقیت انجام شد");
                     }
+                    db.PersonsRepository.Update(existingPerson);
+                    db.Save();
+                    DialogResult = DialogResult.OK;
+                    RtlMessageBox.Show("عملیات ویرایش با موفقیت انجام شد");
+
                 }
             }
         }
@@ -129,7 +128,7 @@ namespace PayegahApp.PesrsonsForms
         {
 
 
-            if (P_NationalCode != 0)
+            if (ID != 0)
             {
                 if (!string.IsNullOrWhiteSpace(txtNationalCode.Text) && !Int64.TryParse(txtNationalCode.Text, out _))
                 {
@@ -142,7 +141,7 @@ namespace PayegahApp.PesrsonsForms
                 {
                     this.Text = "عملیات ویرایش";
                     btnSabt.Text = "ویرایش";
-                    var Person = db.PersonsRepository.GetbyID(P_NationalCode);
+                    var Person = db.PersonsRepository.GetbyID(ID);
                     txtName.Text = Person.PersonName;
                     txtFamily.Text = Person.PersonFamily;
                     txtNationalCode.Text = Person.NationalCode.ToString();

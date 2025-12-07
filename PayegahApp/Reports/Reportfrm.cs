@@ -27,6 +27,7 @@ namespace PayegahApp.Reports
             txtToDate.Text = DateTime.Now.ToShamsi();
             dgvResults.ForeColor = Color.Black;
             dgvResults.AutoGenerateColumns = true;
+
             var tables = new List<string>
             {
                 "حضور و غیاب",
@@ -46,17 +47,17 @@ namespace PayegahApp.Reports
             if (string.IsNullOrWhiteSpace(shamsiDate))
                 throw new ArgumentException("تاریخ وارد نشده است.");
 
-            var persianCalendar = new PersianCalendar();
+            var pc = new PersianCalendar();
             var parts = shamsiDate.Split('/');
 
             if (parts.Length != 3)
-                throw new FormatException("فرمت تاریخ صحیح نیست. مثال: 1404/08/10");
+                throw new FormatException("فرمت تاریخ صحیح نیست.");
 
-            int year = int.Parse(parts[0]);
-            int month = int.Parse(parts[1]);
-            int day = int.Parse(parts[2]);
+            int y = int.Parse(parts[0]);
+            int m = int.Parse(parts[1]);
+            int d = int.Parse(parts[2]);
 
-            return persianCalendar.ToDateTime(year, month, day, 0, 0, 0, 0);
+            return pc.ToDateTime(y, m, d, 0, 0, 0, 0);
         }
 
         private string ToShamsi(DateTime dt)
@@ -76,25 +77,24 @@ namespace PayegahApp.Reports
                 {
                     case "حضور و غیاب":
                         return db.Attendance_absence
-                                 .Where(a => a.RegestrationDate >= fromDate && a.RegestrationDate <= toDate)
+                                 .Where(a => a.RegestrationDate >= fromDate && a.RegestrationDate < toDate)
                                  .ToList()
                                  .Select(a => new
                                  {
-                                     a.PersonID,
-                                     EntranceDate = string.IsNullOrEmpty(a.EntranceDate)? "": DateTime.Parse(a.EntranceDate).ToShamsi(),
-
-                                     ExitDate = string.IsNullOrEmpty(a.ExitDate)? "": DateTime.Parse(a.ExitDate).ToShamsi(),
+                                     a.Persons.NationalCode,
+                                     EntranceDate = string.IsNullOrEmpty(a.EntranceDate) ? "" : DateTime.Parse(a.EntranceDate).ToShamsi(),
+                                     ExitDate = string.IsNullOrEmpty(a.ExitDate) ? "" : DateTime.Parse(a.ExitDate).ToShamsi(),
                                      RegestrationDate = ToShamsi((DateTime)a.RegestrationDate)
                                  })
                                  .ToList();
 
                     case "تجهیزات":
                         return db.AmadMembers
-                                 .Where(a => a.AmadDateRegestration >= fromDate && a.AmadDateRegestration <= toDate)
+                                 .Where(a => a.AmadDateRegestration >= fromDate && a.AmadDateRegestration < toDate)
                                  .ToList()
                                  .Select(a => new
                                  {
-                                     a.Members.PersonID,
+                                     a.Members.Persons.NationalCode,
                                      a.Amad.AmadFullName,
                                      AmadDateRegestration = ToShamsi((DateTime)a.AmadDateRegestration)
                                  })
@@ -102,11 +102,11 @@ namespace PayegahApp.Reports
 
                     case "مراسمات":
                         return db.EventMembers
-                                 .Where(e => e.DateRegestration >= fromDate && e.DateRegestration <= toDate)
+                                 .Where(e => e.DateRegestration >= fromDate && e.DateRegestration < toDate)
                                  .ToList()
                                  .Select(e => new
                                  {
-                                     e.Members.PersonID,
+                                     e.Members.Persons.NationalCode,
                                      e.Events.EventFullName,
                                      DateRegestration = ToShamsi((DateTime)e.DateRegestration)
                                  })
@@ -114,23 +114,23 @@ namespace PayegahApp.Reports
 
                     case "عملیات":
                         return db.OperationMembers
-                                 .Where(o => o.DateRegstration >= fromDate && o.DateRegstration <= toDate)
+                                 .Where(o => o.DateRegstration >= fromDate && o.DateRegstration < toDate)
                                  .ToList()
                                  .Select(o => new
                                  {
-                                     o.Members.PersonID,
+                                     o.Members.Persons.NationalCode,
                                      o.Operations.OPFullName,
-                                     DateRegstration = ToShamsi(o.DateRegstration)
+                                     DateRegstration = ToShamsi((DateTime)o.DateRegstration)
                                  })
                                  .ToList();
 
                     case "اعضای شورا":
                         return db.MemberRole
-                                 .Where(r => r.DateRegestration >= fromDate && r.DateRegestration <= toDate)
+                                 .Where(r => r.DateRegestration >= fromDate && r.DateRegestration < toDate)
                                  .ToList()
                                  .Select(r => new
                                  {
-                                     r.Members.PersonID,
+                                     r.Members.Persons.NationalCode,
                                      r.Role.RoleTitle,
                                      r.RoleType.TypeTitle,
                                      DateRegestration = ToShamsi((DateTime)r.DateRegestration)
@@ -141,7 +141,6 @@ namespace PayegahApp.Reports
                         return null;
                 }
             }
-
         }
 
 
@@ -159,15 +158,17 @@ namespace PayegahApp.Reports
                 return;
             }
 
-            DateTime fromDate, toDate;
+            DateTime fromDate;
+            DateTime toDate;
+
             try
             {
-                fromDate = ConvertShamsiToGregorian(txtFromDate.Text.Trim());
-                toDate = ConvertShamsiToGregorian(txtToDate.Text.Trim());
+                fromDate = ConvertShamsiToGregorian(txtFromDate.Text.Trim()).Date;
+                toDate = ConvertShamsiToGregorian(txtToDate.Text.Trim()).Date.AddDays(1); // تا آخر روز
             }
-            catch (Exception)
+            catch
             {
-                RtlMessageBox.Show("فرمت تاریخ صحیح نیست. مثال: 1404/08/10", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RtlMessageBox.Show("فرمت تاریخ صحیح نیست.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -191,37 +192,35 @@ namespace PayegahApp.Reports
             switch (tableName)
             {
                 case "حضور و غیاب":
-                    dgvResults.Columns["PersonID"].HeaderText = "کد عضو";
+                    dgvResults.Columns["NationalCode"].HeaderText = "کدملی عضو";
                     dgvResults.Columns["EntranceDate"].HeaderText = "تاریخ ورود";
                     dgvResults.Columns["ExitDate"].HeaderText = "تاریخ خروج";
                     dgvResults.Columns["RegestrationDate"].HeaderText = "تاریخ ثبت";
                     break;
 
                 case "تجهیزات":
-                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["NationalCode"].HeaderText = "کدملی";
                     dgvResults.Columns["AmadFullName"].HeaderText = "تجهیزات";
                     dgvResults.Columns["AmadDateRegestration"].HeaderText = "تاریخ ثبت";
                     break;
 
                 case "مراسمات":
-                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["NationalCode"].HeaderText = "کدملی";
                     dgvResults.Columns["EventFullName"].HeaderText = "مراسم";
                     dgvResults.Columns["DateRegestration"].HeaderText = "تاریخ ثبت";
                     break;
 
                 case "عملیات":
-                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["NationalCode"].HeaderText = "کدملی";
                     dgvResults.Columns["OPFullName"].HeaderText = "عملیات";
                     dgvResults.Columns["DateRegstration"].HeaderText = "تاریخ ثبت";
-
                     break;
 
                 case "اعضای شورا":
-                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["NationalCode"].HeaderText = "کدملی";
                     dgvResults.Columns["RoleTitle"].HeaderText = "مقام";
                     dgvResults.Columns["TypeTitle"].HeaderText = "نوع مقام";
                     dgvResults.Columns["DateRegestration"].HeaderText = "تاریخ ثبت";
-
                     break;
             }
 
@@ -246,6 +245,3 @@ namespace PayegahApp.Reports
         }
     }
 }
-
-
-

@@ -55,7 +55,7 @@
             this.stiReport = new Stimulsoft.Report.StiReport();
             this.ColID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NationalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RoleTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,7 +140,7 @@
             this.dgvRole.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColID,
             this.PersonFullName,
-            this.PersonID,
+            this.NationalCode,
             this.RoleTitle,
             this.TypeTitle,
             this.Date,
@@ -388,13 +388,13 @@
             this.PersonFullName.ReadOnly = true;
             this.PersonFullName.Width = 200;
             // 
-            // PersonID
+            // NationalCode
             // 
-            this.PersonID.DataPropertyName = "PersonID";
-            this.PersonID.HeaderText = "کدملی";
-            this.PersonID.Name = "PersonID";
-            this.PersonID.ReadOnly = true;
-            this.PersonID.Width = 200;
+            this.NationalCode.DataPropertyName = "NationalCode";
+            this.NationalCode.HeaderText = "کدملی";
+            this.NationalCode.Name = "NationalCode";
+            this.NationalCode.ReadOnly = true;
+            this.NationalCode.Width = 200;
             // 
             // RoleTitle
             // 
@@ -485,7 +485,7 @@
         private Stimulsoft.Report.StiReport stiReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PersonID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NationalCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn RoleTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;

@@ -17,10 +17,10 @@ namespace PayegahDataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Members()
         {
+            this.AmadMembers = new HashSet<AmadMembers>();
             this.DgreeMembers = new HashSet<DgreeMembers>();
             this.EventMembers = new HashSet<EventMembers>();
             this.MemberRole = new HashSet<MemberRole>();
-            this.AmadMembers = new HashSet<AmadMembers>();
             this.OperationMembers = new HashSet<OperationMembers>();
         }
     
@@ -30,14 +30,14 @@ namespace PayegahDataLayer
         public Nullable<System.DateTime> RecordDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AmadMembers> AmadMembers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DgreeMembers> DgreeMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EventMembers> EventMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MemberRole> MemberRole { get; set; }
         public virtual Persons Persons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AmadMembers> AmadMembers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OperationMembers> OperationMembers { get; set; }
     }

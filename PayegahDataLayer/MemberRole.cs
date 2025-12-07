@@ -22,7 +22,7 @@ namespace PayegahDataLayer
         public Nullable<System.DateTime> DateRegestration { get; set; }
     
         public virtual RoleType RoleType { get; set; }
-        public virtual Members Members { get; set; }
         public virtual Role Role { get; set; }
+        public virtual Members Members { get; set; }
     }
 }

@@ -349,7 +349,7 @@
             // 
             // PersonID
             // 
-            this.PersonID.DataPropertyName = "PersonID";
+            this.PersonID.DataPropertyName = "NationalCode";
             this.PersonID.FillWeight = 10.15228F;
             this.PersonID.HeaderText = "کدملی";
             this.PersonID.Name = "PersonID";

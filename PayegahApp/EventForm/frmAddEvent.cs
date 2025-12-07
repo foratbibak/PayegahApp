@@ -209,32 +209,49 @@ namespace PayegahApp.EventForm
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvEvent.CurrentRow.Selected)
+            try
             {
-                int ID = int.Parse(dgvEvent.CurrentRow.Cells[0].Value.ToString());
-                using (UnitofWork db = new UnitofWork())
+                if(dgvEvent!= null)
                 {
-                    if (cmbEvent.SelectedIndex < 0)
+                    if (dgvEvent.CurrentRow.Selected)
                     {
-                        RtlMessageBox.Show("لطفا نوع مراسم را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        int ID = int.Parse(dgvEvent.CurrentRow.Cells[0].Value.ToString());
+                        using (UnitofWork db = new UnitofWork())
+                        {
+                            if (cmbEvent.SelectedIndex < 0)
+                            {
+                                RtlMessageBox.Show("لطفا نوع مراسم را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+                            int EventType = (int)cmbEvent.SelectedValue;
+                            var Get = db.EventsRepository.GetbyID(ID);
+                            if (Get != null)
+                            {
+                                Get.EventTitle = txtTitle.Text;
+                                Get.Description = txtDescription.Text;
+                                Get.EventTypeID = EventType;
+                            }
+                            db.EventsRepository.Update(Get);
+                            db.Save();
+                            RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
+                            txtTitle.Clear();
+                            txtDescription.Clear();
+                            cmbEvent.SelectedIndex = -1;
+                            BindGrid();
+                        }
                     }
-                    int EventType = (int)cmbEvent.SelectedValue;
-                    var Get = db.EventsRepository.GetbyID(ID);
-                    if (Get != null)
-                    {
-                        Get.EventTitle = txtTitle.Text;
-                        Get.Description = txtDescription.Text;
-                        Get.EventTypeID = EventType;
-                    }
-                    db.EventsRepository.Update(Get);
-                    db.Save();
-                    RtlMessageBox.Show("تغییرات با موفقیت اعمال شد.");
-                    txtTitle.Clear();
-                    txtDescription.Clear();
-                    cmbEvent.SelectedIndex = -1;
-                    BindGrid();
                 }
+                else
+                {
+                    RtlMessageBox.Show("عملیات ویرایش با شکست مواجه شد");
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+                RtlMessageBox.Show("عملیات ویرایش با شکست مواجه شد با پشتیبانی تماس بگیرید");
             }
         }
 

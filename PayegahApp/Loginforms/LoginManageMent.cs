@@ -46,7 +46,8 @@ namespace PayegahApp.Loginforms
                 dgvUsers.DataSource = db.UserRepository.GetAll().Select(s => new
                 {
                     s.UserID,
-                    s.Persons.NationalCode,
+                    NationalCode = s.Persons != null ?
+                    s.Persons.NationalCode.ToString() :"",
                     s.UserName,
                     s.Password,
                     Date = s.LoginDate != null ? s.LoginDate.ToShamsi() : ""
@@ -71,7 +72,7 @@ namespace PayegahApp.Loginforms
                         if (Get != null)
                         {
                             txtUserName.Text = Get.UserName;
-                            txtNatnioalCode.Text = Get.PersonID.ToString();
+                            txtNatnioalCode.Text = Get.Persons.NationalCode.ToString();
                             txtPassUser.Text = Get.Password;
                         }
                     }
@@ -135,7 +136,7 @@ namespace PayegahApp.Loginforms
                             var Get = db.UserRepository.GetbyID(ID);
                             if (Get != null)
                             {
-                                Get.PersonID = nationalcodecast;
+                                Get.PersonID = person.PersonID;
                                 Get.UserName=txtUserName.Text;
                                 Get.Password = txtPassUser.Text;
                             }
@@ -213,7 +214,7 @@ namespace PayegahApp.Loginforms
                     }
                     Users us = new Users()
                     {
-                        PersonID = person.NationalCode,
+                        PersonID = person.PersonID,
                         UserName = txtUserName.Text,
                         Password = txtPassUser.Text,
                         LoginDate = DateTime.Now

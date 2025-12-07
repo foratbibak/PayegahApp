@@ -50,7 +50,7 @@ namespace PayegahApp.Loginforms
                 // چک عقب کشیدن تاریخ سیستم
                 if (DateTime.Now < lastRun)
                 {
-                    MessageBox.Show("تاریخ سیستم تغییر کرده است. اجرای برنامه امکان‌پذیر نیست.");
+                    RtlMessageBox.Show("تاریخ سیستم تغییر کرده است. اجرای برنامه امکان‌پذیر نیست.");
                     Application.Exit();
                     return;
                 }
@@ -61,7 +61,7 @@ namespace PayegahApp.Loginforms
 
             if (daysPassed > 30)
             {
-                MessageBox.Show("مدت استفاده از این برنامه پایان یافته است.", "Trial Ended");
+                RtlMessageBox.Show("مدت استفاده از این برنامه پایان یافته است.", "Trial Ended");
                 Application.Exit();
                 return;
             }
@@ -75,13 +75,13 @@ namespace PayegahApp.Loginforms
         {
             if (string.IsNullOrWhiteSpace(txtUser.Text))
             {
-                MessageBox.Show("نام کاربری را وارد فرمایید.");
+                RtlMessageBox.Show("نام کاربری را وارد فرمایید.");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtPass.Text))
             {
-                MessageBox.Show("کلمه عبور را وارد فرمایید.");
+                RtlMessageBox.Show("کلمه عبور را وارد فرمایید.");
                 return;
             }
 
@@ -93,7 +93,7 @@ namespace PayegahApp.Loginforms
                 }
                 else
                 {
-                    MessageBox.Show("نام کاربری یا رمز اشتباه است");
+                    RtlMessageBox.Show("نام کاربری یا رمز اشتباه است");
                 }
             }
         }
@@ -117,6 +117,29 @@ namespace PayegahApp.Loginforms
         private void pictureBox2_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                txtPass.Focus();
+            }
+        }
+
+        private void txtPass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                pictureBox1_Click(new object(), new EventArgs());
+                if (string.IsNullOrWhiteSpace(txtUser.Text))
+                {
+                    txtUser.Focus();
+                    return;
+                }
+
+            }
         }
     }
 }

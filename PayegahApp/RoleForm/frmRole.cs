@@ -98,7 +98,7 @@ namespace PayegahApp.RollForm
                     s.ID,
                     s.Role.Role_ID,
                     s.Members.Persons.PersonFullName,
-                    s.Members.PersonID,
+                    s.Members.Persons.NationalCode,
                     s.Role.RoleTitle,
                     s.RoleType.TypeTitle,
                     Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : "",
@@ -160,11 +160,17 @@ namespace PayegahApp.RollForm
             Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
             using (UnitofWork db = new UnitofWork())
             {
-                Members mem = db.MemberRepository.GetAll().Where(n => n.PersonID == NationalCodeCast).FirstOrDefault();
+                Members mem = db.MemberRepository.GetAll().Where(n => n.Persons.NationalCode == NationalCodeCast).FirstOrDefault();
                 if (mem == null)
                 {
                     RtlMessageBox.Show("کدملی وارد شده یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
+                }
+                if (mem.IsActive == true)
+                {
+                    RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+
                 }
                 if (cmbRoleName.SelectedIndex < 0 || cmbRoles.SelectedIndex < 0)
                 {
@@ -321,7 +327,7 @@ namespace PayegahApp.RollForm
                     var Get = db.MemberRoleRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtNatoinalCode.Text = Get.Members.PersonID.ToString();
+                        txtNatoinalCode.Text = Get.Members.Persons.NationalCode.ToString();
                     }
                 }
             }
@@ -338,12 +344,18 @@ namespace PayegahApp.RollForm
                     Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
 
                     var member = db.MemberRepository.GetAll()
-                                    .FirstOrDefault(m => m.PersonID == NationalCodeCast);
+                                    .FirstOrDefault(m => m.Persons.NationalCode == NationalCodeCast);
 
                     if (member == null)
                     {
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+                    if (member.IsActive == true)
+                    {
+                        RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+
                     }
                     if (cmbRoleName.SelectedIndex < 0 || cmbRoles.SelectedIndex < 0)
                     {

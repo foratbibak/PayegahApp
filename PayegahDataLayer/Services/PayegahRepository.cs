@@ -68,8 +68,10 @@ namespace PayegahDataLayer.Services
             if (!string.IsNullOrWhiteSpace(parameter))
             {
                 data = data.Where(e =>
-                    e.Members.PersonID.ToString().Contains(parameter)
-                    || e.EventID.ToString().Contains(parameter));
+                    e.Members.Persons.NationalCode.ToString().Contains(parameter)
+                    || e.EventID.ToString().Contains(parameter)
+                    || e.Members.Persons.PersonName.Contains(parameter)
+                    || e.Members.Persons.PersonFamily.Contains(parameter));
             }
 
             var list = data.ToList();
@@ -78,7 +80,7 @@ namespace PayegahDataLayer.Services
             {
                 s.ID,
                 s.Members.Persons.PersonFullName,
-                s.Members.PersonID,
+                s.Members.Persons.NationalCode,
                 s.Events.EventTitle,
                 s.Events.EventType.Title,
                 s.IsActive,
@@ -96,8 +98,11 @@ namespace PayegahDataLayer.Services
             if (!string.IsNullOrWhiteSpace(parameter))
             {
                 data = data.Where(e =>
-                    e.Members.PersonID.ToString().Contains(parameter)
-                    || e.Role_ID.ToString().Contains(parameter));
+                    e.Members.Persons.NationalCode.ToString().Contains(parameter)
+                    || e.Role_ID.ToString().Contains(parameter)
+                    || e.Members.Persons.PersonName.Contains(parameter)
+                    || e.Members.Persons.PersonFamily.Contains(parameter));
+
             }
 
             var list = data.ToList();
@@ -107,7 +112,7 @@ namespace PayegahDataLayer.Services
                 s.ID,
                 s.Role.Role_ID,
                 s.Members.Persons.PersonFullName,
-                s.Members.PersonID,
+                s.Members.Persons.NationalCode,
                 s.Role.RoleTitle,
                 s.RoleType.TypeTitle,
                 s.IActive,
@@ -125,8 +130,9 @@ namespace PayegahDataLayer.Services
             if (!string.IsNullOrWhiteSpace(parameter))
             {
                 data = data.Where(e =>
-                    e.Members.PersonID.ToString().Contains(parameter)
-                    || e.OperationID.ToString().Contains(parameter));
+                    e.Members.Persons.NationalCode.ToString().Contains(parameter)
+                    || e.Members.Persons.PersonName.Contains(parameter)
+                    || e.Members.Persons.PersonFamily.Contains(parameter));
             }
 
             var list = data.ToList();
@@ -135,7 +141,7 @@ namespace PayegahDataLayer.Services
             {
                 s.OperationMemberID,
                 s.Members.Persons.PersonFullName,
-                s.Members.PersonID,
+                s.Members.Persons.NationalCode,
                 s.Operations.OperationTitle,
                 s.OperationDgree.DgTitle,
                 s.IsActive,
@@ -153,7 +159,7 @@ namespace PayegahDataLayer.Services
             if (!string.IsNullOrWhiteSpace(parameter))
             {
                 data = data.Where(e =>
-                    e.Members.PersonID.ToString().Contains(parameter)
+                    e.Members.Persons.NationalCode.ToString().Contains(parameter)
                     || e.Members.Persons.PersonName.Contains(parameter)
                     || e.Members.Persons.PersonFamily.Contains(parameter));
             }
@@ -164,7 +170,7 @@ namespace PayegahDataLayer.Services
             {
                 s.ID,
                 PersonFullName = s.Members.Persons.PersonName + " " + s.Members.Persons.PersonFamily,
-                s.Members.PersonID,
+                s.Members.Persons.NationalCode,
                 AmadTitle = s.Amad.AmadTitle,
                 AmadTypeTitle = s.Amad.AmadType.AmadTypeTitle,
                 s.IsActive,

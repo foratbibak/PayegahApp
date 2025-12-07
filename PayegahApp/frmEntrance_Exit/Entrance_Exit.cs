@@ -47,8 +47,8 @@ namespace PayegahApp.frmEntrance_Exit
                             RtlMessageBox.Show("کاربری با این کدملی یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        var person2 = db.PersonsRepository.GetbyID(nationalcodecast);
-                        if (person2.IsActive != true)
+                        
+                        if (person.IsActive != true)
                         {
                             RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -56,7 +56,7 @@ namespace PayegahApp.frmEntrance_Exit
                         }
                         PayegahDataLayer.Attendance_absence atb = new PayegahDataLayer.Attendance_absence()
                         {
-                            PersonID = person.NationalCode,
+                            PersonID = person.PersonID,
                             EntranceDate = DateTime.Now.ToString(),
                             RegestrationDate =DateTime.Now,
                         };
@@ -104,7 +104,7 @@ namespace PayegahApp.frmEntrance_Exit
                     .Select(a => new PayegahList
                     {
                         ID = a.ID,
-                        PersonID = (Int64)a.PersonID,
+                        PersonID = (Int64)a.Persons.NationalCode,
                         Name = a.Persons.PersonName,
                         Family = a.Persons.PersonFamily,
                         EntranceDate = a.EntranceDate,
@@ -119,7 +119,7 @@ namespace PayegahApp.frmEntrance_Exit
                    .Select(a => new PayegahList
                    {
                        ID = a.ID,
-                       PersonID = (Int64)a.PersonID,
+                       PersonID = (Int64)a.Persons.NationalCode,
                        Name = a.Persons.PersonName,
                        Family = a.Persons.PersonFamily,
                        EntranceDate = a.EntranceDate,
@@ -179,8 +179,7 @@ namespace PayegahApp.frmEntrance_Exit
                             RtlMessageBox.Show("کاربری با این کدملی یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        var person2 = db.PersonsRepository.GetbyID(nationalcode);
-                        if (person2.IsActive != true)
+                        if (person.IsActive != true)
                         {
                             RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
@@ -188,7 +187,7 @@ namespace PayegahApp.frmEntrance_Exit
                         }
                         PayegahDataLayer.Attendance_absence atb = new PayegahDataLayer.Attendance_absence()
                         {
-                            PersonID = person.NationalCode,
+                            PersonID = person.PersonID,
                             ExitDate = DateTime.Now.ToString(),
                             RegestrationDate = DateTime.Now
                         };
@@ -218,7 +217,7 @@ namespace PayegahApp.frmEntrance_Exit
                 return db.Attendance_AbsenceRepository.GetAll().Where(a => (a.Persons.PersonName + " " + a.Persons.PersonFamily).Contains(parameter))
                 .Select(a => new PayegahList
                 {
-                    PersonID = (Int64)a.PersonID,
+                    PersonID = (Int64)a.Persons.NationalCode,
                     Name = a.Persons.PersonName,
                     Family = a.Persons.PersonFamily,
                     EntranceDate = a.EntranceDate,

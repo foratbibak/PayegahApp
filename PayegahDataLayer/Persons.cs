@@ -17,12 +17,12 @@ namespace PayegahDataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Persons()
         {
-            this.Members = new HashSet<Members>();
             this.Attendance_absence = new HashSet<Attendance_absence>();
+            this.Members = new HashSet<Members>();
             this.Users = new HashSet<Users>();
         }
     
-        public int PersonID { get; set; }
+        public long PersonID { get; set; }
         public long NationalCode { get; set; }
         public string PersonName { get; set; }
         public string PersonFamily { get; set; }
@@ -40,11 +40,10 @@ namespace PayegahDataLayer
         {
             get { return $"{PersonName} - {PersonFamily}"; }
         }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Members> Members { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Attendance_absence> Attendance_absence { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Members> Members { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
     }

@@ -162,9 +162,9 @@
         </EntityType>
         <EntityType Name="Persons">
           <Key>
-            <PropertyRef Name="NationalCode" />
+            <PropertyRef Name="PersonID" />
           </Key>
-          <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NationalCode" Type="bigint" Nullable="false" />
           <Property Name="PersonName" Type="nvarchar" MaxLength="150" />
           <Property Name="PersonFamily" Type="nvarchar" MaxLength="150" />
@@ -260,7 +260,7 @@
           <End Role="Attendance_absence" Type="Self.Attendance_absence" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
+              <PropertyRef Name="PersonID" />
             </Principal>
             <Dependent Role="Attendance_absence">
               <PropertyRef Name="PersonID" />
@@ -375,12 +375,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Members_Persons">
+        <Association Name="FK_Members_Persons1">
           <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
           <End Role="Members" Type="Self.Members" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
+              <PropertyRef Name="PersonID" />
             </Principal>
             <Dependent Role="Members">
               <PropertyRef Name="PersonID" />
@@ -440,7 +440,7 @@
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
+              <PropertyRef Name="PersonID" />
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="PersonID" />
@@ -521,7 +521,7 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="MemberRole" EntitySet="MemberRole" />
           </AssociationSet>
-          <AssociationSet Name="FK_Members_Persons" Association="Self.FK_Members_Persons">
+          <AssociationSet Name="FK_Members_Persons1" Association="Self.FK_Members_Persons1">
             <End Role="Persons" EntitySet="Persons" />
             <End Role="Members" EntitySet="Members" />
           </AssociationSet>
@@ -567,7 +567,7 @@
           <Property Name="MemId" Type="Int64" Nullable="false" />
           <Property Name="DgreeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Dgree" Relationship="Self.FK_DgreeMembers_MemberDgree" FromRole="DgreeMembers" ToRole="Dgree" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_DgreeMembers_Members" FromRole="DgreeMembers" ToRole="Members" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_DgreeMembers_Members" FromRole="DgreeMembers" ToRole="Members" />
         </EntityType>
         <EntityType Name="EventMembers">
           <Key>
@@ -579,7 +579,7 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="DateRegestration" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Events" Relationship="Self.FK_EventMembers_Events" FromRole="EventMembers" ToRole="Events" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_EventMembers_Members" FromRole="EventMembers" ToRole="Members" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_EventMembers_Members" FromRole="EventMembers" ToRole="Members" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -615,23 +615,8 @@
           <Property Name="IActive" Type="Boolean" />
           <Property Name="DateRegestration" Type="DateTime" Precision="3" />
           <NavigationProperty Name="RoleType" Relationship="Self.FK_MemberRole_RoleType1" FromRole="MemberRole" ToRole="RoleType" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_MemberRoll_Members" FromRole="MemberRole" ToRole="Members" />
           <NavigationProperty Name="Role" Relationship="Self.FK_MemberRoll_PersonRank" FromRole="MemberRole" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="Members">
-          <Key>
-            <PropertyRef Name="MemID" />
-          </Key>
-          <Property Name="MemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonID" Type="Int64" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="RecordDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="DgreeMembers" Relationship="Self.FK_DgreeMembers_Members" FromRole="Members" ToRole="DgreeMembers" />
-          <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventMembers_Members" FromRole="Members" ToRole="EventMembers" />
-          <NavigationProperty Name="MemberRole" Relationship="Self.FK_MemberRoll_Members" FromRole="Members" ToRole="MemberRole" />
-          <NavigationProperty Name="Persons" Relationship="Self.FK_Members_Persons" FromRole="Members" ToRole="Persons" />
-          <NavigationProperty Name="AmadMembers" Relationship="PayegahDbModel.FK_AmadMembers_Members1" FromRole="Members" ToRole="AmadMembers" />
-          <NavigationProperty Name="OperationMembers" Relationship="PayegahDbModel.FK_OperationMembers_Members" FromRole="Members" ToRole="OperationMembers" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_MemberRoll_Members" FromRole="MemberRole" ToRole="Members" />
         </EntityType>
         <EntityType Name="OperationDgree">
           <Key>
@@ -665,28 +650,6 @@
           <Property Name="DateRegestration" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Operations" Relationship="Self.FK_Operations_OperationType" FromRole="OperationType" ToRole="Operations" />
-        </EntityType>
-        <EntityType Name="Persons">
-          <Key>
-            <PropertyRef Name="NationalCode" />
-          </Key>
-          <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NationalCode" Type="Int64" Nullable="false" />
-          <Property Name="PersonName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PersonFamily" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="PersonAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FotherJob" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="MotherJob" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="FotherPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="MotherPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Members" Relationship="Self.FK_Members_Persons" FromRole="Persons" ToRole="Members" />
-          <NavigationProperty Name="Attendance_absence" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Persons" ToRole="Attendance_absence" />
-          <NavigationProperty Name="Users" Relationship="PayegahDbModel.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -731,18 +694,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DgreeMembers_Members">
-          <End Role="Members" Type="Self.Members" Multiplicity="1" />
-          <End Role="DgreeMembers" Type="Self.DgreeMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="DgreeMembers">
-              <PropertyRef Name="MemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_EventMembers_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="1" />
           <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
@@ -752,18 +703,6 @@
             </Principal>
             <Dependent Role="EventMembers">
               <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EventMembers_Members">
-          <End Role="Members" Type="Self.Members" Multiplicity="1" />
-          <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="EventMembers">
-              <PropertyRef Name="MemID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -791,18 +730,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MemberRoll_Members">
-          <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
-          <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="MemberRole">
-              <PropertyRef Name="MemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_MemberRoll_PersonRank">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="MemberRole" Type="Self.MemberRole" Multiplicity="*" />
@@ -812,18 +739,6 @@
             </Principal>
             <Dependent Role="MemberRole">
               <PropertyRef Name="Role_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Members_Persons">
-          <End Role="Persons" Type="Self.Persons" Multiplicity="0..1" />
-          <End Role="Members" Type="Self.Members" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
-            </Principal>
-            <Dependent Role="Members">
-              <PropertyRef Name="PersonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -846,11 +761,9 @@
           <EntitySet Name="Events" EntityType="Self.Events" />
           <EntitySet Name="EventType" EntityType="Self.EventType" />
           <EntitySet Name="MemberRole" EntityType="Self.MemberRole" />
-          <EntitySet Name="Members" EntityType="Self.Members" />
           <EntitySet Name="OperationDgree" EntityType="Self.OperationDgree" />
           <EntitySet Name="Operations" EntityType="Self.Operations" />
           <EntitySet Name="OperationType" EntityType="Self.OperationType" />
-          <EntitySet Name="Persons" EntityType="Self.Persons" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="RoleType" EntityType="Self.RoleType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -858,16 +771,8 @@
             <End Role="Dgree" EntitySet="Dgree" />
             <End Role="DgreeMembers" EntitySet="DgreeMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK_DgreeMembers_Members" Association="Self.FK_DgreeMembers_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="DgreeMembers" EntitySet="DgreeMembers" />
-          </AssociationSet>
           <AssociationSet Name="FK_EventMembers_Events" Association="Self.FK_EventMembers_Events">
             <End Role="Events" EntitySet="Events" />
-            <End Role="EventMembers" EntitySet="EventMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EventMembers_Members" Association="Self.FK_EventMembers_Members">
-            <End Role="Members" EntitySet="Members" />
             <End Role="EventMembers" EntitySet="EventMembers" />
           </AssociationSet>
           <AssociationSet Name="FK_Events_EventType" Association="Self.FK_Events_EventType">
@@ -878,32 +783,16 @@
             <End Role="RoleType" EntitySet="RoleType" />
             <End Role="MemberRole" EntitySet="MemberRole" />
           </AssociationSet>
-          <AssociationSet Name="FK_MemberRoll_Members" Association="Self.FK_MemberRoll_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="MemberRole" EntitySet="MemberRole" />
-          </AssociationSet>
           <AssociationSet Name="FK_MemberRoll_PersonRank" Association="Self.FK_MemberRoll_PersonRank">
             <End Role="Role" EntitySet="Role" />
             <End Role="MemberRole" EntitySet="MemberRole" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Members_Persons" Association="Self.FK_Members_Persons">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="Members" EntitySet="Members" />
           </AssociationSet>
           <AssociationSet Name="FK_Operations_OperationType" Association="Self.FK_Operations_OperationType">
             <End Role="OperationType" EntitySet="OperationType" />
             <End Role="Operations" EntitySet="Operations" />
           </AssociationSet>
           <EntitySet Name="AmadMembers" EntityType="PayegahDbModel.AmadMembers" />
-          <AssociationSet Name="FK_AmadMembers_Members1" Association="PayegahDbModel.FK_AmadMembers_Members1">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="AmadMembers" EntitySet="AmadMembers" />
-          </AssociationSet>
           <EntitySet Name="OperationMembers" EntityType="PayegahDbModel.OperationMembers" />
-          <AssociationSet Name="FK_OperationMembers_Members" Association="PayegahDbModel.FK_OperationMembers_Members">
-            <End Role="Members" EntitySet="Members" />
-            <End Role="OperationMembers" EntitySet="OperationMembers" />
-          </AssociationSet>
           <AssociationSet Name="FK_OperationMembers_OperationDgree" Association="PayegahDbModel.FK_OperationMembers_OperationDgree">
             <End Role="OperationDgree" EntitySet="OperationDgree" />
             <End Role="OperationMembers" EntitySet="OperationMembers" />
@@ -911,16 +800,6 @@
           <AssociationSet Name="FK_OperationMembers_Operations" Association="PayegahDbModel.FK_OperationMembers_Operations">
             <End Role="Operations" EntitySet="Operations" />
             <End Role="OperationMembers" EntitySet="OperationMembers" />
-          </AssociationSet>
-          <EntitySet Name="Attendance_absence" EntityType="PayegahDbModel.Attendance_absence" />
-          <AssociationSet Name="FK_Attendance_absence_Persons" Association="PayegahDbModel.FK_Attendance_absence_Persons">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="Attendance_absence" EntitySet="Attendance_absence" />
-          </AssociationSet>
-          <EntitySet Name="Users" EntityType="PayegahDbModel.Users" />
-          <AssociationSet Name="FK_Users_Persons" Association="PayegahDbModel.FK_Users_Persons">
-            <End Role="Persons" EntitySet="Persons" />
-            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <EntitySet Name="AmadType" EntityType="PayegahDbModel.AmadType" />
           <EntitySet Name="Amad" EntityType="PayegahDbModel.Amad" />
@@ -937,6 +816,42 @@
             <End Role="Operations" EntitySet="Operations" />
             <End Role="DecriptionOperation" EntitySet="DecriptionOperation" />
           </AssociationSet>
+          <EntitySet Name="Attendance_absence" EntityType="PayegahDbModel.Attendance_absence" />
+          <EntitySet Name="Members" EntityType="PayegahDbModel.Members" />
+          <EntitySet Name="Persons" EntityType="PayegahDbModel.Persons" />
+          <EntitySet Name="Users" EntityType="PayegahDbModel.Users" />
+          <AssociationSet Name="FK_AmadMembers_Members1" Association="PayegahDbModel.FK_AmadMembers_Members1">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="AmadMembers" EntitySet="AmadMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendance_absence_Persons" Association="PayegahDbModel.FK_Attendance_absence_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Attendance_absence" EntitySet="Attendance_absence" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DgreeMembers_Members" Association="PayegahDbModel.FK_DgreeMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="DgreeMembers" EntitySet="DgreeMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EventMembers_Members" Association="PayegahDbModel.FK_EventMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="EventMembers" EntitySet="EventMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberRoll_Members" Association="PayegahDbModel.FK_MemberRoll_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="MemberRole" EntitySet="MemberRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Members_Persons1" Association="PayegahDbModel.FK_Members_Persons1">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationMembers_Members" Association="PayegahDbModel.FK_OperationMembers_Members">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="OperationMembers" EntitySet="OperationMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Persons" Association="PayegahDbModel.FK_Users_Persons">
+            <End Role="Persons" EntitySet="Persons" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AmadMembers">
           <Key>
@@ -947,21 +862,9 @@
           <Property Name="AmadID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="AmadDateRegestration" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_AmadMembers_Members1" FromRole="AmadMembers" ToRole="Members" />
           <NavigationProperty Name="Amad" Relationship="PayegahDbModel.FK_AmadMembers_Amad" FromRole="AmadMembers" ToRole="Amad" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_AmadMembers_Members1" FromRole="AmadMembers" ToRole="Members" />
         </EntityType>
-        <Association Name="FK_AmadMembers_Members1">
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.AmadMembers" Role="AmadMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="AmadMembers">
-              <PropertyRef Name="MemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="OperationMembers">
           <Key>
             <PropertyRef Name="OperationMemberID" />
@@ -972,22 +875,10 @@
           <Property Name="DgreeID" Type="Int32" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="DateRegstration" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_OperationMembers_Members" FromRole="OperationMembers" ToRole="Members" />
           <NavigationProperty Name="OperationDgree" Relationship="PayegahDbModel.FK_OperationMembers_OperationDgree" FromRole="OperationMembers" ToRole="OperationDgree" />
           <NavigationProperty Name="Operations" Relationship="PayegahDbModel.FK_OperationMembers_Operations" FromRole="OperationMembers" ToRole="Operations" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_OperationMembers_Members" FromRole="OperationMembers" ToRole="Members" />
         </EntityType>
-        <Association Name="FK_OperationMembers_Members">
-          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="1" />
-          <End Type="PayegahDbModel.OperationMembers" Role="OperationMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Members">
-              <PropertyRef Name="MemID" />
-            </Principal>
-            <Dependent Role="OperationMembers">
-              <PropertyRef Name="MemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OperationMembers_OperationDgree">
           <End Type="PayegahDbModel.OperationDgree" Role="OperationDgree" Multiplicity="0..1" />
           <End Type="PayegahDbModel.OperationMembers" Role="OperationMembers" Multiplicity="*" />
@@ -1009,54 +900,6 @@
             </Principal>
             <Dependent Role="OperationMembers">
               <PropertyRef Name="OperationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Attendance_absence">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonID" Type="Int64" />
-          <Property Name="EntranceDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ExitDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RegestrationDate" Type="DateTime" Precision="3" />
-          <Property Name="Locked" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Attendance_absence" ToRole="Persons" />
-        </EntityType>
-        <Association Name="FK_Attendance_absence_Persons">
-          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.Attendance_absence" Role="Attendance_absence" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
-            </Principal>
-            <Dependent Role="Attendance_absence">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonID" Type="Int64" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Role" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Users_Persons" FromRole="Users" ToRole="Persons" />
-        </EntityType>
-        <Association Name="FK_Users_Persons">
-          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
-          <End Type="PayegahDbModel.Users" Role="Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persons">
-              <PropertyRef Name="NationalCode" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="PersonID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1129,6 +972,163 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Attendance_absence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int64" />
+          <Property Name="EntranceDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExitDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegestrationDate" Type="DateTime" Precision="3" />
+          <Property Name="Locked" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Attendance_absence" ToRole="Persons" />
+        </EntityType>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="MemID" />
+          </Key>
+          <Property Name="MemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RecordDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AmadMembers" Relationship="PayegahDbModel.FK_AmadMembers_Members1" FromRole="Members" ToRole="AmadMembers" />
+          <NavigationProperty Name="DgreeMembers" Relationship="PayegahDbModel.FK_DgreeMembers_Members" FromRole="Members" ToRole="DgreeMembers" />
+          <NavigationProperty Name="EventMembers" Relationship="PayegahDbModel.FK_EventMembers_Members" FromRole="Members" ToRole="EventMembers" />
+          <NavigationProperty Name="MemberRole" Relationship="PayegahDbModel.FK_MemberRoll_Members" FromRole="Members" ToRole="MemberRole" />
+          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Members_Persons1" FromRole="Members" ToRole="Persons" />
+          <NavigationProperty Name="OperationMembers" Relationship="PayegahDbModel.FK_OperationMembers_Members" FromRole="Members" ToRole="OperationMembers" />
+        </EntityType>
+        <EntityType Name="Persons">
+          <Key>
+            <PropertyRef Name="PersonID" />
+          </Key>
+          <Property Name="PersonID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NationalCode" Type="Int64" Nullable="false" />
+          <Property Name="PersonName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PersonFamily" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PersonAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FotherJob" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MotherJob" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FotherPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MotherPhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Attendance_absence" Relationship="PayegahDbModel.FK_Attendance_absence_Persons" FromRole="Persons" ToRole="Attendance_absence" />
+          <NavigationProperty Name="Members" Relationship="PayegahDbModel.FK_Members_Persons1" FromRole="Persons" ToRole="Members" />
+          <NavigationProperty Name="Users" Relationship="PayegahDbModel.FK_Users_Persons" FromRole="Persons" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonID" Type="Int64" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Persons" Relationship="PayegahDbModel.FK_Users_Persons" FromRole="Users" ToRole="Persons" />
+        </EntityType>
+        <Association Name="FK_AmadMembers_Members1">
+          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.AmadMembers" Role="AmadMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="AmadMembers">
+              <PropertyRef Name="MemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attendance_absence_Persons">
+          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.Attendance_absence" Role="Attendance_absence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Attendance_absence">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DgreeMembers_Members">
+          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="1" />
+          <End Type="PayegahDbModel.DgreeMembers" Role="DgreeMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="DgreeMembers">
+              <PropertyRef Name="MemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EventMembers_Members">
+          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="1" />
+          <End Type="PayegahDbModel.EventMembers" Role="EventMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="EventMembers">
+              <PropertyRef Name="MemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberRoll_Members">
+          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.MemberRole" Role="MemberRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="MemberRole">
+              <PropertyRef Name="MemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Members_Persons1">
+          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationMembers_Members">
+          <End Type="PayegahDbModel.Members" Role="Members" Multiplicity="1" />
+          <End Type="PayegahDbModel.OperationMembers" Role="OperationMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="MemID" />
+            </Principal>
+            <Dependent Role="OperationMembers">
+              <PropertyRef Name="MemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Persons">
+          <End Type="PayegahDbModel.Persons" Role="Persons" Multiplicity="0..1" />
+          <End Type="PayegahDbModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persons">
+              <PropertyRef Name="PersonID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="PersonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1198,16 +1198,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Members">
-            <EntityTypeMapping TypeName="PayegahDbModel.Members">
-              <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="MemID" ColumnName="MemID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OperationDgree">
             <EntityTypeMapping TypeName="PayegahDbModel.OperationDgree">
               <MappingFragment StoreEntitySet="OperationDgree">
@@ -1236,26 +1226,6 @@
                 <ScalarProperty Name="OperationTypeID" ColumnName="OperationTypeID" />
                 <ScalarProperty Name="DateRegestration" ColumnName="DateRegestration" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Persons">
-            <EntityTypeMapping TypeName="PayegahDbModel.Persons">
-              <MappingFragment StoreEntitySet="Persons">
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
-                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
-                <ScalarProperty Name="PersonFamily" ColumnName="PersonFamily" />
-                <ScalarProperty Name="PersonAddress" ColumnName="PersonAddress" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="FotherJob" ColumnName="FotherJob" />
-                <ScalarProperty Name="MotherJob" ColumnName="MotherJob" />
-                <ScalarProperty Name="FotherPhoneNumber" ColumnName="FotherPhoneNumber" />
-                <ScalarProperty Name="MotherPhoneNumber" ColumnName="MotherPhoneNumber" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1314,30 +1284,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Attendance_absence">
-            <EntityTypeMapping TypeName="PayegahDbModel.Attendance_absence">
-              <MappingFragment StoreEntitySet="Attendance_absence">
-                <ScalarProperty Name="Locked" ColumnName="Locked" />
-                <ScalarProperty Name="RegestrationDate" ColumnName="RegestrationDate" />
-                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
-                <ScalarProperty Name="EntranceDate" ColumnName="EntranceDate" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PayegahDbModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
-                <ScalarProperty Name="Role" ColumnName="Role" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AmadType">
             <EntityTypeMapping TypeName="PayegahDbModel.AmadType">
               <MappingFragment StoreEntitySet="AmadType">
@@ -1367,6 +1313,60 @@
                 <ScalarProperty Name="Descreption" ColumnName="Descreption" />
                 <ScalarProperty Name="OperationID" ColumnName="OperationID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendance_absence">
+            <EntityTypeMapping TypeName="PayegahDbModel.Attendance_absence">
+              <MappingFragment StoreEntitySet="Attendance_absence">
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="RegestrationDate" ColumnName="RegestrationDate" />
+                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
+                <ScalarProperty Name="EntranceDate" ColumnName="EntranceDate" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="PayegahDbModel.Members">
+              <MappingFragment StoreEntitySet="Members">
+                <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="MemID" ColumnName="MemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persons">
+            <EntityTypeMapping TypeName="PayegahDbModel.Persons">
+              <MappingFragment StoreEntitySet="Persons">
+                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MotherPhoneNumber" ColumnName="MotherPhoneNumber" />
+                <ScalarProperty Name="FotherPhoneNumber" ColumnName="FotherPhoneNumber" />
+                <ScalarProperty Name="MotherJob" ColumnName="MotherJob" />
+                <ScalarProperty Name="FotherJob" ColumnName="FotherJob" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="PersonAddress" ColumnName="PersonAddress" />
+                <ScalarProperty Name="PersonFamily" ColumnName="PersonFamily" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PayegahDbModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

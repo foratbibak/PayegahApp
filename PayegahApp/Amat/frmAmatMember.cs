@@ -89,7 +89,7 @@ namespace PayegahApp.Amat
                 {
                     s.ID,
                     s.Members.Persons.PersonFullName,
-                    s.Members.PersonID,
+                    s.Members.Persons.NationalCode,
                     s.Amad.AmadTitle,
                     s.Amad.AmadType.AmadTypeTitle,
                     Date = s.AmadDateRegestration != null ? s.AmadDateRegestration.Value.ToShamsi(): "",
@@ -164,14 +164,19 @@ namespace PayegahApp.Amat
 
             using (UnitofWork db = new UnitofWork())
             {
-                Members mem = db.MemberRepository.GetAll().FirstOrDefault(n => n.PersonID == NationalCodeCast);
+                Members mem = db.MemberRepository.GetAll().FirstOrDefault(n => n.Persons.NationalCode == NationalCodeCast);
                 if (mem == null)
                 {
                     RtlMessageBox.Show("کدملی وارد شده یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtNatoinalCode.Focus();
                     return;
                 }
+                if (mem.IsActive == true)
+                {
+                    RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
 
+                }
                 if (cmbAmad.SelectedIndex < 0 || cmbAmad.SelectedValue == null)
                 {
                     RtlMessageBox.Show("لطفا تجهیزات را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -212,11 +217,17 @@ namespace PayegahApp.Amat
                 Int64 NationalCodeCast = Int64.Parse(txtNatoinalCode.Text);
                 using (UnitofWork db = new UnitofWork())
                 {
-                    Members em = db.MemberRepository.GetAll().Where(m => m.PersonID == NationalCodeCast).FirstOrDefault();
+                    Members em = db.MemberRepository.GetAll().Where(m => m.Persons.NationalCode == NationalCodeCast).FirstOrDefault();
                     if (em == null)
                     {
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
+                    }
+                    if (em.IsActive == true)
+                    {
+                        RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+
                     }
                     var Get = db.AmadMemberRepository.GetbyID(ID);
                     if (cmbAmad.SelectedIndex < 0)
@@ -264,7 +275,7 @@ namespace PayegahApp.Amat
                     var Get = db.AmadMemberRepository.GetbyID(ID);
                     if (Get != null)
                     {
-                        txtNatoinalCode.Text = Get.Members.PersonID.ToString();
+                        txtNatoinalCode.Text = Get.Members.Persons.NationalCode.ToString();
                     }
                 }
             }
