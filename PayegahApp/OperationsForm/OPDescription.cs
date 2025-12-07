@@ -35,6 +35,7 @@ namespace PayegahApp.OperationsForm
                  var data= db.OPDescriptionRepository.GetAll();
                 var Join = data.Select(s => new
                 {
+                    s.ID,
                     s.Operations.OperationTitle,
                     s.Descreption,
                     Date = s.RegestrationDate != null ? s.RegestrationDate.Value.ToShamsi() : "",
@@ -105,18 +106,27 @@ namespace PayegahApp.OperationsForm
 
         private void dgvOPReports_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvOPReports.CurrentRow.Selected)
+            try
             {
-                int ID = int.Parse(dgvOPReports.CurrentRow.Cells[0].Value.ToString());
-                using (UnitofWork db = new UnitofWork())
+                if (dgvOPReports.CurrentRow.Selected)
                 {
-                    var Get = db.OPDescriptionRepository.GetbyID(ID);
-                    if (Get != null)
+                    int ID = int.Parse(dgvOPReports.CurrentRow.Cells[0].Value.ToString());
+                    using (UnitofWork db = new UnitofWork())
                     {
-                        txtDescription.Text = Get.Descreption;
+                        var Get = db.OPDescriptionRepository.GetbyID(ID);
+                        if (Get != null)
+                        {
+                            txtDescription.Text = Get.Descreption;
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+
+                RtlMessageBox.Show("عملیات ویرایش با شکست مواجه لطفا با پشتیبانی تماس بگیرید");
+            }
+        
         }
 
         private void Edit_Click(object sender, EventArgs e)
@@ -148,6 +158,7 @@ namespace PayegahApp.OperationsForm
                         }
                         db.OPDescriptionRepository.Update(Get);
                         db.Save();
+                        BindGrid();
                         txtDescription.Clear();
                         RtlMessageBox.Show("تغییرات اعمال شد");
                     }

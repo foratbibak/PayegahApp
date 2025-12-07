@@ -50,6 +50,7 @@ namespace PayegahApp.Pesrsons
                     data = data.Where(x => x.IsActive == false).ToList();
                 }
                 dgvPerson.DataSource = data;
+                ConvertDatesToShamsi();
             }
         }
         private void ConvertDatesToShamsi()
@@ -102,16 +103,25 @@ namespace PayegahApp.Pesrsons
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvPerson != null)
-            {
-                int NationalCode = int.Parse(dgvPerson.CurrentRow.Cells[1].Value.ToString());
-                frmAddorEdit frmAddorEdit = new frmAddorEdit();
-                frmAddorEdit.P_NationalCode = NationalCode;
-                if (frmAddorEdit.ShowDialog() == DialogResult.OK)
+            //try
+            //{
+                if (dgvPerson != null)
                 {
-                    BindGrid();
+                    Int64 ID = Int64.Parse(dgvPerson.CurrentRow.Cells[1].Value.ToString());
+                    frmAddorEdit frmAddorEdit = new frmAddorEdit();
+                    frmAddorEdit.P_NationalCode = ID;
+                    if (frmAddorEdit.ShowDialog() == DialogResult.OK)
+                    {
+                        BindGrid();
+                    }
                 }
-            }
+            //}
+            //catch (Exception)
+            //{
+
+                //RtlMessageBox.Show("عملیات ویرایش با شکست مواجه شد برنامه رو یکبار بسته و دوباره اجرا کنید");
+            //}
+     
         }
 
         private void btnPrint_Click(object sender, EventArgs e)

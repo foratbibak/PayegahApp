@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PayegahDataLayer;
 using PayegahDataLayer.Context;
 using ValidationComponents;
+using static Stimulsoft.Report.Export.StiBidirectionalConvert;
 
 namespace PayegahApp.RollForm
 {
@@ -118,12 +119,14 @@ namespace PayegahApp.RollForm
                             return;
                         }
                         Int64 Code = Int64.Parse(txtCode.Text);
-                        //PayegahDataLayer.RoleType pr =db.RoleTypeRepository.GetAll().Where(p=>p.Code== Code).FirstOrDefault();
-                        //if (pr != null)
-                        //{
-                        //    RtlMessageBox.Show("کد مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //    return;
-                        //}
+                        PayegahDataLayer.RoleType Pr = db.RoleTypeRepository.GetAll().Where(pr => pr.Code == Code).FirstOrDefault();
+                        if (Pr != null)
+                        {
+                            RtlMessageBox.Show("کد مقام وارد شده تکراری است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtRoll.Clear();
+                            txtCode.Clear();
+                            return;
+                        }
                         int ID = int.Parse(dgvRollType.CurrentRow.Cells[0].Value.ToString());
                         var rl = db.RoleTypeRepository.GetbyID(ID);
                         if (rl != null)

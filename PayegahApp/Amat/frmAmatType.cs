@@ -122,6 +122,7 @@ namespace PayegahApp.Amat
                     };
                     db.AmadTypeRepository.Insert(at);
                     db.Save();
+                    txtTitle.Clear();
                     RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BindGrid();
                 }

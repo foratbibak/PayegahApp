@@ -95,7 +95,7 @@ namespace PayegahApp.Reports
                                  .Select(a => new
                                  {
                                      a.Members.PersonID,
-                                     a.AmadID,
+                                     a.Amad.AmadFullName,
                                      AmadDateRegestration = ToShamsi((DateTime)a.AmadDateRegestration)
                                  })
                                  .ToList();
@@ -107,7 +107,7 @@ namespace PayegahApp.Reports
                                  .Select(e => new
                                  {
                                      e.Members.PersonID,
-                                     e.EventID,
+                                     e.Events.EventFullName,
                                      DateRegestration = ToShamsi((DateTime)e.DateRegestration)
                                  })
                                  .ToList();
@@ -119,7 +119,7 @@ namespace PayegahApp.Reports
                                  .Select(o => new
                                  {
                                      o.Members.PersonID,
-                                     o.OperationID,
+                                     o.Operations.OPFullName,
                                      DateRegstration = ToShamsi(o.DateRegstration)
                                  })
                                  .ToList();
@@ -131,8 +131,8 @@ namespace PayegahApp.Reports
                                  .Select(r => new
                                  {
                                      r.Members.PersonID,
-                                     r.Role_ID,
-                                     r.RoleTypeID,
+                                     r.Role.RoleTitle,
+                                     r.RoleType.TypeTitle,
                                      DateRegestration = ToShamsi((DateTime)r.DateRegestration)
                                  })
                                  .ToList();
@@ -198,28 +198,30 @@ namespace PayegahApp.Reports
                     break;
 
                 case "تجهیزات":
-                    dgvResults.Columns["MemID"].HeaderText = "کدملی";
-                    dgvResults.Columns["AmadID"].HeaderText = "تجهیزات";
+                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["AmadFullName"].HeaderText = "تجهیزات";
                     dgvResults.Columns["AmadDateRegestration"].HeaderText = "تاریخ ثبت";
                     break;
 
                 case "مراسمات":
-                    dgvResults.Columns["MemID"].HeaderText = "کدملی";
-                    dgvResults.Columns["EventID"].HeaderText = "مراسم";
+                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["EventFullName"].HeaderText = "مراسم";
                     dgvResults.Columns["DateRegestration"].HeaderText = "تاریخ ثبت";
                     break;
 
                 case "عملیات":
-                    dgvResults.Columns["MemID"].HeaderText = "کدملی";
-                    dgvResults.Columns["OperationID"].HeaderText = "عملیات";
+                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["OPFullName"].HeaderText = "عملیات";
                     dgvResults.Columns["DateRegstration"].HeaderText = "تاریخ ثبت";
+
                     break;
 
                 case "اعضای شورا":
-                    dgvResults.Columns["MemID"].HeaderText = "کدملی";
-                    dgvResults.Columns["Role_ID"].HeaderText = "مقام";
-                    dgvResults.Columns["RoleTypeID"].HeaderText = "نوع مقام";
+                    dgvResults.Columns["PersonID"].HeaderText = "کدملی";
+                    dgvResults.Columns["RoleTitle"].HeaderText = "مقام";
+                    dgvResults.Columns["TypeTitle"].HeaderText = "نوع مقام";
                     dgvResults.Columns["DateRegestration"].HeaderText = "تاریخ ثبت";
+
                     break;
             }
 

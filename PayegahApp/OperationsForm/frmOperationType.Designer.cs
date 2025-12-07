@@ -34,6 +34,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvOpType = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cmbFillter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,10 +50,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.stiReport = new Stimulsoft.Report.StiReport();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperationTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateRegestration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOpType)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -108,6 +108,37 @@
             this.dgvOpType.TabIndex = 0;
             this.dgvOpType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOpType_CellClick);
             this.dgvOpType.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOpType_CellFormatting);
+            // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "OperationTypeID";
+            this.colID.HeaderText = "ایدی";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Visible = false;
+            // 
+            // colOperationTitle
+            // 
+            this.colOperationTitle.DataPropertyName = "OperationTypeTitle";
+            this.colOperationTitle.HeaderText = "نوع عملیات";
+            this.colOperationTitle.Name = "colOperationTitle";
+            this.colOperationTitle.ReadOnly = true;
+            this.colOperationTitle.Width = 150;
+            // 
+            // colDateRegestration
+            // 
+            this.colDateRegestration.DataPropertyName = "DateRegestration";
+            this.colDateRegestration.HeaderText = "تاریخ ثبت";
+            this.colDateRegestration.Name = "colDateRegestration";
+            this.colDateRegestration.ReadOnly = true;
+            this.colDateRegestration.Width = 200;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
             // 
             // groupBox3
             // 
@@ -209,7 +240,7 @@
             this.btnInsertOp.Name = "btnInsertOp";
             this.btnInsertOp.Size = new System.Drawing.Size(161, 60);
             this.btnInsertOp.TabIndex = 1;
-            this.btnInsertOp.Text = "افزودن نوع مراسم";
+            this.btnInsertOp.Text = "افزودن نوع عملیات";
             this.btnInsertOp.UseVisualStyleBackColor = false;
             this.btnInsertOp.Click += new System.EventHandler(this.btnInsertOp_Click);
             // 
@@ -274,37 +305,6 @@
             this.stiReport.ReportUnit = Stimulsoft.Report.StiReportUnitType.Inches;
             this.stiReport.ScriptLanguage = Stimulsoft.Report.StiReportLanguageType.CSharp;
             this.stiReport.UseProgressInThread = false;
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "OperationTypeID";
-            this.colID.HeaderText = "ایدی";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Visible = false;
-            // 
-            // colOperationTitle
-            // 
-            this.colOperationTitle.DataPropertyName = "OperationTypeTitle";
-            this.colOperationTitle.HeaderText = "نوع عملیات";
-            this.colOperationTitle.Name = "colOperationTitle";
-            this.colOperationTitle.ReadOnly = true;
-            this.colOperationTitle.Width = 150;
-            // 
-            // colDateRegestration
-            // 
-            this.colDateRegestration.DataPropertyName = "DateRegestration";
-            this.colDateRegestration.HeaderText = "تاریخ ثبت";
-            this.colDateRegestration.Name = "colDateRegestration";
-            this.colDateRegestration.ReadOnly = true;
-            this.colDateRegestration.Width = 200;
-            // 
-            // IsActive
-            // 
-            this.IsActive.DataPropertyName = "IsActive";
-            this.IsActive.HeaderText = "فعال/غیرفعال";
-            this.IsActive.Name = "IsActive";
-            this.IsActive.ReadOnly = true;
             // 
             // frmOperationType
             // 

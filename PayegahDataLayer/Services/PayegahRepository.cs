@@ -81,6 +81,7 @@ namespace PayegahDataLayer.Services
                 s.Members.PersonID,
                 s.Events.EventTitle,
                 s.Events.EventType.Title,
+                s.IsActive,
                 Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
             }).ToList();
         }
@@ -109,6 +110,7 @@ namespace PayegahDataLayer.Services
                 s.Members.PersonID,
                 s.Role.RoleTitle,
                 s.RoleType.TypeTitle,
+                s.IActive,
                 Date = s.DateRegestration != null ? s.DateRegestration.Value.ToShamsi() : ""
             }).ToList();
         }
@@ -136,6 +138,7 @@ namespace PayegahDataLayer.Services
                 s.Members.PersonID,
                 s.Operations.OperationTitle,
                 s.OperationDgree.DgTitle,
+                s.IsActive,
                 Date = s.DateRegstration != null ? s.DateRegstration.ToShamsi() : ""
             }).ToList();
         }
@@ -164,6 +167,7 @@ namespace PayegahDataLayer.Services
                 s.Members.PersonID,
                 AmadTitle = s.Amad.AmadTitle,
                 AmadTypeTitle = s.Amad.AmadType.AmadTypeTitle,
+                s.IsActive,
                 Date = s.AmadDateRegestration != null ? s.AmadDateRegestration.Value.ToShamsi() : ""
             }).ToList();
         }

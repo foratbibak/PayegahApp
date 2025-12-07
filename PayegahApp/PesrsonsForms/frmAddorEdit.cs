@@ -86,11 +86,23 @@ namespace PayegahApp.PesrsonsForms
                     DialogResult = DialogResult.OK;
                     RtlMessageBox.Show("عملیات ذخیره سازی با موفقیت انجام شد");
                 }
-                else 
+                else
                 {
+                    var person = db.PersonsRepository.GetAll().Where(p => p.NationalCode == nationalCast && p.NationalCode != P_NationalCode).FirstOrDefault();
+
+                    if (person != null)
+                    {
+                        RtlMessageBox.Show("کدملی وارد شده تکراری است");
+                        txtNationalCode.Focus();
+                        return;
+                    }
+
+
+
                     var existingPerson = db.PersonsRepository.GetbyID(P_NationalCode);
                     if (existingPerson != null)
                     {
+                        existingPerson.NationalCode = nationalCast;
                         existingPerson.PersonName = string.IsNullOrWhiteSpace(txtName.Text) ? defaultText : txtName.Text;
                         existingPerson.PersonFamily = string.IsNullOrWhiteSpace(txtFamily.Text) ? defaultText : txtFamily.Text;
                         existingPerson.PersonAddress = string.IsNullOrWhiteSpace(txtAddress.Text) ? defaultText : txtAddress.Text;

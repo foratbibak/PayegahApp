@@ -37,14 +37,14 @@ namespace PayegahApp.OperationsForm
         {
             foreach (DataGridViewRow row in dgvOpType.Rows)
             {
-                if (row.Cells["DateRegestration"].Value != null &&
-                    DateTime.TryParse(row.Cells["DateRegestration"].Value.ToString(), out DateTime date))
+                if (row.Cells["colDateRegestration"].Value != null &&
+                    DateTime.TryParse(row.Cells["colDateRegestration"].Value.ToString(), out DateTime date))
                 {
-                    row.Cells["DateRegestration"].Value = date.ToShamsi();
+                    row.Cells["colDateRegestration"].Value = date.ToShamsi();
                 }
                 else
                 {
-                    row.Cells["DateRegestration"].Value = "";
+                    row.Cells["colDateRegestration"].Value = "";
                 }
             }
         }
@@ -62,6 +62,7 @@ namespace PayegahApp.OperationsForm
                     Data=Data.Where(o=>o.IsActive == false).ToList();
                 }
                 dgvOpType.DataSource=Data;
+                ConvertDatesToShamsi();
             }
         }
 

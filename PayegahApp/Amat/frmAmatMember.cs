@@ -97,7 +97,6 @@ namespace PayegahApp.Amat
 
                 }).ToList();
                 dgvAmadM.DataSource = Join;
-                //ConvertDatesToShamsi();
                 AmCombo();
             }
         }
@@ -372,7 +371,7 @@ namespace PayegahApp.Amat
             if (dgvAmadM.Columns[e.ColumnIndex].Name == "IsActive" && e.Value != null)
             {
                 bool isActive = (bool)e.Value;
-                e.Value = isActive ? "فعال" : "غیرفعال";
+                e.Value = isActive ? "تخصیص" : "عدم تخصیص";
                 e.FormattingApplied = true;
             }
         }

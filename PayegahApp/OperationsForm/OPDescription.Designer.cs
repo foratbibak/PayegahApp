@@ -245,7 +245,7 @@
             // colID
             // 
             this.colID.DataPropertyName = "ID";
-            this.colID.HeaderText = "ID";
+            this.colID.HeaderText = "ایدی";
             this.colID.Name = "colID";
             this.colID.ReadOnly = true;
             this.colID.Visible = false;
@@ -285,6 +285,7 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "OPDescription";

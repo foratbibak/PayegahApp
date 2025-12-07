@@ -140,9 +140,16 @@ namespace PayegahApp.Amat
                 return;
 
             }
-
             using (UnitofWork db = new UnitofWork())
             {
+                var Amad = db.AmadRepository.GetAll().Where(m=>m.AmadCode== CodeCast).FirstOrDefault();
+                if (Amad != null)
+                {
+                    RtlMessageBox.Show("کد وارد شده تکراری است");
+                    txtCode.Focus();
+                    return;
+                }
+
                 int EventType = (int)cmbAmadType.SelectedValue;
                 Amad et = new Amad()
                 {
@@ -185,7 +192,15 @@ namespace PayegahApp.Amat
                 }
                 int ID = int.Parse(dgvAmad.CurrentRow.Cells[0].Value.ToString());
                 using (UnitofWork db = new UnitofWork())
+
                 {
+                    var Amad = db.AmadRepository.GetAll().Where(m => m.AmadCode == CodeCast).FirstOrDefault();
+                    if (Amad != null)
+                    {
+                        RtlMessageBox.Show("کد وارد شده تکراری است");
+                        txtCode.Focus();
+                        return;
+                    }
                     if (cmbAmadType.SelectedIndex < 0)
                     {
                         RtlMessageBox.Show("لطفا نوع تجهیزات را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
