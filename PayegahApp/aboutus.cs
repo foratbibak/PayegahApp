@@ -20,12 +20,17 @@ namespace PayegahApp
 
         private void aboutus_Load(object sender, EventArgs e)
         {
-            AppUtility.SetFormRounded(this, 30);
+            AppUtility.SetFormRounded(this, 45);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

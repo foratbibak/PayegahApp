@@ -47,16 +47,16 @@
             this.NationalCod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PostalCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FatherJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatherJob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FatherPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MatherPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegistrationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -228,16 +228,16 @@
             this.NationalCod,
             this.PersonName,
             this.PersonFamily,
+            this.PhoneNumber,
+            this.IsActive,
             this.PersonAddress,
             this.PostalCode,
-            this.PhoneNumber,
             this.DateBirth,
             this.FatherJob,
             this.MatherJob,
             this.FatherPhoneNumber,
             this.MatherPhoneNumber,
-            this.RegistrationDate,
-            this.IsActive});
+            this.RegistrationDate});
             this.dgvPerson.Location = new System.Drawing.Point(9, 24);
             this.dgvPerson.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvPerson.Name = "dgvPerson";
@@ -302,6 +302,23 @@
             this.PersonFamily.ReadOnly = true;
             this.PersonFamily.Width = 170;
             // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.DataPropertyName = "PhoneNumber";
+            this.PhoneNumber.FillWeight = 200F;
+            this.PhoneNumber.HeaderText = "شماره تماس عضو";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.ReadOnly = true;
+            this.PhoneNumber.Width = 180;
+            // 
+            // IsActive
+            // 
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "فعال/غیرفعال";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.ReadOnly = true;
+            this.IsActive.Width = 200;
+            // 
             // PersonAddress
             // 
             this.PersonAddress.DataPropertyName = "PersonAddress";
@@ -319,15 +336,6 @@
             this.PostalCode.Name = "PostalCode";
             this.PostalCode.ReadOnly = true;
             this.PostalCode.Width = 160;
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.DataPropertyName = "PhoneNumber";
-            this.PhoneNumber.FillWeight = 200F;
-            this.PhoneNumber.HeaderText = "شماره تماس عضو";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.ReadOnly = true;
-            this.PhoneNumber.Width = 180;
             // 
             // DateBirth
             // 
@@ -383,14 +391,6 @@
             this.RegistrationDate.ReadOnly = true;
             this.RegistrationDate.Width = 160;
             // 
-            // IsActive
-            // 
-            this.IsActive.DataPropertyName = "IsActive";
-            this.IsActive.HeaderText = "فعال/غیرفعال";
-            this.IsActive.Name = "IsActive";
-            this.IsActive.ReadOnly = true;
-            this.IsActive.Width = 200;
-            // 
             // frmPersons
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -439,15 +439,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NationalCod;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonFamily;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn PostalCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateBirth;
         private System.Windows.Forms.DataGridViewTextBoxColumn FatherJob;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatherJob;
         private System.Windows.Forms.DataGridViewTextBoxColumn FatherPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatherPhoneNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn RegistrationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
     }
 }

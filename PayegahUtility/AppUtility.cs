@@ -24,7 +24,7 @@ namespace PayegahUtility
         //    path.CloseFigure();
         //    return path;
         //}
-        public static void SetFormRounded(Form form, int radius = 30)
+        public static void SetFormRounded(Form form, int radius = 45)
         {
             form.FormBorderStyle = FormBorderStyle.None; // حذف قاب پیش‌فرض
 

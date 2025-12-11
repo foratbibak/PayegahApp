@@ -11,6 +11,7 @@ using PayegahDataLayer.Context;
 using PayegahDataLayer;
 using Accounting.utility.Convertor;
 using Stimulsoft.Report;
+using PayegahApp.RollForm;
 
 namespace PayegahApp.Amat
 {
@@ -171,11 +172,10 @@ namespace PayegahApp.Amat
                     txtNatoinalCode.Focus();
                     return;
                 }
-                if (mem.IsActive == true)
+                if (!(bool)mem.IsActive)
                 {
                     RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-
                 }
                 if (cmbAmad.SelectedIndex < 0 || cmbAmad.SelectedValue == null)
                 {
@@ -185,10 +185,15 @@ namespace PayegahApp.Amat
 
                 if (!int.TryParse(cmbAmad.SelectedValue.ToString(), out int AmadIDCast))
                 {
-                    RtlMessageBox.Show("مقدار انتخاب‌شده معتبر نیست.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    RtlMessageBox.Show("مقدار انتخاب‌ شده معتبر نیست.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                List<AmadMembers> memAmad = db.AmadMemberRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.AmadID == AmadIDCast & w.IsActive == true).ToList();
+                if (memAmad.Count > 0)
+                {
+                    RtlMessageBox.Show("عضو مورد نظر در حال حاضر این تجهیزات را دارد.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 AmadMembers amm = new AmadMembers()
                 {
                     MemID = mem.MemID,
@@ -223,11 +228,10 @@ namespace PayegahApp.Amat
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (em.IsActive == true)
+                    if (!(bool)em.IsActive)
                     {
                         RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-
                     }
                     var Get = db.AmadMemberRepository.GetbyID(ID);
                     if (cmbAmad.SelectedIndex < 0)
@@ -236,6 +240,12 @@ namespace PayegahApp.Amat
                         return;
                     }
                     int AmadIDCast = (int)cmbAmad.SelectedValue;
+                    List<AmadMembers> memAmad = db.AmadMemberRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.AmadID == AmadIDCast & w.IsActive == true).ToList();
+                    if (memAmad.Count > 0)
+                    {
+                        RtlMessageBox.Show("عضو مورد نظر در حال حاضر این تجهیزات را دارد.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     if (Get != null)
                     {
                         Get.MemID = em.MemID;

@@ -101,7 +101,7 @@ namespace PayegahApp.OperationsForm
                     s.OperationMemberID,
                     s.Members.Persons.PersonFullName,
                     s.Members.Persons.NationalCode,
-                    s.Operations.OperationTitle,
+                    s.Operations.OPFullName,
                     s.OperationDgree.DgTitle,
                     Date = s.DateRegstration != null ? s.DateRegstration.ToShamsi() : "",
                     s.IsActive
@@ -189,11 +189,10 @@ namespace PayegahApp.OperationsForm
                     txtNatoinalCode.Focus();
                     return;
                 }
-                if (mem.IsActive == true)
+                if (!(bool)mem.IsActive)
                 {
                     RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-
                 }
                 if (cmbOperations.SelectedIndex < 0 || cmbDgree.SelectedIndex < 0)
                 {
@@ -202,6 +201,12 @@ namespace PayegahApp.OperationsForm
                 }
                 int OPIDCast = (int)cmbOperations.SelectedValue;
                 int DGIDCast = (int)cmbDgree.SelectedValue;
+                List<OperationMembers> OpMem = db.OperationMembersRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.OperationID == OPIDCast & w.DgreeID == DGIDCast & w.IsActive == true).ToList();
+                if (OpMem.Count > 0)
+                {
+                    RtlMessageBox.Show("عضو مورد نظر در حال حاضر در این عملیات عضو است.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 OperationMembers om = new OperationMembers()
                 {
@@ -235,11 +240,10 @@ namespace PayegahApp.OperationsForm
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (em.IsActive == true)
+                    if (!(bool)em.IsActive)
                     {
                         RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-
                     }
                     var Get = db.OperationMembersRepository.GetbyID(ID);
                     if (cmbOperations.SelectedIndex < 0 || cmbDgree.SelectedIndex < 0)
@@ -249,6 +253,12 @@ namespace PayegahApp.OperationsForm
                     }
                     int OPIDCast = (int)cmbOperations.SelectedValue;
                     int DGIDCast = (int)cmbDgree.SelectedValue;
+                    List<OperationMembers> OpMem = db.OperationMembersRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.OperationID == OPIDCast & w.DgreeID == DGIDCast & w.IsActive == true).ToList();
+                    if (OpMem.Count > 0)
+                    {
+                        RtlMessageBox.Show("عضو مورد نظر در حال حاضر در این عملیات عضو است.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     if (Get != null)
                     {
                         Get.MemID = em.MemID;

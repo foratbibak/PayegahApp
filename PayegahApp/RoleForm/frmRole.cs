@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -166,19 +167,27 @@ namespace PayegahApp.RollForm
                     RtlMessageBox.Show("کدملی وارد شده یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (mem.IsActive == true)
+                if (!(bool)mem.IsActive)
                 {
                     RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-
                 }
+
                 if (cmbRoleName.SelectedIndex < 0 || cmbRoles.SelectedIndex < 0)
                 {
                     RtlMessageBox.Show("لطفا مقام و وظیفه مورد نظر را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
                 int roleTypeId = (int)cmbRoles.SelectedValue;
                 int roleId = (int)cmbRoleName.SelectedValue;
+
+                List<MemberRole> memberRoles = db.MemberRoleRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.Role_ID == roleId & w.RoleTypeID==roleTypeId & w.IActive==true).ToList();
+                if(memberRoles.Count>0)
+                {
+                    RtlMessageBox.Show("عضو مورد نظر در حال حاضر این مقام را دارد.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 MemberRole mr = new MemberRole()
                 {
                     MemID = mem.MemID,
@@ -351,12 +360,12 @@ namespace PayegahApp.RollForm
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (member.IsActive == true)
+                    if (!(member.IsActive ?? false))
                     {
                         RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-
                     }
+
                     if (cmbRoleName.SelectedIndex < 0 || cmbRoles.SelectedIndex < 0)
                     {
                         RtlMessageBox.Show("لطفا برای عملیات ویرایش مقام و وظیفه مورد نظر را از لیست انتخاب فرمایید. ", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -364,7 +373,12 @@ namespace PayegahApp.RollForm
                     }
                     int roleTypeId = (int)cmbRoles.SelectedValue;
                     int roleId = (int)cmbRoleName.SelectedValue;
-
+                    List<MemberRole> memberRoles = db.MemberRoleRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.Role_ID == roleId & w.RoleTypeID == roleTypeId & w.IActive == true).ToList();
+                    if (memberRoles.Count > 0)
+                    {
+                        RtlMessageBox.Show("عضو مورد نظر در حال حاضر این مقام را دارد.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                     if (Get != null)
                     {
                         Get.MemID = member.MemID;

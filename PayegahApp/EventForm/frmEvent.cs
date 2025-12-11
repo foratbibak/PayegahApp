@@ -173,11 +173,10 @@ namespace PayegahApp.EventForm
                     txtNatoinalCode.Focus();
                     return;
                 }
-                if (mem.IsActive == true)
+                if (!(bool)mem.IsActive)
                 {
                     RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-
                 }
                 if (cmbEvents.SelectedIndex < 0)
                 {
@@ -185,7 +184,12 @@ namespace PayegahApp.EventForm
                     return;
                 }
                 int EventIDCast = (int)cmbEvents.SelectedValue;
-
+                List<EventMembers> EventMem = db.MemberEventRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.EventID == EventIDCast & w.IsActive == true).ToList();
+                if (EventMem.Count > 0)
+                {
+                    RtlMessageBox.Show("عضو مورد نظر در حال حاضر در این مراسم عضو است.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 EventMembers em = new EventMembers()
                 {
                     MemID = mem.MemID,
@@ -287,19 +291,26 @@ namespace PayegahApp.EventForm
                         RtlMessageBox.Show("کدملی وارد شده یافت نشد.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-                    if (em.IsActive == true)
+                    if (!(bool)em.IsActive)
                     {
                         RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-
                     }
-                    var Get = db.MemberEventRepository.GetbyID(ID);
+
+               
                     if (cmbEvents.SelectedIndex < 0)
                     {
                         RtlMessageBox.Show("لطفا یک  مراسم را انتخاب فرمایید.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     int EventIDCast = (int)cmbEvents.SelectedValue;
+                    List<EventMembers> EventMem = db.MemberEventRepository.GetAll().Where(w => w.Members.Persons.NationalCode == NationalCodeCast & w.EventID == EventIDCast & w.IsActive == true).ToList();
+                    if (EventMem.Count > 0)
+                    {
+                        RtlMessageBox.Show("عضو مورد نظر در حال حاضر در این مراسم عضو است.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    var Get = db.MemberEventRepository.GetbyID(ID);
                     if (Get != null)
                     {
                         Get.MemID = em.MemID;

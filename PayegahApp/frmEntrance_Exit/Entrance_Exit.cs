@@ -47,12 +47,19 @@ namespace PayegahApp.frmEntrance_Exit
                             RtlMessageBox.Show("کاربری با این کدملی یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        
-                        if (person.IsActive != true)
+
+                        if (!(person.IsActive ?? false))
                         {
                             RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
+                        }
 
+                        var EnData = db.Attendance_AbsenceRepository.GetAll().Where(w => w.Persons.NationalCode == nationalcodecast & Convert.ToDateTime(w.EntranceDate).ToShortDateString() == DateTime.Now.ToShortDateString());
+
+                        if (EnData.Count()> 0)
+                        {
+                            RtlMessageBox.Show("قبلا ورود کاربر ثبت شده است", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
                         PayegahDataLayer.Attendance_absence atb = new PayegahDataLayer.Attendance_absence()
                         {
@@ -179,12 +186,28 @@ namespace PayegahApp.frmEntrance_Exit
                             RtlMessageBox.Show("کاربری با این کدملی یافت نشد", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
-                        if (person.IsActive != true)
-                        {
-                            RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
+                        //if (person.IsActive != true)
+                        //{
+                        //    RtlMessageBox.Show("عضو غیرفعال است.", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    return;
 
+                        //}
+                        var ExData = db.Attendance_AbsenceRepository.GetAll().Where(w => w.Persons.NationalCode == nationalcode & Convert.ToDateTime(w.ExitDate).ToShortDateString() == DateTime.Now.ToShortDateString());
+                        if (ExData.Count() > 0)
+                        {
+                            RtlMessageBox.Show("قبلا خروج کاربر ثبت شده است", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
+                        Attendance_absence En1Data = db.Attendance_AbsenceRepository.GetAll().Where(w => w.Persons.NationalCode == nationalcode).OrderByDescending(o => o.EntranceDate).FirstOrDefault();
+                        Attendance_absence Ex1Data = null;
+                        if (En1Data != null)
+                            Ex1Data = db.Attendance_AbsenceRepository.GetAll().Where(w => w.Persons.NationalCode == nationalcode & Convert.ToDateTime(w.ExitDate) >= Convert.ToDateTime(En1Data.EntranceDate)).FirstOrDefault();
+                        if (En1Data is null || Ex1Data != null)
+                        {
+                            RtlMessageBox.Show("برای کاربر ورودی ثبت نشده است", "توجه", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
                         PayegahDataLayer.Attendance_absence atb = new PayegahDataLayer.Attendance_absence()
                         {
                             PersonID = person.PersonID,

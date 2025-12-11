@@ -40,7 +40,7 @@ namespace PayegahApp
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
-            AppUtility.SetFormRounded(this, 30);
+            AppUtility.SetFormRounded(this, 40);
             timerr = new Timer();
             timerr.Interval = 1000;
             timerr.Tick += Timer_Tick;

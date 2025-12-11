@@ -409,7 +409,7 @@
             // 
             // OperationTitle
             // 
-            this.OperationTitle.DataPropertyName = "OperationTitle";
+            this.OperationTitle.DataPropertyName = "OPFullName";
             this.OperationTitle.HeaderText = "عملیات";
             this.OperationTitle.Name = "OperationTitle";
             this.OperationTitle.ReadOnly = true;

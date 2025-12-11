@@ -54,8 +54,9 @@
             this.PersonFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PersonID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EventTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsActive = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -246,8 +247,9 @@
             this.PersonFullName,
             this.PersonID,
             this.EventTitle,
-            this.Date,
-            this.IsActive});
+            this.Title,
+            this.IsActive,
+            this.Date});
             this.dgvEvent.Location = new System.Drawing.Point(9, 25);
             this.dgvEvent.Name = "dgvEvent";
             this.dgvEvent.ReadOnly = true;
@@ -365,14 +367,13 @@
             this.EventTitle.ReadOnly = true;
             this.EventTitle.Width = 200;
             // 
-            // Date
+            // Title
             // 
-            this.Date.DataPropertyName = "Date";
-            this.Date.FillWeight = 10.15228F;
-            this.Date.HeaderText = "تاریخ ثبت شده";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Width = 200;
+            this.Title.DataPropertyName = "Title";
+            this.Title.HeaderText = "نوع مراسم";
+            this.Title.Name = "Title";
+            this.Title.ReadOnly = true;
+            this.Title.Width = 200;
             // 
             // IsActive
             // 
@@ -381,6 +382,15 @@
             this.IsActive.Name = "IsActive";
             this.IsActive.ReadOnly = true;
             this.IsActive.Width = 150;
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            this.Date.FillWeight = 10.15228F;
+            this.Date.HeaderText = "تاریخ ثبت شده";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Width = 200;
             // 
             // frmEvent
             // 
@@ -440,7 +450,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonFullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn PersonID;
         private System.Windows.Forms.DataGridViewTextBoxColumn EventTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
         private System.Windows.Forms.DataGridViewTextBoxColumn IsActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
     }
 }
