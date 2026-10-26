@@ -70,9 +70,9 @@ namespace PayegahApp
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            RtlMessageBox.Show("این گزینه در بخش خریداری شده برنامه فعال میشود");
-            //LoginManageMent frm = new LoginManageMent();
-            //frm.ShowDialog();
+            //RtlMessageBox.Show("این گزینه در بخش خریداری شده برنامه فعال میشود");
+            LoginManageMent frm = new LoginManageMent();
+            frm.ShowDialog();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
